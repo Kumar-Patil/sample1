@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-lg-6">
+    </div>
+    <div class="col-sm-6 text-right">
+      <button type="button" class="btn btn-default" routerLink="#">Add Cab</button>
+    </div>
+  </div>
+  <div class="mt-5">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+        <thead style="font: bold;">
+          <tr>
+            <th>#</th>
+            <th>Vechicle No Plate</th>
+            <th>Vechicle RegNo</th>
+            <th>Vechicle Model</th>
+            <th>Vechicle Type</th>
+            <th>Vechicle Color</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cab of cabsData;let index=index;">
+            <td>{{index+1}}</td>
+            <td>
+              <span class="text-wrap">{{cab.cabNo}}</span>
+            </td>
+            <td>
+              <span class="text-wrap">{{cab.cabRegistrationNo}}</span>
+            </td>
+            <td>
+              <span class="text-wrap">{{cab.cabModel}}</span>
+            </td>
+            <td>
+              <span class="text-wrap">{{cab.cabType}}</span>
+            </td>
+            <td>
+              <span class="text-wrap">{{cab.cabColor}}</span>
+            </td>
+            <td>
+              <span class="text-wrap">{{cab.status}}</span>
+            </td>
+            <td>
+                <span class="text-wrap">
+                    <a class="pointer" (click)="view($event,cab)"><span class="oi oi-share-boxed" title="view" aria-hidden="true"></span> </a> / 
+                    <a class="pointer" (click)="edit($event,cab)"><span class="oi oi-pencil" title="edit" aria-hidden="true"></span> </a>/ 
+                    <a class="pointer" (click)="delete($event,cab)"><span class="oi oi-trash" title="delete" aria-hidden="true"></span> </a>
+                </span>
+            </td>
+          </tr>
+      </table>
+  </div>
+  <router-outlet></router-outlet>

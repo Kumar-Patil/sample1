@@ -1,0 +1,104 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { DriverComponent } from './driver/driver.component';
+import { ActivityDashboardComponent } from './auth/activity-dashboard/activity-dashboard.component';
+import { AddDriverComponent } from './driver/add-driver/add-driver.component';
+
+/* Adding new componets */
+import { UserComponent } from './user/user.component';
+import { VendorComponent } from './vendor/vendor.component';
+import { BookingComponent } from './booking/booking.component';
+import { PricingComponent } from './pricing/pricing.component';
+import { CabsComponent } from './cabs/cabs.component';
+import { RiderComponent } from './rider/rider.component';
+import { ReportComponent } from './report/report.component';
+import { FinanceComponent } from './finance/finance.component';
+import { DeliveryComponent } from './delivery/delivery.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
+
+const routes: Routes = [
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+    {
+        path: 'forgotPassword',
+        component: ForgotPasswordComponent
+    },
+    {
+        path: 'resetPassword',
+        component: ResetPasswordComponent
+    },
+    {
+        path: 'driver',
+        component: DriverComponent
+    },
+    { path: 'driver/addDriver', component: AddDriverComponent },
+    { path: 'driver/editDriver/:driverId', component: AddDriverComponent },
+    {
+        path: 'activityDashboard',
+        component: ActivityDashboardComponent
+    },
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+    },
+    {
+        path: 'user',
+        component: UserComponent
+    }
+    ,
+    {
+        path: 'vendor',
+        component: VendorComponent
+    }
+    ,
+    {
+        path: 'booking',
+        component: BookingComponent
+    }
+    ,
+    {
+        path: 'pricing',
+        component: PricingComponent
+    }
+    ,
+    {
+        path: 'cabs',
+        component: CabsComponent
+    }
+    ,
+    {
+        path: 'rider',
+        component: RiderComponent
+    }
+    ,
+    {
+        path: 'report',
+        component: ReportComponent
+    }
+    ,
+    {
+        path: 'finance',
+        component: FinanceComponent
+    }
+    ,
+    {
+        path: 'delivery',
+        component: DeliveryComponent
+    }
+    ,
+    { path: 'user/add', component: AddUserComponent },
+    { path: 'user/edit/:id', component: AddUserComponent }
+];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+})
+
+export class AppRoutingModule { }
