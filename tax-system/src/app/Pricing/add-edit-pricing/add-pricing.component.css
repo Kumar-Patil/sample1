@@ -18,30 +18,29 @@
     right: 55px;
     top: 22px;
 }
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
 
-.file-width {
-    width:99px;
-    color:transparent;
+.btn-margin {
+    margin-left: 27%;
+    margin-right: 1%;
 }
-#fileLabel {
+
+.form-bg{
+    background-color: #eee;
+    color: #666;
+    padding: 20px;
+    border-radius: 10px;
     position: relative;
-    width: 100px;
-  }
-#fileLabel {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-#fileLabel:after {
-    content: attr(data-filetype);
-    position: absolute;
-    left: 100%;
+    border: 1px solid #fff;
+    margin: auto;
+    margin-top: 7%;
+    margin-bottom: 6%;
     top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    height: 40%;
 }
-  /*Show on hover*/
-  #fileLabel:hover {
-    width: auto  
-  }
-  #fileLabel:hover:after {
-    display: none;  
-  }

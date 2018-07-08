@@ -1,28 +1,34 @@
 <div class="container-fluid">
   <div class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
-      <div class="col-md-12 col-lg-12 col-sm-12">
-        <div class="row">
-          <h2>
-            Login Details
-          </h2>
-        </div>
-        <form class="row detail border border-dark">
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="form-group is-required-short">
-                  <label class="control-label">Mobile Number</label>
-                  <input type="text" id="mobileNumber" class="form-control" placeholder="" [(ngModel)]="driverData.mobileNo" name="mobileNum" maxlength="60"
-                    required>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="form-group is-required-short">
-                    <label class="control-label">Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="" [(ngModel)]="driverData.password" name="passwrd" maxlength="60"
-                      required>
-                  </div>
-                </div>
-        </form>
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="row">
+        <h2>
+          Login Details
+        </h2>
       </div>
+      <form class="row detail border border-dark" #loginDetails="ngForm">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">Mobile Number *</label>
+            <input type="text" class="form-control" [(ngModel)]="driverData.mobileNo" name="mobileNum" #mobileNum="ngModel" required="true"
+              minlength="10" maxlength="10">
+            <div *ngIf="mobileNum.errors && (mobileNum.dirty || mobileNum.touched)">
+              <span class="text-danger" [hidden]="!mobileNum.errors.required">Mobile Number is required</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">Password *</label>
+            <input type="password" id="password" class="form-control" placeholder="" [(ngModel)]="driverData.password" name="passwrd"
+              #passwrd="ngModel" required="true">
+            <div *ngIf="passwrd.errors && (passwrd.dirty || passwrd.touched)">
+              <span class="text-danger" [hidden]="!passwrd.errors.required">Password is required</span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
   <div id="accordion" class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
     <div class="col-md-12 col-lg-12 col-sm-12">
@@ -37,99 +43,134 @@
             <div class="row">
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
-                  <label class="control-label">First Name</label>
-                  <input type="text" id="driverName" class="form-control" placeholder="" [(ngModel)]="driverData.firstName" name="first" maxlength="60"
-                    required>
+                  <label class="control-label">First Name *</label>
+                  <input type="text" id="driverName" class="form-control" placeholder="" [(ngModel)]="driverData.firstName" name="firstName"
+                    #firstName="ngModel" required="true">
+                  <div *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+                    <span class="text-danger" [hidden]="!firstName.errors.required">First Name is required</span>
+                  </div>
                 </div>
               </div>
               <!-- Add here -->
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
-                  <label class="control-label">Last Name</label>
-                  <input type="text" id="driverLastName" class="form-control" placeholder="" [(ngModel)]="driverData.lastName" name="last" maxlength="60" 
-                    required>
+                  <label class="control-label">Last Name *</label>
+                  <input type="text" id="driverLastName" class="form-control" placeholder="" [(ngModel)]="driverData.lastName" name="lastName"
+                    #lastName="ngModel" required="true">
+                  <div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+                    <span class="text-danger" [hidden]="!lastName.errors.required">Last Name is required</span>
+                  </div>
                 </div>
               </div>
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                <label for="gender">Gender</label>
+                <label for="gender">Gender *</label>
                 <div class="">
-                  <select class="form-control" id="gender" [(ngModel)]="driverData.sex" name="sex">
+                  <select class="form-control" id="gender" [(ngModel)]="driverData.sex" name="sex" #sex="ngModel" required="true">
                     <option value='male'>Male</option>
                     <option value='female'>Female</option>
                   </select>
+                  <div *ngIf="sex.errors && (sex.dirty || sex.touched)">
+                    <span class="text-danger" [hidden]="!sex.errors.required">Please select gender</span>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
-                  <label class="control-label">Email</label>
-                  <input type="email" id="emailId" class="form-control" placeholder="" [(ngModel)]="driverData.email" name="emailId" required>
+                  <label class="control-label">Email *</label>
+                  <input type="email" id="emailId" class="form-control" placeholder="" [(ngModel)]="driverData.email" name="email" #email="ngModel"
+                    required="true">
+                </div>
+                <div *ngIf="email.errors && (email.dirty || email.touched)">
+                  <span class="text-danger" [hidden]="!email.errors.required">Email is required</span>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
                   <label class="control-label">Other Phone</label>
-                  <input type="text" id="otherPhone" class="form-control" placeholder="" [(ngModel)]="driverData.otherPhone" #otherPhone="ngModel" name="otherPhoneNum">
+                  <input type="text" id="otherPhone" class="form-control" placeholder="" [(ngModel)]="driverData.otherPhone" name="otherPhoneNum">
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
                   <label class="control-label">Alias Name</label>
-                  <input type="text" id="aliasName" class="form-control" placeholder="" [(ngModel)]="driverData.aliasName" #aliasName="ngModel" name="aliasNam">
+                  <input type="text" id="aliasName" class="form-control" placeholder="" [(ngModel)]="driverData.aliasName" name="aliasNam">
                 </div>
               </div>
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                <label for="country">Country</label>
+                <label for="country">Country *</label>
                 <div class="">
-                  <select class="form-control" id="country" [(ngModel)]="driverData.countryId" name="country" #country="ngModel">
+                  <select class="form-control" id="country" [(ngModel)]="driverData.countryId" name="country" #country="ngModel" required="true">
                     <option *ngFor="let country of countryList" [ngValue]="country.countriId">{{country.name}}</option>
                   </select>
+                  <div *ngIf="country.errors && (country.dirty || country.touched)">
+                    <span class="text-danger" [hidden]="!country.errors.required">Country is required</span>
+                  </div>
                 </div>
               </div>
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                <label for="state">State</label>
+                <label for="state">State *</label>
                 <div class="">
-                  <select class="form-control" id="state" [(ngModel)]="driverData.stateId" name="state" >
+                  <select class="form-control" id="state" [(ngModel)]="driverData.stateId" name="state" #state="ngModel" required="true">
                     <option *ngFor="let state of statesList" [ngValue]="state.stateId">{{state.stateName}}</option>
                   </select>
+                  <div *ngIf="state.errors && (state.dirty || state.touched)">
+                    <span class="text-danger" [hidden]="!state.errors.required">State is required</span>
+                  </div>
                 </div>
               </div>
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                <label for="city">City</label>
+                <label for="city">City *</label>
                 <div class="">
-                  <select class="form-control" id="city" [(ngModel)]="driverData.cityId" #city="ngModel" name="city">
+                  <select class="form-control" id="city" [(ngModel)]="driverData.cityId" #city="ngModel" name="city" required="true">
                     <option *ngFor="let city of cityList" [ngValue]="city.cityId">{{city.citieName}}</option>
                   </select>
+                  <div *ngIf="city.errors && (city.dirty || city.touched)">
+                    <span class="text-danger" [hidden]="!city.errors.required">City is required</span>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
-                  <label class="control-label">Pin Code</label>
-                  <input type="text" id="pinCode" class="form-control" placeholder="" [(ngModel)]="driverData.zip" #pinCode="ngModel" name="pin" required>
+                  <label class="control-label">Pin Code *</label>
+                  <input type="text" id="pinCode" class="form-control" placeholder="" [(ngModel)]="driverData.zip" #pinCode="ngModel" name="pinCode"
+                    required="true">
+                  <div *ngIf="pinCode.errors && (pinCode.dirty || pinCode.touched)">
+                    <span class="text-danger" [hidden]="!pinCode.errors.required">Pincode is required</span>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
-                  <label class="control-label">Plot No/Land Mark</label>
-                  <input type="text" id="plotNumber" class="form-control" placeholder="" [(ngModel)]="driverData.street" #landMark="ngModel" name="streetAdd" required>
+                  <label class="control-label">Plot No/Land Mark *</label>
+                  <input type="text" id="plotNumber" class="form-control" placeholder="" [(ngModel)]="driverData.street" #landMark="ngModel"
+                    name="landMark" required="true">
+                  <div *ngIf="landMark.errors && (landMark.dirty || landMark.touched)">
+                    <span class="text-danger" [hidden]="!landMark.errors.required">Land Mark is required</span>
+                  </div>
                 </div>
               </div>
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                  <label for="vehicle">Vehicle</label>
-                  <div class="">
-                    <select class="form-control" id="cabId" [(ngModel)]="driverData.cabId" #cabId="ngModel" name="cabId">
-                      <option *ngFor="let cab of cabList" [ngValue]="cab.cabId">{{cab.cabType}}</option>
-                    </select>
+                <label for="vehicle">Vehicle *</label>
+                <div class="">
+                  <select class="form-control" id="cabId" [(ngModel)]="driverData.cabId" #cabId="ngModel" name="cabId" required="true">
+                    <option *ngFor="let cab of cabList" [ngValue]="cab.cabId">{{cab.cabType}}</option>
+                  </select>
+                  <div *ngIf="cabId.errors && (cabId.dirty || cabId.touched)">
+                    <span class="text-danger" [hidden]="!cabId.errors.required">Cab Id is required</span>
                   </div>
                 </div>
-                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                  <label for="status">Status</label>
-                  <div class="">
-                    <select class="form-control" id="statusId" [(ngModel)]="driverData.status" #statusId="ngModel" name="statusId">
-                      <option value="1">Active</option>
-                      <option value="0">Inactive</option>
-                    </select>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="status">Status *</label>
+                <div class="">
+                  <select class="form-control" id="statusId" [(ngModel)]="driverData.status" #status="ngModel" name="status" required="true">
+                    <option *ngFor="let status of statusList" [ngValue]=status.id>{{status.statusName}}</option>
+                  </select>
+                  <div *ngIf="status.errors && (status.dirty || status.touched)">
+                    <span class="text-danger" [hidden]="!status.errors.required">Status is required</span>
                   </div>
                 </div>
+              </div>
             </div>
           </div>
         </form>
@@ -157,7 +198,8 @@
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
                   <label class="control-label">Driver Licence Number</label>
-                  <input type="text" id="driverLicenceNumber" class="form-control" placeholder="" [(ngModel)]="driverData.driverLicenceNumber" name="licenceNumber" maxlength="60" required>
+                  <input type="text" id="driverLicenceNumber" class="form-control" placeholder="" [(ngModel)]="driverData.driverLicenceNumber"
+                    name="licenceNumber" maxlength="60" required>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
@@ -193,15 +235,16 @@
           </h2>
         </div>
         <form class="row detail border border-dark">
-          <div class="col-md-12 col-sm-12 col-xs-12 collapse" id="collapseThree" data-parent="#accordion2">
+          <div class="col-md-12 col-sm-12 col-xs-12 collapse" style="padding-top: 10px;" id="collapseThree" data-parent="#accordion2">
             <div class="row">
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label for="driverPhoto">Driver photo</label>
-                  <label class="btn btn-default">
-                    <input type="file" (change)="selectFile($event)" name="photo">
-                  </label>
-                    
+                  <input type="file" class="file-width" (change)="selectFile($event)" name="photo">
+                  <div id="fileName">
+                    <label id="fileLabel">{{ driverData.photo || 'No file chosen'}}</label>
+                  </div>
+
                   <!-- <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button> -->
                   <!-- <input type="file" #fileInput multiple (change)="uploadFileToActivity()" name="driverPhotos" [(ngModel)]="driverData.photo"/> -->
                   <!-- <input type="file" id="file" (change)="handleFileInput($event.target.files)" name="driverPhoto" [(ngModel)]="driverData.photo"> -->
@@ -211,43 +254,68 @@
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label for="proofAddress">Proof of address</label>
-                  <input type="file" id="proofAddress" (change)="selectFile($event)" name="proofOfAddress">
+                  <input type="file" class="file-width" id="proofAddress" (click)="validateError($event)" (change)="selectFile($event)" name="proofOfAddress"
+                    required="true">
+                  <div id="fileName">
+                    <label id="fileLabel">{{ driverData.proofOfAddress || 'No file chosen'}}</label>
+                  </div>
+                  <div *ngIf="!driverData.proofOfAddress && isProofOfAddressSelected">
+                    <span class="text-danger">Proof of address is required</span>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label for="policeDisclosure">Police disclosure</label>
-                  <input type="file" id="policeDisclosure" (change)="selectFile($event)" name="policeDisclose">
+                  <input type="file" class="file-width" id="policeDisclosure" (change)="selectFile($event)" name="policeDisclose">
+                  <div>
+                    <label id="fileLabel">{{ driverData.policeDisclose || 'No file chosen'}}</label>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
-                  <label for="agreement">Agreement</label>
-                  <input type="file" id="agreement" (change)="selectFile($event)" name="agreement">
+                  <label for="agreement" id="agree-val" class="fileUpload">Agreement</label>
+                  <input type="file" class="file-width" id="agreement" (change)="selectFile($event)" name="agreement">
+                  <div>
+                    <label id="fileLabel">{{ driverData.agreement || 'No file chosen'}}</label>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label for="licencePhoto">Licence photo</label>
-                  <input type="file" id="licencePhoto" (change)="selectFile($event)" name="licencePhoto">
+                  <input type="file" class="file-width" id="licencePhoto" (change)="selectFile($event)" name="licencePhoto">
+                  <div>
+                    <label id="fileLabel">{{ driverData.licencePhoto || 'No file chosen'}}</label>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label for="licencePaper">Licence paper</label>
-                  <input type="file" id="licencePaper" (change)="selectFile($event)" name="licencePaper">
+                  <input type="file" class="file-width" id="licencePaper" (change)="selectFile($event)" name="licencePaper">
+                  <div>
+                    <label id="fileLabel">{{ driverData.licencePaper || 'No file chosen'}}</label>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label for="pcoLicence">PCO licence</label>
-                  <input type="file" id="pcoLicence" (change)="selectFile($event)" name="pcoLicence">
+                  <input type="file" class="file-width" id="pcoLicence" (change)="selectFile($event)" name="pcoLicence">
+                  <div>
+                    <label id="fileLabel">{{ driverData.pcoLicence || 'No file chosen'}}</label>
+                  </div>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label for="insurence">Insurance</label>
-                  <input type="file" id="insurence" (change)="selectFile($event)" name="insurance">
+                  <input type="file" class="file-width" id="insurence" (change)="selectFile($event)" name="insurance">
+                  <div>
+                    <label id="fileLabel">{{ driverData.insurance || 'No file chosen'}}</label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -267,52 +335,52 @@
         <form class="row detail border border-dark">
           <div class="col-md-12 col-sm-12 col-xs-12 collapse" id="collapseFour" data-parent="#accordion3">
             <div class="row">
-                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                  <label for="crb">CRB</label>
-                  <div class="">
-                    <select class="form-control" id="crb" name="selectCRB" [(ngModel)]="driverData.crb">
-                      <option value='yes'>Yes</option>
-                      <option value='no'>No</option>
-                    </select>
-                  </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="crb">CRB</label>
+                <div class="">
+                  <select class="form-control" id="crb" name="selectCRB" [(ngModel)]="driverData.crb">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
                 </div>
+              </div>
               <!-- Add here -->
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                  <label for="delivery">Delivery</label>
-                  <div class="">
-                    <select class="form-control" id="delivery" name="selectDelivery" [(ngModel)]="driverData.delivery">
-                      <option value='yes'>Yes</option>
-                      <option value='no'>No</option>
-                    </select>
-                  </div>
+                <label for="delivery">Delivery</label>
+                <div class="">
+                  <select class="form-control" id="delivery" name="selectDelivery" [(ngModel)]="driverData.delivery">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
                 </div>
-                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                    <label for="female">Female</label>
-                    <div class="">
-                      <select class="form-control" id="female" name="femele" [(ngModel)]="driverData.female">
-                        <option value='yes'>Yes</option>
-                        <option value='no'>No</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                      <label for="luggage">Luggage</label>
-                      <div class="">
-                        <select class="form-control" id="luggage" name="lugg" [(ngModel)]="driverData.luggage">
-                          <option value='yes'>Yes</option>
-                          <option value='no'>No</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                        <label for="nhs">NHS</label>
-                        <div class="">
-                          <select class="form-control" id="nhs" name="selectNHS" [(ngModel)]="driverData.nhs">
-                            <option value='yes'>Yes</option>
-                            <option value='no'>No</option>
-                          </select>
-                        </div>
-                      </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="female">Female</label>
+                <div class="">
+                  <select class="form-control" id="female" name="femele" [(ngModel)]="driverData.female">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="luggage">Luggage</label>
+                <div class="">
+                  <select class="form-control" id="luggage" name="lugg" [(ngModel)]="driverData.luggage">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="nhs">NHS</label>
+                <div class="">
+                  <select class="form-control" id="nhs" name="selectNHS" [(ngModel)]="driverData.nhs">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label for="file">Pets</label>
@@ -320,23 +388,23 @@
                 </div>
               </div>
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                  <label for="unformed">Uniformed</label>
-                  <div class="">
-                    <select class="form-control" id="unformed" name="uniform" [(ngModel)]="driverData.uniformed">
-                      <option value='yes'>Yes</option>
-                      <option value='no'>No</option>
-                    </select>
-                  </div>
+                <label for="unformed">Uniformed</label>
+                <div class="">
+                  <select class="form-control" id="unformed" name="uniform" [(ngModel)]="driverData.uniformed">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
                 </div>
-                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                    <label for="topman">Topman</label>
-                    <div class="">
-                      <select class="form-control" id="topman" name="topMan" [(ngModel)]="driverData.topman">
-                        <option value='yes'>Yes</option>
-                        <option value='no'>No</option>
-                      </select>
-                    </div>
-                  </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="topman">Topman</label>
+                <div class="">
+                  <select class="form-control" id="topman" name="topMan" [(ngModel)]="driverData.topman">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </form>
@@ -344,15 +412,17 @@
     </div>
   </div>
 
-  <div class="row mt-1">
-      <div class="col-md-12 col-sm-12 col-xs-12 m-t-10">
-          <button type="button" class="btn btn-default" routerLink="/driver"> Cancel</button>
-          <button type="button" style="float: right;" *ngIf="!driverId" (click)="addOrUpdateDriverData(true)" class="btn btn-primary btn-xs pull-right m-r-10">
-              <span class="letter-space-small"></span> Save
-          </button>
-          <button type="button" style="float: right;" *ngIf="driverId" (click)="addOrUpdateDriverData(false)" class="btn btn-primary btn-xs pull-right m-r-10">
-              <span class="letter-space-small"></span> Update
-          </button>
-      </div>
+  <div class="row mt-1" style="padding-bottom: 60px;">
+    <div class="col-md-12 col-sm-12 col-xs-12 m-t-10">
+      <button type="button" class="btn btn-default" routerLink="/driver"> Cancel</button>
+      <button type="button" style="float: right;" [disabled]="formInvalid" *ngIf="!driverId" (click)="addOrUpdateDriverData(true)"
+        class="btn btn-primary btn-xs pull-right m-r-10">
+        <span class="letter-space-small"></span> Save
+      </button>
+      <button type="button" style="float: right;" [disabled]="formInvalid" *ngIf="driverId" (click)="addOrUpdateDriverData(false)"
+        class="btn btn-primary btn-xs pull-right m-r-10">
+        <span class="letter-space-small"></span> Update
+      </button>
+    </div>
   </div>
 </div>

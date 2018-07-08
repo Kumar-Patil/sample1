@@ -1,85 +1,136 @@
 <div class="row">
-    <div class="col-lg-6">
-    </div>
-    <div class="col-sm-6 text-right">
-      <button type="button" class="btn btn-default" routerLink="#">Add Price</button>
-    </div>
+  <div class="col-lg-6">
   </div>
-  <div class="mt-5">
-      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-        <thead style="font: bold;">
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>PerUnitDistance</th>
-            <th>PerMinute</th>
-            <th>Vendor Name</th>
-            <th>Vendor RegistrationNo</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let price of pricingData;let index=index;">
-            <td>{{index+1}}</td>
-            <td>
-              <span class="text-wrap">{{price.pricingGroupName}}</span>
-            </td>
-            <td>
-              <span class="text-wrap">{{price.pricePerUnitDistance}}</span>
-            </td>
-            <td>
-              <span class="text-wrap">{{price.pricePerMinute}}</span>
-            </td>
-            <td>
-              <span class="text-wrap">{{price.vendorName}}</span>
-            </td>
-            <td>
-              <span class="text-wrap">{{price.vendorRegistrationNo}}</span>
-            </td>
-            <td>
-              <span class="text-wrap">{{price.status}}</span>
-            </td>
-            <td>
-                <span class="text-wrap">
-                    <a class="pointer" (click)="view($event,price,viewcontent)"><span class="oi oi-share-boxed" title="view" aria-hidden="true"></span> </a> / 
-                    <a class="pointer" (click)="edit($event,price)"><span class="oi oi-pencil" title="edit" aria-hidden="true"></span> </a>/ 
-                    <a class="pointer" (click)="delete(content,$event,price)"><span class="oi oi-trash" title="delete" aria-hidden="true"></span> </a>
-                </span>
-            </td>
-          </tr>
-      </table>
-      <ng-template #content let-cl="close" let-di="dismiss">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Delete Confirmation</h5>
-          </div>
-          <div class="modal-body">
-            <p>Do you want to delete record ?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button"
-                    class="btn btn-secondary" style="margin-right: 61%;"
-                    (click)="di('Dismissed from dismiss button')">Yes</button>
-            <button type="button" 
-                    class="btn btn-primary" 
-                    (click)="cl('Closed from Close button')">No</button>
-          </div>
-        </div>
-    </ng-template>
-    <ng-template #viewcontent let-c="close" let-d="dismiss">
+  <div class="col-sm-6 text-right">
+    <button type="button" class="btn btn-default" routerLink="/price/add">Add Price</button>
+  </div>
+</div>
+<div class="mt-5">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead style="font: bold;">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>PerUnitDistance</th>
+        <th>PerMinute</th>
+        <th>Vendor Name</th>
+        <th>Vendor RegistrationNo</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let price of pricingData;let index=index;">
+        <td>{{index+1}}</td>
+        <td>
+          <span class="text-wrap">{{price.pricingGroupName}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{price.pricePerUnitDistance}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{price.pricePerMinute}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{price.vendorName}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{price.vendorRegistrationNo}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{price.status}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">
+            <a class="pointer" (click)="view($event,price,viewcontent)">
+              <span class="oi oi-share-boxed" title="view" aria-hidden="true"></span>
+            </a> /
+            <a class="pointer" (click)="edit($event,price)">
+              <span class="oi oi-pencil" title="edit" aria-hidden="true"></span>
+            </a>/
+            <a class="pointer" (click)="delete(content,$event,price)">
+              <span class="oi oi-trash" title="delete" aria-hidden="true"></span>
+            </a>
+          </span>
+        </td>
+      </tr>
+  </table>
+  <ng-template #content let-cl="close" let-di="dismiss">
+    <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">User Details</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title">Delete Confirmation</h5>
       </div>
       <div class="modal-body">
-        <p>Display Pricing Details {{info}}&hellip;</p>
+        <p>Do you want to delete record ?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+        <button type="button" class="btn btn-secondary" style="margin-right: 61%;" (click)="di('Dismissed from dismiss button')">Yes</button>
+        <button type="button" class="btn btn-primary" (click)="cl('Closed from Close button')">No</button>
       </div>
-    </ng-template>
-  </div>
-  <router-outlet></router-outlet>
+    </div>
+  </ng-template>
+  <ng-template #viewcontent let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Pricing Details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+          <form class="row detail">
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Pricing GroupName</label>
+              <div class="">
+                <label for="pricingGroupName"><strong>{{pricingView.pricingGroupName}}</strong></label>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Pricing PerMinute</label>
+              <div class="">
+                <label for="pricingGroupName"><strong>{{pricingView.pricePerMinute}}</strong></label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Pricing PerUnitDistance</label>
+              <div class="">
+                <label for="pricingGroupName"><strong>{{pricingView.pricePerUnitDistance}}</strong></label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="status">Status</label>
+              <div class="">
+                <label for="status"><strong>{{pricingView.status}}</strong></label>
+              </div>
+
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="vendorRegistrationNo">Vendor Name</label>
+              <div class="">
+                <label for="vendorRegistrationNo"><strong>{{pricingView.vendorName}}</strong></label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="createdAt">createdAt</label>
+              <div class="">
+                <label for="createdAt"><strong>{{pricingView.createdAt}}</strong></label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="updatedAt">updatedAt</label>
+              <div class="">
+                <label for="updatedAt"><strong>{{pricingView.updatedAt}}</strong></label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+    </div>
+  </ng-template>
+</div>
+<router-outlet></router-outlet>

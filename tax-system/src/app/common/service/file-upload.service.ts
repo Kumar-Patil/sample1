@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Headers, RequestOptions } from '@angular/http';
-
+import { ApiService } from '../../common/api.service';
 @Injectable()
 export class FileUploadService {
   private qparams: URLSearchParams = new URLSearchParams();
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+  private apiService: ApiService) { }
 
   pushFileToStorage(file: File, apiToken): Observable<HttpEvent<{}>> {
     const formdata: FormData = new FormData();
-    const endPoint = 'http://18.219.43.223:8080/taxi/common/fileHandler';
+    const endPoint = this.apiService.API_BASE_URL + this.apiService.API_COMMON_FILE_HANDLER;
     formdata.append('file', file);
     const headers = new HttpHeaders({'api_key': apiToken});
     const req = new HttpRequest('POST', endPoint, formdata, {
@@ -21,27 +22,10 @@ export class FileUploadService {
     return this.httpClient.request(req);
   }
   postFile(fileToUpload: File, userId: any, apiToken: any): Observable<boolean> {
-    const endpoint = 'http://18.219.43.223:8080/taxi/common/uploadFile';
+    const endpoint = this.apiService.API_BASE_URL + this.apiService.API_COMMON_FILE_UPLOAD;
     const formData: FormData = new FormData();
-    // const headers = new HttpHeaders();
-    //     headers.append('Content-Type', 'application/json');
-    //     const options = new RequestOptions({
-    //         headers: headers
-    //       });
-    // const body = {
-    //   userId: userId,
-    //   name: fileToUpload.name,
-    //   file: fileToUpload
-    // };
     const headers = new HttpHeaders({'Content-Type': '*/*', 'api_key': apiToken});
     formData.append('fileKey', fileToUpload);
-    // const body = {
-    //   formVal: formData,
-    //   userId: userId
-    // };
-
-    // this.qparams.set('userId', userId);
-    // this.qparams.set('name', fileToUpload[0].name);
     return this.httpClient
       .post(endpoint, formData, {headers: headers}).map(this.extractData).catch(this.handleError);
   }

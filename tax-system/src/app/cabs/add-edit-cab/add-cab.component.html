@@ -1,0 +1,369 @@
+<div class="container-fluid">
+  <div id="accordion" class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="firstRow">
+        <div class="row card-header collapsed" data-toggle="collapse" href="#collapseOne">
+          <h2 style="float:left;" class="section-title text-center">
+            Vechicle Details
+          </h2>
+        </div>
+        <form #personalDetails="ngForm" class="row detail border border-dark">
+          <div class="col-md-12 col-sm-12 col-xs-12 collapse" id="collapseOne" data-parent="#accordion">
+            <div class="row">
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Vechicle RegNo *</label>
+                  <input type="text" id="cabRegistrationNo" class="form-control" placeholder="" [(ngModel)]="cabData.cabRegistrationNo" name="cabRegistrationNo"
+                    #cabRegistrationNo="ngModel" required="true">
+                  <div *ngIf="cabRegistrationNo.errors && (cabRegistrationNo.dirty || cabRegistrationNo.touched)">
+                    <span class="text-danger" [hidden]="!cabRegistrationNo.errors.required">Vechicle regNo is required</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Add here -->
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Vechicle Reg. Year *</label>
+                  <input type="text" id="yearOfRegistration" class="form-control" placeholder="" [(ngModel)]="cabData.yearOfRegistration" name="yearOfRegistration"
+                    #yearOfRegistration="ngModel" required="true">
+                  <div *ngIf="yearOfRegistration.errors && (yearOfRegistration.dirty || yearOfRegistration.touched)">
+                    <span class="text-danger" [hidden]="!yearOfRegistration.errors.required">Vechicle reg. year is required</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Vechicle plate number *</label>
+                  <input type="plateNumber" id="plateNumber" class="form-control" placeholder="" [(ngModel)]="cabData.plateNumber" name="plateNumber"
+                    #plateNumber="ngModel" required="true">
+                </div>
+                <div *ngIf="plateNumber.errors && (plateNumber.dirty || plateNumber.touched)">
+                  <span class="text-danger" [hidden]="!plateNumber.errors.required">Vechicle plate number is required</span>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Vechicle Type</label>
+                  <input type="text" id="cabType" class="form-control" placeholder="" [(ngModel)]="cabData.cabType" name="cabType" #cabType="ngModel">
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Vechicle Model</label>
+                  <input type="text" id="cabModel" class="form-control" placeholder="" [(ngModel)]="cabData.cabModel" name="cabModel">
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Vechicle Color</label>
+                  <input type="text" id="cabColor" class="form-control" placeholder="" [(ngModel)]="cabData.cabColor" name="cabColor">
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="vendorId">Vendors *</label>
+                <div class="">
+                  <select class="form-control" id="vendorId" [(ngModel)]="cabData.countryId" name="vendorId" #vendorId="ngModel" required="true">
+                    <option *ngFor="let vendor of vendorList" [ngValue]="vendor.vendorId">{{vendor.vendorRegistrationNo}}</option>
+                  </select>
+                  <div *ngIf="vendorId.errors && (vendorId.dirty || vendorId.touched)">
+                    <span class="text-danger" [hidden]="!vendorId.errors.required">Vendor is required</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="pricingId">Pricing Details *</label>
+                <div class="">
+                  <select class="form-control" id="pricingId" [(ngModel)]="cabData.pricingId" name="pricingId" #pricingId="ngModel" required="true">
+                    <option *ngFor="let price of priceList" [ngValue]="price.pricingId">{{price.name}}</option>
+                  </select>
+                  <div *ngIf="pricingId.errors && (pricingId.dirty || pricingId.touched)">
+                    <span class="text-danger" [hidden]="!pricingId.errors.required">Pricing details is required</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="status">Status *</label>
+                <div class="">
+                  <select class="form-control" id="statusId" [(ngModel)]="cabData.status" #status="ngModel" name="status" required="true">
+                    <option *ngFor="let status of statusList" [ngValue]=status.id>{{status.statusName}}</option>
+                  </select>
+                  <div *ngIf="status.errors && (status.dirty || status.touched)">
+                    <span class="text-danger" [hidden]="!status.errors.required">Status is required</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="accordion1" class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="">
+        <div class="row card-header collapsed" data-toggle="collapse" href="#collapseTwo">
+          <h2 style="float:left;" class="section-title text-center">
+            Insurance & Other Details
+          </h2>
+        </div>
+        <form class="row detail border border-dark" #licencing="ngForm">
+          <div class="col-md-12 col-sm-12 col-xs-12 collapse" id="collapseTwo" data-parent="#accordion1">
+            <div class="row">
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Insurer</label>
+                  <input type="text" id="insurer" class="form-control" placeholder="" [(ngModel)]="cabData.insurer" name="insurer" maxlength="60"
+                    required>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Insurance Policy Number</label>
+                  <input type="text" id="insurancePolicyNumber" class="form-control" placeholder="" [(ngModel)]="cabData.insurancePolicyNumber"
+                    name="insurancePolicyNumber" maxlength="60" required>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Insurance ExpiryDate</label>
+                  <my-date-picker name="inuranceExpiryDate" [options]="inuranceExpiryDateOptions" [(ngModel)]="cabData.inuranceExpiryDate"
+                    required></my-date-picker>
+                </div>
+              </div>
+              <!-- Add here -->
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Mot</label>
+                  <input type="text" id="mot" class="form-control" placeholder="" [(ngModel)]="cabData.mot" name="licenceNumber" maxlength="60"
+                    required>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Mot Expiry Date</label>
+                  <my-date-picker name="motExpiry" [options]="motExpiryOptions" [(ngModel)]="cabData.motExpiry" required></my-date-picker>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Road Tax Expiry Date</label>
+                  <my-date-picker name="roadTaxExpiry" [options]="roadTaxExpiryOptions" [(ngModel)]="cabData.roadTaxExpiry" required></my-date-picker>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Vechile Hire Date</label>
+                  <my-date-picker name="vehicleStart" [options]="vehicleStartOptions" [(ngModel)]="cabData.vehicleStart" required></my-date-picker>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Vechile Expiry Date</label>
+                  <my-date-picker name="hireExpiry" [options]="hireExpiryOptions" [(ngModel)]="cabData.hireExpiry" required></my-date-picker>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="ownerDriver">Owner Driver</label>
+                <div class="">
+                  <select class="form-control" id="ownerDriver" name="ownerDriver" [(ngModel)]="cabData.ownerDriver">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="accordion2" class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="">
+        <div class="row card-header collapsed" data-toggle="collapse" href="#collapseThree">
+          <h2 style="float:left;" class="section-title text-center">
+            Vechicle Documents
+          </h2>
+        </div>
+        <form class="row detail border border-dark">
+          <div class="col-md-12 col-sm-12 col-xs-12 collapse" style="padding-top: 10px;" id="collapseThree" data-parent="#accordion2">
+            <div class="row">
+              <!-- Add here -->
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label for="proofAddress">Proof of address</label>
+                  <input type="file" class="file-width" id="proofAddress" (click)="validateError($event)" (change)="selectFile($event)" name="proofOfAddress"
+                    required="true">
+                  <div id="fileName">
+                    <label id="fileLabel">{{ cabData.proofOfAddress || 'No file chosen'}}</label>
+                  </div>
+                  <div *ngIf="!driverData.proofOfAddress && isProofOfAddressSelected">
+                    <span class="text-danger">Proof of address is required</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label for="policeDisclosure">Police disclosure</label>
+                  <input type="file" class="file-width" id="policeDisclosure" (change)="selectFile($event)" name="policeDisclose">
+                  <div>
+                    <label id="fileLabel">{{ cabData.policeDisclose || 'No file chosen'}}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label for="licencePhoto">Licence photo</label>
+                  <input type="file" class="file-width" id="licencePhoto" (change)="selectFile($event)" name="licencePhoto">
+                  <div>
+                    <label id="fileLabel">{{ cabData.licencePhoto || 'No file chosen'}}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label for="licencePaper">Registration paper</label>
+                  <input type="file" class="file-width" id="licencePaper" (change)="selectFile($event)" name="licencePaper">
+                  <div>
+                    <label id="fileLabel">{{ cabData.licencePaper || 'No file chosen'}}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label for="pcoLicence">PCO licence</label>
+                  <input type="file" class="file-width" id="pcoLicence" (change)="selectFile($event)" name="pcoLicence">
+                  <div>
+                    <label id="fileLabel">{{ cabData.pcoLicence || 'No file chosen'}}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label for="insurence">Insurance</label>
+                  <input type="file" class="file-width" id="insurence" (change)="selectFile($event)" name="insurance">
+                  <div>
+                    <label id="fileLabel">{{ cabData.insurance || 'No file chosen'}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="accordion3" class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="">
+        <div class="row card-header collapsed" data-toggle="collapse" href="#collapseFour">
+          <h2 style="float:left;" class="section-title text-center">
+            Vechicle Attributes
+          </h2>
+        </div>
+        <form class="row detail border border-dark">
+          <div class="col-md-12 col-sm-12 col-xs-12 collapse" id="collapseFour" data-parent="#accordion3">
+            <div class="row">
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="fourSeater">Four Seater</label>
+                <div class="">
+                  <select class="form-control" id="fourSeater" name="fourSeater" [(ngModel)]="cabData.fourSeater">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
+              <!-- Add here -->
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="fiveSeater">Five Seater</label>
+                <div class="">
+                  <select class="form-control" id="fiveSeater" name="fiveSeater" [(ngModel)]="cabData.fiveSeater">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="sixSeater">Six Seater</label>
+                <div class="">
+                  <select class="form-control" id="sixSeater" name="sixSeater" [(ngModel)]="cabData.sixSeater">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="sevenSeater">Seven Seater</label>
+                <div class="">
+                  <select class="form-control" id="sevenSeater" name="lugg" [(ngModel)]="cabData.sevenSeater">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="eightSeater">Eight Seater</label>
+                <div class="">
+                  <select class="form-control" id="eightSeater" name="eightSeater" [(ngModel)]="cabData.eightSeater">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="exexutive">Exexutive</label>
+                <div class="">
+                  <select class="form-control" id="exexutive" name="exexutive" [(ngModel)]="cabData.exexutive">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="goodCOndition">Good Condition</label>
+                <div class="">
+                  <select class="form-control" id="goodCOndition" name="goodCOndition" [(ngModel)]="cabData.goodCOndition">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="avgCondition">Avg Condition</label>
+                <div class="">
+                  <select class="form-control" id="avgCondition" name="avgCondition" [(ngModel)]="cabData.avgCondition">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="wheelChair">wheel Chair</label>
+                <div class="">
+                  <select class="form-control" id="wheelChair" name="wheelChair" [(ngModel)]="cabData.wheelChair">
+                    <option value='yes'>Yes</option>
+                    <option value='no'>No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-1" style="padding-bottom: 60px;">
+    <div class="col-md-12 col-sm-12 col-xs-12 m-t-10">
+      <button type="button" class="btn btn-default" routerLink="/cabs"> Cancel</button>
+      <button type="button" style="float: right;" [disabled]="formInvalid" *ngIf="!driverId" (click)="addOrUpdateDriverData(true)"
+        class="btn btn-primary btn-xs pull-right m-r-10">
+        <span class="letter-space-small"></span> Save
+      </button>
+      <button type="button" style="float: right;" [disabled]="formInvalid" *ngIf="driverId" (click)="addOrUpdateDriverData(false)"
+        class="btn btn-primary btn-xs pull-right m-r-10">
+        <span class="letter-space-small"></span> Update
+      </button>
+    </div>
+  </div>
+</div>

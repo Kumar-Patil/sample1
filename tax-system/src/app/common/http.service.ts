@@ -2,16 +2,18 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BaseApiService } from './baseApi.service';
-
+import { ApiService } from '../common/api.service';
 @Injectable()
 export class HttpService {
 
   private qparams: URLSearchParams = new URLSearchParams();
 
-  constructor(private http: Http, private baseApiService: BaseApiService) { }
+  constructor(private http: Http,
+    private baseApiService: BaseApiService,
+    private apiService: ApiService) { }
 
   get(apiName): Observable<any> {
-    const requestURL = this.baseApiService.getbaseUrl() + apiName;
+    const requestURL = this.apiService.API_BASE_URL + apiName;
     this.qparams.set('userId', this.baseApiService.getUserId());
     return this.http.get(requestURL, {
       withCredentials: true,
@@ -25,7 +27,7 @@ export class HttpService {
   }
 
   getById(id, apiName): Observable<any> {
-    const requestURL = this.baseApiService.getbaseUrl() + apiName;
+    const requestURL = this.apiService.API_BASE_URL + apiName;
     this.qparams.set('userId', this.baseApiService.getUserId());
     this.qparams.set('id', id);
     return this.http.get(requestURL, {
@@ -40,7 +42,7 @@ export class HttpService {
   }
 
   post(data: any, apiName): Observable<any> {
-    const requestURL = this.baseApiService.getbaseUrl() + apiName;
+    const requestURL = this.apiService.API_BASE_URL + apiName;
     this.qparams.set('userId', this.baseApiService.getUserId());
     return this.http.post(requestURL, data,
       {
@@ -53,7 +55,7 @@ export class HttpService {
   }
 
   put(data: any, apiName): Observable<any> {
-    const requestURL = this.baseApiService.getbaseUrl() + apiName;
+    const requestURL = this.apiService.API_BASE_URL + apiName;
     this.qparams.set('userId', this.baseApiService.getUserId());
     return this.http.put(requestURL, data,
       {
@@ -64,7 +66,20 @@ export class HttpService {
         search: this.qparams
       }).map(this.extractData).catch(this.handleError);
   }
-
+  deletById(id, apiName): Observable<any> {
+    const requestURL = this.apiService.API_BASE_URL + apiName;
+    this.qparams.set('userId', this.baseApiService.getUserId());
+    this.qparams.set('id', id);
+    return this.http.delete(requestURL, {
+      withCredentials: true,
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'api_key': this.baseApiService.getApiToken()
+      }),
+      search: this.qparams
+    }).map(this.extractData)
+      .catch(this.handleError);
+  }
   private extractData(res: Response) {
     const body = res.json();
     return body ? (body.data || body) : body;

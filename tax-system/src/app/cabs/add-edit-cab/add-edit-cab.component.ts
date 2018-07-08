@@ -3,7 +3,7 @@ import { IMyDpOptions, IMyDateModel } from 'angular4-datepicker/src/my-date-pick
 import { FileUploadService } from '../../common/service/file-upload.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AddDriverDataModel } from '../model/driverData.model';
+import { AddCabsDataModel } from '../model/driverData.model';
 import { BaseApiService } from '../../common/baseApi.service';
 import { DriverService } from '../../common/driver.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -14,10 +14,10 @@ import { HttpService } from '../../common/http.service';
 import { AlertsService } from 'angular-alert-module';
 @Component({
   selector: 'app-add-driver',
-  templateUrl: './add-driver.component.html',
-  styleUrls: ['./add-driver.component.css']
+  templateUrl: './add-cab.component.html',
+  styleUrls: ['./add-cab.component.css']
 })
-export class AddDriverComponent implements OnInit {
+export class AddEditCabComponent implements OnInit {
 
   @ViewChild('personalDetails') personalDetails: NgForm;
   @ViewChild('loginDetails') loginDetails: NgForm;
@@ -36,12 +36,11 @@ export class AddDriverComponent implements OnInit {
   isProofOfAddressSelected = false;
   // queue: Observable<FileQueueObject[]>;
   driverId: string;
-  driverData: AddDriverDataModel;
-  statesList: any[] = [];
-  countryList: any[] = [];
+  cabData: AddCabsDataModel;
+  cabsData: any;
+  vendorList: any[] = [];
+  priceList: any[] = [];
   statusList: any[] = [];
-  cityList: any[] = [];
-  cabList: any[] = [];
   selectedFile: {
     'photo': '',
     'agreement': ''
@@ -53,7 +52,7 @@ export class AddDriverComponent implements OnInit {
     private apiService: ApiService,
     private httpService: HttpService,
     private alerts: AlertsService) {
-    this.driverData = new AddDriverDataModel();
+    this.cabData = new AddCabsDataModel();
   }
 
   public hireDateOptions: IMyDpOptions = {
@@ -87,18 +86,18 @@ export class AddDriverComponent implements OnInit {
     if (this.validateForm()) {
       this.setDefault();
       this.setDefaultFields();
-      this.driverData.startDate = this.driverData.startDate.epoc * 1000;
-      this.driverData.driverLicenceExpiry = this.driverData.driverLicenceExpiry.epoc * 1000;
+      // this.driverData.startDate = this.driverData.startDate.epoc * 1000;
+      // this.driverData.driverLicenceExpiry = this.driverData.driverLicenceExpiry.epoc * 1000;
       if (isAdd) {
-        this.driverData.driverId = 0;
-        this.httpService.post(this.driverData, this.apiService.API_DRIVER_ADD).subscribe(res => {
+        this.cabData.cabId = 0;
+        this.httpService.post(this.cabData, this.apiService.API_DRIVER_ADD).subscribe(res => {
           this.alerts.setMessage('Added successfully!', 'success');
           this.router.navigate([`/driver`]);
         });
       } else {
-        this.httpService.put(this.driverData, this.apiService.API_DRIVER_UPDATE).subscribe(res => {
+        this.httpService.put(this.cabData, this.apiService.API_DRIVER_UPDATE).subscribe(res => {
           if (res) {
-            this.driverData = res;
+            this.cabData = res;
             this.alerts.setMessage('Updated successfully!', 'success');
             this.router.navigate([`/driver`]);
           }
@@ -109,14 +108,12 @@ export class AddDriverComponent implements OnInit {
   }
 
   setDriverData = (res) => {
-    this.driverData.agreement = res.agreement || '';
-    this.driverData.insurance = res.insurance || '';
-    this.driverData.licencePaper = res.licencePaper || '';
-    this.driverData.licencePhoto = res.licencePhoto || '';
-    this.driverData.pcoLicence = res.pcoLicence || '';
-    this.driverData.photo = res.photo || '';
-    this.driverData.policeDisclose = res.policeDisclose || '';
-    this.driverData.proofOfAddress = res.proofOfAddress || '';
+    this.cabData.licencePhoto = res.licencePhoto || '';
+    this.cabData.policeDisclose = res.policeDisclose || '';
+    this.cabData.proofOfAddress = res.proofOfAddress || '';
+    this.cabData.licencePapers = res.licencePaper || '';
+    this.cabData.pcolicence = res.pcoLicence || '';
+    this.cabData.inuranceCopy = res.inuranceCopy || '';
   }
 
   validateError(event) {
@@ -127,9 +124,11 @@ export class AddDriverComponent implements OnInit {
     }
   }
   setDefaultFields() {
-    this.driverData.address = 'Rajajinagar';
-    this.driverData.driverAttribteId = 0;
-    this.driverData.driverDocumentId = 0;
+    this.cabData.vendorId = 0;
+    this.cabData.cabId = 0;
+    this.cabData.pricingId = 0;
+    this.cabData.documentId = 0;
+    this.cabData.attributeId = 0;
   }
 
   handleFileInput(files: FileList) {
@@ -156,7 +155,7 @@ export class AddDriverComponent implements OnInit {
   upload(name: string) {
     const apiToken = this.baseApiService.getApiToken();
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.driverData[name] = this.currentFileUpload.name;
+    this.cabData[name] = this.currentFileUpload.name;
     this.uploader.pushFileToStorage(this.currentFileUpload, apiToken).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         console.log('File is completely uploaded!');
@@ -191,59 +190,68 @@ export class AddDriverComponent implements OnInit {
   getDriverDetails(driverId: string) {
     this.httpService.getById(driverId, this.apiService.API_DRIVER_DETAILS).subscribe(res => {
       if (res) {
-        this.driverData = res;
-        this.setDate(this.driverData.startDate, this.driverData.driverLicenceExpiry);
+        this.cabData = res;
+        // this.setDate(this.driverData.startDate, this.driverData.driverLicenceExpiry);
       }
     });
   }
 
   setDefault() {
-    this.driverData.mobileNo = this.driverData.mobileNo || 0;
-    this.driverData.firstName = this.driverData.firstName || '';
-    this.driverData.lastName = this.driverData.lastName || '';
-    this.driverData.countryId = this.driverData.countryId || 0;
-    this.driverData.mobileNo = this.driverData.mobileNo || 0;
-    this.driverData.password = this.driverData.password || '';
-    this.driverData.stateId = this.driverData.stateId || 0;
-    this.driverData.cityId = this.driverData.cityId || 0;
-    this.driverData.sex = this.driverData.sex || '';
-    this.driverData.email = this.driverData.email || '';
-    this.driverData.zip = this.driverData.zip || '';
-    this.driverData.pets = this.driverData.pets || '';
-    this.driverData.status = this.driverData.status || 0;
-    this.driverData.photo = this.driverData.photo || '';
-    this.driverData.policeDisclose = this.driverData.policeDisclose || '';
-    this.driverData.proofOfAddress = this.driverData.proofOfAddress || '';
-    this.driverData.street = this.driverData.street || '';
-    this.driverData.topman = this.driverData.topman || '';
-    this.driverData.uniformed = this.driverData.uniformed || '';
-    this.driverData.otherPhone = this.driverData.otherPhone || 0;
-    this.driverData.crb = this.driverData.crb || '';
-    this.driverData.aliasName = this.driverData.aliasName || '';
-    this.driverData.cabId = this.driverData.cabId || 0;
-    this.driverData.agreement = this.driverData.agreement || '';
-    this.driverData.licencePaper = this.driverData.licencePaper || '';
-    this.driverData.licencePhoto = this.driverData.licencePhoto || '';
-    this.driverData.pcoLicence = this.driverData.pcoLicence || '';
-    this.driverData.insurance = this.driverData.insurance || '';
-    this.driverData.delivery = this.driverData.delivery || '';
-    this.driverData.female = this.driverData.female || '';
-    this.driverData.luggage = this.driverData.luggage || '';
-    this.driverData.nhs = this.driverData.nhs || '';
-    this.driverData.driverLicenceNumber = this.driverData.driverLicenceNumber || '';
+    this.cabData.avgCondition = this.cabData.avgCondition || '';
+    this.cabData.cabColor = this.cabData.cabColor || '';
+    this.cabData.cabModel = this.cabData.cabModel || '';
+    this.cabData.attributeId = this.cabData.attributeId || 0;
+    this.cabData.cabType = this.cabData.cabType || '';
+    this.cabData.cabNo = this.cabData.cabNo || '';
+    this.cabData.documentId = this.cabData.documentId || 0;
+    this.cabData.eightSeater = this.cabData.eightSeater || '';
+    this.cabData.cabRegistrationNo = this.cabData.cabRegistrationNo || '';
+    this.cabData.exexutive = this.cabData.exexutive || '';
+    this.cabData.fiveSeater = this.cabData.fiveSeater || '';
+    this.cabData.fourSeater = this.cabData.fourSeater || '';
+    this.cabData.status = this.cabData.status || 0;
+    this.cabData.goodCOndition = this.cabData.goodCOndition || '';
+
+    this.cabData.policeDisclose = this.cabData.policeDisclose || '';
+    this.cabData.proofOfAddress = this.cabData.proofOfAddress || '';
+
+    this.cabData.hireExpiry = this.cabData.hireExpiry || 0;
+    this.cabData.insurancePolicyNumber = this.cabData.insurancePolicyNumber || '';
+    this.cabData.insurer = this.cabData.insurer || '';
+    this.cabData.inuranceCopy = this.cabData.inuranceCopy || '';
+    this.cabData.inuranceExpiryDate = this.cabData.inuranceExpiryDate || 0;
+    this.cabData.licencePapers = this.cabData.licencePapers || '';
+    this.cabData.licencePhoto = this.cabData.licencePhoto || '';
+    this.cabData.mot = this.cabData.mot || '';
+    this.cabData.motExpiry = this.cabData.motExpiry || 0;
+    this.cabData.licencePhoto = this.cabData.licencePhoto || '';
+    this.cabData.ownerDriver = this.cabData.ownerDriver || '';
+    this.cabData.pcolicence = this.cabData.pcolicence || '';
+    this.cabData.plateNumber = this.cabData.plateNumber || '';
+    this.cabData.policeDisclouser = this.cabData.policeDisclouser || '';
+    this.cabData.pricingId = this.cabData.pricingId || 0;
+    this.cabData.proofOfAddress = this.cabData.proofOfAddress || '';
+    this.cabData.roadTaxExpiry = this.cabData.roadTaxExpiry || 0;
+
+    this.cabData.sevenSeater = this.cabData.sevenSeater || '';
+    this.cabData.sixSeater = this.cabData.sixSeater || '';
+    this.cabData.vehicleStart = this.cabData.vehicleStart || 0;
+    this.cabData.vendorId = this.cabData.vendorId || 0;
+    this.cabData.wheelChair = this.cabData.wheelChair || '';
+    this.cabData.yearOfRegistration = this.cabData.yearOfRegistration || '';
   }
 
   setDate(startDate, expiryDate): void {
     const sDate = new Date(startDate);
     const eDate = new Date(expiryDate);
-    this.driverData.startDate = { date: { year: sDate.getFullYear(), month: sDate.getMonth() + 1, day: sDate.getDate() } };
-    this.driverData.driverLicenceExpiry = { date: { year: eDate.getFullYear(), month: eDate.getMonth() + 1, day: eDate.getDate() } };
+    // this.driverData.startDate = { date: { year: sDate.getFullYear(), month: sDate.getMonth() + 1, day: sDate.getDate() } };
+    // this.driverData.driverLicenceExpiry = { date: { year: eDate.getFullYear(), month: eDate.getMonth() + 1, day: eDate.getDate() } };
 
   }
   ngOnInit() {
     this.spinnerService.show();
     this.loadData();
-    if (this.route.routeConfig.path === 'driver/editDriver/:driverId') {
+    if (this.route.routeConfig.path === 'cab/edit/:cabId') {
       // tslint:disable-next-line:no-unused-expression
       this.route && this.route.params.subscribe((params) => {
         this.driverId = params['driverId'];
@@ -259,12 +267,10 @@ export class AddDriverComponent implements OnInit {
     }
   }
   loadData() {
-    const result = this.httpService.get(this.apiService.API_COMMON_ALL_POP_DATA).subscribe(res => {
+    const result = this.httpService.get(this.apiService.API_CAB_POP_UP_Data).subscribe(res => {
       if (res) {
-        this.statesList = res['statesList'];
-        this.cabList = res['cabList'];
-        this.cityList = res['cityList'];
-        this.countryList = res['countryList'];
+        this.priceList = res['priceList'];
+        this.vendorList = res['vendorList'];
         this.statusList = res['statusList'];
       }
 
@@ -274,11 +280,7 @@ export class AddDriverComponent implements OnInit {
     }
   }
   onDateChanged(event: IMyDateModel) {
-    // alert(event.epoc);
-    // this.surgingData.surgeExpiryStartDate = event.epoc;
-    // event properties are: event.date, event.jsdate, event.formatted and event.epoc
   }
   onEndDateChanged(event: IMyDateModel) {
-    // this.surgingData.surgeExpiryEndDate = event.epoc;
   }
 }

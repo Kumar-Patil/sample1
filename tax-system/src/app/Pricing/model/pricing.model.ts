@@ -6,4 +6,5 @@ export class PricingModel {
         public vendorName: string,
         public pricingId: number,
         public vendorRegistrationNo: string) { }
+// tslint:disable-next-line:eofline
 }

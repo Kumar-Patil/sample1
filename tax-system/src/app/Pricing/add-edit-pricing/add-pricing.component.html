@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <div class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="row">
+        <h2>
+          Pricing Details
+        </h2>
+      </div>
+      <form #pricingDetails="ngForm" class="row detail border border-dark">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">Pricing GroupName*</label>
+            <input type="text" id="pricingGroupName" class="form-control" placeholder="" [(ngModel)]="pricingData.pricingGroupName" name="pricingGroupName" #groupName="ngModel"
+              maxlength="60" required="true">
+              <div *ngIf="groupName.errors && (groupName.dirty || groupName.touched)">
+                  <span class="text-danger" [hidden]="!groupName.errors.required">PricingGroupName is required</span>
+                </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">Pricing PerMinute*</label>
+            <input type="number" id="pricePerMinute" class="form-control" placeholder="" [(ngModel)]="pricingData.pricePerMinute" name="pricePerMinute" #perMinute="ngModel"
+              maxlength="60" required="true">
+              <div *ngIf="perMinute.errors && (perMinute.dirty || perMinute.touched)">
+                  <span class="text-danger" [hidden]="!perMinute.errors.required">PricePerMinute is required</span>
+                </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">Pricing PerUnitDistance*</label>
+            <input type="number" id="pricePerUnitDistance" class="form-control" placeholder="" [(ngModel)]="pricingData.pricePerUnitDistance" #perUnitDistance="ngModel"
+              name="pricePerUnitDistance" maxlength="60" required="true">
+              <div *ngIf="perUnitDistance.errors && (perUnitDistance.dirty || perUnitDistance.touched)">
+                  <span class="text-danger" [hidden]="!perUnitDistance.errors.required">Price PerUnitDistance is required</span>
+                </div>
+          </div>
+        </div>
+        <div class="form-group col-md-4 col-sm-6 col-xs-12">
+          <label for="status">Status*</label>
+          <div class="">
+            <select class="form-control" id="status" [(ngModel)]="pricingData.status" #statusId="ngModel" name="status" #isValidstatus="ngModel">
+                <option *ngFor="let status of statusList" [ngValue]=status.id>{{status.statusName}}</option>
+            </select>
+            <div *ngIf="isValidstatus.errors && (isValidstatus.dirty || isValidstatus.touched)">
+                <span class="text-danger" [hidden]="!isValidstatus.errors.required">status is required</span>
+              </div>
+          </div>
+
+        </div>
+        <div class="form-group col-md-4 col-sm-6 col-xs-12">
+          <label for="vendorRegistrationNo">Vendor</label>
+          <div class="">
+            <select class="form-control" id="vendorRegistrationNo" [(ngModel)]="pricingData.vendorId" name="vendorRegistrationNo" #registrationNo="ngModel">
+              <option *ngFor="let vendor of vendorList" [ngValue]=vendor.id>{{vendor.vendorRegistrationNo}}</option>
+            </select>
+            <div *ngIf="registrationNo.errors && (registrationNo.dirty || registrationNo.touched)">
+                <span class="text-danger" [hidden]="!registrationNo.errors.required">vendor is required</span>
+              </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-md-12 col-sm-12 col-xs-12 m-t-10">
+      <button type="button" class="btn btn-default" routerLink="/pricing"> Cancel</button>
+      <button type="button" style="float: right;" [disabled]="formInvalid" *ngIf="!pricingId" (click)="addOrUpdate(true)" class="btn btn-primary btn-xs pull-right m-r-10">
+        <span class="letter-space-small"></span> Save
+      </button>
+      <button type="button" style="float: right;" [disabled]="formInvalid" *ngIf="pricingId" (click)="addOrUpdate(false)" class="btn btn-primary btn-xs pull-right m-r-10">
+        <span class="letter-space-small"></span> Update
+      </button>
+    </div>
+  </div>
+</div>

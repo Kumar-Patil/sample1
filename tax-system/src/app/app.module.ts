@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -38,7 +38,11 @@ import { HttpService } from './common/http.service';
 import { AlertsModule } from 'angular-alert-module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AddUserComponent } from './user/add-user/add-user.component';
-
+import { AddPricingComponent } from './pricing/add-edit-pricing/add-pricing.component';
+import { AddEditSurgingComponent } from './surging/add-edit-surging/add-surging.component';
+import { SurgingComponent } from './surging/surging.component';
+import { ApiService } from './common/api.service';
+import { AddEditCabComponent } from './cabs/add-edit-cab/add-edit-cab.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +66,11 @@ import { AddUserComponent } from './user/add-user/add-user.component';
     ReportComponent,
     FinanceComponent,
     DeliveryComponent,
-    AddUserComponent
+    AddUserComponent,
+    AddPricingComponent,
+    AddEditSurgingComponent,
+    SurgingComponent,
+    AddEditCabComponent
   ],
   imports: [
     BrowserModule,
@@ -72,11 +80,12 @@ import { AddUserComponent } from './user/add-user/add-user.component';
     MyDatePickerModule,
     HttpClientModule,
     DataTablesModule,
+    ReactiveFormsModule,
     Ng4LoadingSpinnerModule.forRoot(),
     AlertsModule.forRoot(),
     NgbModule.forRoot()
   ],
-  providers: [AuthService, DriverService, FileUploadService, BaseApiService, HttpService],
+  providers: [AuthService, DriverService, FileUploadService, BaseApiService, HttpService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, URLSearchParams, RequestOptions    } from '@angular/http';
+import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
-
+import { ApiService } from '../../common/api.service';
 @Injectable()
 export class AuthService {
     private qparams: URLSearchParams = new URLSearchParams();
@@ -15,7 +15,7 @@ export class AuthService {
         msg: 'success'
     }]; // Api token return after login success
 
-    constructor(private http: Http) {}
+    constructor(private http: Http, private apiService: ApiService) { }
 
     checkLoginSuccess(loginData: any): Observable<any> {
         const headers = new Headers();
@@ -23,22 +23,17 @@ export class AuthService {
         headers.append('Content-Type', 'application/json');
         const options = new RequestOptions({
             headers: headers
-          });
-        const requestURL  =  'http://18.219.43.223:8080/taxi/login/user';
+        });
+        const requestURL = this.apiService.API_BASE_URL + this.apiService.API_LOGIN_URL;
         return this.http.post(requestURL, loginData, options).map(
             response => this.extractData(response), this.setMockResponse(true))
-          .catch(this.handleError);
-            // return Observable.of(this.token).map(o => {
-            //         this.isUserLoggedIn = true;
-            //         sessionStorage.setItem('authSuccess', this.token[0].tokenId);
-            //         JSON.stringify(o);
-            //     });
+            .catch(this.handleError);
     }
 
     private extractData(res: Response) {
         const body = res.json();
         return body ? (body.data || body) : body;
-      }
+    }
     private handleError(error: Response | any) {
         let errMsg: string;
         if (error instanceof Response) {
@@ -50,7 +45,7 @@ export class AuthService {
         }
         // console.error(errMsg);
         return Observable.throw(errMsg);
-      }
+    }
 
     logoutUser(): Observable<any> {
         sessionStorage.clear();

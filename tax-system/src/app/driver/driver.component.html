@@ -13,48 +13,432 @@
   </div>
 </div>
 <div class="mt-5">
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-      <thead style="font: bold;">
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Mobile Number</th>
-          <th>Sex</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let driver of driverData;let index=index;">
-          <td>{{index+1}}</td>
-          <td>
-            <span class="text-wrap">{{driver.firstName}}</span>
-          </td>
-          <td>
-            <span class="text-wrap">{{driver.lastName}}</span>
-          </td>
-          <td>
-            <span class="text-wrap">{{driver.email}}</span>
-          </td>
-          <td>
-            <span class="text-wrap">{{driver.mobileNo}}</span>
-          </td>
-          <td>
-            <span class="text-wrap">{{driver.sex}}</span>
-          </td>
-          <td>
-            <span class="text-wrap">{{driver.status}}</span>
-          </td>
-          <td>
-            <span class="text-wrap">
-                <a class="pointer" (click)="view($event,user)"><span class="oi oi-share-boxed" title="view" aria-hidden="true"></span> </a> /
-                <a class="pointer" (click)="editDriver($event,driver)"><span class="oi oi-pencil" title="edit" aria-hidden="true"></span> </a> /
-                <a class="pointer" (click)="delete($event,user)"><span class="oi oi-trash" title="delete" aria-hidden="true"></span> </a>
-            </span>
-          </td>
-        </tr>
-    </table>
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead style="font: bold;">
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Mobile Number</th>
+        <th>Sex</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let driver of driverData;let index=index;">
+        <td>{{index+1}}</td>
+        <td>
+          <span class="text-wrap">{{driver.firstName}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{driver.lastName}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{driver.email}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{driver.mobileNo}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{driver.sex}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{driver.status}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">
+            <a class="pointer" (click)="view($event,driver,viewcontent)">
+              <span class="oi oi-share-boxed" title="view" aria-hidden="true"></span>
+            </a> /
+            <a class="pointer" (click)="edit($event,driver)">
+              <span class="oi oi-pencil" title="edit" aria-hidden="true"></span>
+            </a>/
+            <a class="pointer" (click)="delete(content,$event,driver, index)">
+              <span class="oi oi-trash" title="delete" aria-hidden="true"></span>
+            </a>
+          </span>
+        </td>
+      </tr>
+  </table>
+  <ng-template #content let-cl="close" let-di="dismiss">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Confirmation</h5>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to delete record ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="margin-right: 61%;" (click)="di('Dismissed from dismiss button')">Yes</button>
+        <button type="button" class="btn btn-primary" (click)="cl('Closed from Close button')">No</button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #viewcontent let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Driver Details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+          <div class="">
+            <label for="personalDetails">
+              <strong>Personal Details</strong>
+            </label>
+          </div>
+          <form class="row detail">
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">First Name</label>
+              <div class="">
+                <label for="firstName">
+                  <strong>{{driverVewData.firstName}}</strong>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Last Name</label>
+              <div class="">
+                <label for="lastName">
+                  <strong>{{driverVewData.lastName}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Gender</label>
+              <div class="">
+                <label for="gender">
+                  <strong>{{driverVewData.sex}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Email</label>
+              <div class="">
+                <label for="email ">
+                  <strong>{{driverVewData.email}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Mobile Number</label>
+              <div class="">
+                <label for="mobileNumber ">
+                  <strong>{{driverVewData.mobileNo}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Other Phone</label>
+              <div class="">
+                <label for="otherPhone">
+                  <strong>{{driverVewData.otherPhone}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Alias Name</label>
+              <div class="">
+                <label for="aliasName">
+                  <strong>{{driverVewData.aliasName}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Country</label>
+              <div class="">
+                <label for="country ">
+                  <strong>{{driverVewData.countryName}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="status">State</label>
+              <div class="">
+                <label for="state ">
+                  <strong>{{driverVewData.stateName}}</strong>
+                </label>
+              </div>
+
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="city">City</label>
+              <div class="">
+                <label for="city">
+                  <strong>{{driverVewData.cityName}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="pinCode">Pin Code</label>
+              <div class="">
+                <label for="pinCode">
+                  <strong>{{driverVewData.pinCode}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="Land Mark">Plot No/Land Mark</label>
+              <div class="">
+                <label for="Plot No/Land Mark">
+                  <strong>{{driverVewData.street}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="vehicle">Vehicle</label>
+              <div class="">
+                <label for="vehicle">
+                  <strong>{{driverVewData.vehicle}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="updatedAt">Vehicle</label>
+              <div class="">
+                <label for="vehicle">
+                  <strong>{{driverVewData.vehicle}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="status">Status</label>
+              <div class="">
+                <label for="status">
+                  <strong>{{driverVewData.status}}</strong>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12">
+          <div class="">
+            <label for="licencing">
+              <strong>Licencing</strong>
+            </label>
+          </div>
+          <form class="row detail">
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Hire Date</label>
+              <div class="">
+                <label for="hireDate">
+                  <strong>{{driverVewData.startDate}}</strong>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Expiry Date</label>
+              <div class="">
+                <label for="expiryDate">
+                  <strong>{{driverVewData.driverLicenceExpiry}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Driver Licence Number</label>
+              <div class="">
+                <label for="driverLicenceNumber">
+                  <strong>{{driverVewData.driverLicenceNumber}}</strong>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12">
+          <div class="">
+            <label for="documentDriverPhoto">
+              <strong>Document & Driver Photo</strong>
+            </label>
+          </div>
+          <form class="row detail">
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Driver photo</label>
+              <div class="">
+                <label for="driverphoto">
+                  <strong>{{driverVewData.photo}}</strong>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Proof of address</label>
+              <div class="">
+                <label for="proofofaddress">
+                  <strong>{{driverVewData.proofOfAddress}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Police disclosure </label>
+              <div class="">
+                <label for="policedisclosure ">
+                  <strong>{{driverVewData.policedisclosure}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Agreement</label>
+              <div class="">
+                <label for="agreement">
+                  <strong>{{driverVewData.agreement}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Licence photo</label>
+              <div class="">
+                <label for="licencephoto">
+                  <strong>{{driverVewData.licencephoto}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Licence paper</label>
+              <div class="">
+                <label for="licencePaper">
+                  <strong>{{driverVewData.licencePaper}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">PCO licence</label>
+              <div class="">
+                <label for="PCOlicence">
+                  <strong>{{driverVewData.pcoLicence}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Insurance</label>
+              <div class="">
+                <label for="Insurance">
+                  <strong>{{driverVewData.insurance}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="status">Status</label>
+              <div class="">
+                <label for="status">
+                  <strong>{{driverVewData.status}}</strong>
+                </label>
+              </div>
+
+            </div>
+          </form>
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12">
+          <div class="">
+            <label for="attributes">
+              <strong>Attributes</strong>
+            </label>
+          </div>
+          <form class="row detail">
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Surge PriceGroupName</label>
+              <div class="">
+                <label for="surgePriceGroupName">
+                  <strong>createdAt</strong>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">CRB</label>
+              <div class="">
+                <label for="CRB">
+                  <strong>{{driverVewData.crb}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Delivery</label>
+              <div class="">
+                <label for="delivery">
+                  <strong>{{driverVewData.delivery}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Female</label>
+              <div class="">
+                <label for="Female">
+                  <strong>{{driverVewData.female}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Luggage</label>
+              <div class="">
+                <label for="Luggage">
+                  <strong>{{driverVewData.luggage}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">NHS</label>
+              <div class="">
+                <label for="NHS">
+                  <strong>{{driverVewData.nhs}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Pets</label>
+              <div class="">
+                <label for="Pets">
+                  <strong>{{driverVewData.pets}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Uniformed</label>
+              <div class="">
+                <label for="Uniformed">
+                  <strong>{{driverVewData.uniformed}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="status">Topman</label>
+              <div class="">
+                <label for="Topman">
+                  <strong>{{driverVewData.topman}}</strong>
+                </label>
+              </div>
+
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="createdAt">createdAt</label>
+              <div class="">
+                <label for="createdAt">
+                  <strong>{{driverVewData.createdAt}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="updatedAt">updatedAt</label>
+              <div class="">
+                <label for="updatedAt">
+                  <strong>{{driverVewData.updatedAt}}</strong>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+    </div>
+  </ng-template>
 </div>
 <router-outlet></router-outlet>

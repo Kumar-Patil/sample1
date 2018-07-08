@@ -2,7 +2,7 @@
     <div class="col-lg-6">
     </div>
     <div class="col-sm-6 text-right">
-      <button type="button" class="btn btn-default" routerLink="#">Add Cab</button>
+      <button type="button" class="btn btn-default" routerLink="/cab/add">Add Cab</button>
     </div>
   </div>
   <div class="mt-5">
@@ -42,12 +42,396 @@
             </td>
             <td>
                 <span class="text-wrap">
-                    <a class="pointer" (click)="view($event,cab)"><span class="oi oi-share-boxed" title="view" aria-hidden="true"></span> </a> / 
-                    <a class="pointer" (click)="edit($event,cab)"><span class="oi oi-pencil" title="edit" aria-hidden="true"></span> </a>/ 
-                    <a class="pointer" (click)="delete($event,cab)"><span class="oi oi-trash" title="delete" aria-hidden="true"></span> </a>
-                </span>
+                    <a class="pointer" (click)="view($event,cab,viewcontent)">
+                      <span class="oi oi-share-boxed" title="view" aria-hidden="true"></span>
+                    </a> /
+                    <a class="pointer" (click)="edit($event,cab)">
+                      <span class="oi oi-pencil" title="edit" aria-hidden="true"></span>
+                    </a>/
+                    <a class="pointer" (click)="delete(content,$event,cab, index)">
+                      <span class="oi oi-trash" title="delete" aria-hidden="true"></span>
+                    </a>
+                  </span>
             </td>
           </tr>
       </table>
+      <ng-template #content let-cl="close" let-di="dismiss">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Delete Confirmation</h5>
+            </div>
+            <div class="modal-body">
+              <p>Do you want to delete record ?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" style="margin-right: 61%;" (click)="di('Dismissed from dismiss button')">Yes</button>
+              <button type="button" class="btn btn-primary" (click)="cl('Closed from Close button')">No</button>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #viewcontent let-c="close" let-d="dismiss">
+            <div class="modal-header">
+              <h4 class="modal-title">Driver Details</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                  <div class="">
+                    <label for="personalDetails">
+                      <strong>Personal Details</strong>
+                    </label>
+                  </div>
+                  <form class="row detail">
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">First Name</label>
+                      <div class="">
+                        <label for="firstName">
+                          <strong>{{cabsData.firstName}}</strong>
+                        </label>
+                      </div>
+                    </div>
+        
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Last Name</label>
+                      <div class="">
+                        <label for="lastName">
+                          <strong>{{cabsData.lastName}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Gender</label>
+                      <div class="">
+                        <label for="gender">
+                          <strong>{{cabsData.sex}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Email</label>
+                      <div class="">
+                        <label for="email ">
+                          <strong>{{cabsData.email}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Mobile Number</label>
+                      <div class="">
+                        <label for="mobileNumber ">
+                          <strong>{{cabsData.mobileNo}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Other Phone</label>
+                      <div class="">
+                        <label for="otherPhone">
+                          <strong>{{cabsData.otherPhone}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Alias Name</label>
+                      <div class="">
+                        <label for="aliasName">
+                          <strong>{{cabsData.aliasName}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Country</label>
+                      <div class="">
+                        <label for="country ">
+                          <strong>{{cabsData.countryName}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label for="status">State</label>
+                      <div class="">
+                        <label for="state ">
+                          <strong>{{cabsData.stateName}}</strong>
+                        </label>
+                      </div>
+        
+                    </div>
+        
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label for="city">City</label>
+                      <div class="">
+                        <label for="city">
+                          <strong>{{cabsData.cityName}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label for="pinCode">Pin Code</label>
+                      <div class="">
+                        <label for="pinCode">
+                          <strong>{{cabsData.pinCode}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label for="Land Mark">Plot No/Land Mark</label>
+                      <div class="">
+                        <label for="Plot No/Land Mark">
+                          <strong>{{cabsData.street}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label for="vehicle">Vehicle</label>
+                      <div class="">
+                        <label for="vehicle">
+                          <strong>{{cabsData.vehicle}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label for="updatedAt">Vehicle</label>
+                      <div class="">
+                        <label for="vehicle">
+                          <strong>{{cabsData.vehicle}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label for="status">Status</label>
+                      <div class="">
+                        <label for="status">
+                          <strong>{{cabsData.status}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                  <div class="">
+                    <label for="licencing">
+                      <strong>Licencing</strong>
+                    </label>
+                  </div>
+                  <form class="row detail">
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Hire Date</label>
+                      <div class="">
+                        <label for="hireDate">
+                          <strong>{{cabsData.startDate}}</strong>
+                        </label>
+                      </div>
+                    </div>
+        
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Expiry Date</label>
+                      <div class="">
+                        <label for="expiryDate">
+                          <strong>{{cabsData.driverLicenceExpiry}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Driver Licence Number</label>
+                      <div class="">
+                        <label for="driverLicenceNumber">
+                          <strong>{{cabsData.driverLicenceNumber}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                  <div class="">
+                    <label for="documentDriverPhoto">
+                      <strong>Document & Driver Photo</strong>
+                    </label>
+                  </div>
+                  <form class="row detail">
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Driver photo</label>
+                      <div class="">
+                        <label for="driverphoto">
+                          <strong>{{cabsData.photo}}</strong>
+                        </label>
+                      </div>
+                    </div>
+        
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Proof of address</label>
+                      <div class="">
+                        <label for="proofofaddress">
+                          <strong>{{cabsData.proofOfAddress}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Police disclosure </label>
+                      <div class="">
+                        <label for="policedisclosure ">
+                          <strong>{{cabsData.policedisclosure}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Agreement</label>
+                      <div class="">
+                        <label for="agreement">
+                          <strong>{{cabsData.agreement}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Licence photo</label>
+                      <div class="">
+                        <label for="licencephoto">
+                          <strong>{{cabsData.licencephoto}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Licence paper</label>
+                      <div class="">
+                        <label for="licencePaper">
+                          <strong>{{cabsData.licencePaper}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">PCO licence</label>
+                      <div class="">
+                        <label for="PCOlicence">
+                          <strong>{{cabsData.pcoLicence}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Insurance</label>
+                      <div class="">
+                        <label for="Insurance">
+                          <strong>{{cabsData.insurance}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label for="status">Status</label>
+                      <div class="">
+                        <label for="status">
+                          <strong>{{cabsData.status}}</strong>
+                        </label>
+                      </div>
+        
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                  <div class="">
+                    <label for="attributes">
+                      <strong>Attributes</strong>
+                    </label>
+                  </div>
+                  <form class="row detail">
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Surge PriceGroupName</label>
+                      <div class="">
+                        <label for="surgePriceGroupName">
+                          <strong>createdAt</strong>
+                        </label>
+                      </div>
+                    </div>
+        
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">CRB</label>
+                      <div class="">
+                        <label for="CRB">
+                          <strong>{{cabsData.crb}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Delivery</label>
+                      <div class="">
+                        <label for="delivery">
+                          <strong>{{cabsData.delivery}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Female</label>
+                      <div class="">
+                        <label for="Female">
+                          <strong>{{cabsData.female}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Luggage</label>
+                      <div class="">
+                        <label for="Luggage">
+                          <strong>{{cabsData.luggage}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">NHS</label>
+                      <div class="">
+                        <label for="NHS">
+                          <strong>{{cabsData.nhs}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Pets</label>
+                      <div class="">
+                        <label for="Pets">
+                          <strong>{{cabsData.pets}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label class="control-label">Uniformed</label>
+                      <div class="">
+                        <label for="Uniformed">
+                          <strong>{{cabsData.uniformed}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label for="status">Topman</label>
+                      <div class="">
+                        <label for="Topman">
+                          <strong>{{cabsData.topman}}</strong>
+                        </label>
+                      </div>
+        
+                    </div>
+        
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label for="createdAt">createdAt</label>
+                      <div class="">
+                        <label for="createdAt">
+                          <strong>{{cabsData.createdAt}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                      <label for="updatedAt">updatedAt</label>
+                      <div class="">
+                        <label for="updatedAt">
+                          <strong>{{cabsData.updatedAt}}</strong>
+                        </label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+            </div>
+          </ng-template>
   </div>
   <router-outlet></router-outlet>

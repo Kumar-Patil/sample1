@@ -18,6 +18,10 @@ import { ReportComponent } from './report/report.component';
 import { FinanceComponent } from './finance/finance.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
+import { AddPricingComponent } from './pricing/add-edit-pricing/add-pricing.component';
+import { AddEditSurgingComponent } from './surging/add-edit-surging/add-surging.component';
+import { SurgingComponent } from './surging/surging.component';
+import { AddEditCabComponent } from './cabs/add-edit-cab/add-edit-cab.component';
 
 const routes: Routes = [
     {
@@ -93,7 +97,19 @@ const routes: Routes = [
     }
     ,
     { path: 'user/add', component: AddUserComponent },
-    { path: 'user/edit/:id', component: AddUserComponent }
+    { path: 'user/edit/:id', component: AddUserComponent },
+    { path: 'price/add', component: AddPricingComponent },
+    { path: 'price/edit/:pricingId', component: AddPricingComponent }
+    ,
+    {
+        path: 'surging',
+        component: SurgingComponent
+    },
+    { path: 'surge/add', component: AddEditSurgingComponent },
+    { path: 'surge/edit/:surgeId', component: AddEditSurgingComponent }
+    ,
+    { path: 'cab/add', component: AddEditCabComponent },
+    { path: 'cab/edit/:cabId', component: AddEditCabComponent }
 ];
 
 @NgModule({

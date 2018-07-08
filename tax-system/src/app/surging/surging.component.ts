@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { PricingModel } from './model/pricing.model';
+import { SurgingModel } from './model/surging.model';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 import { Router } from '@angular/router';
@@ -14,19 +14,19 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../common/api.service';
 @Component({
   selector: 'app-user',
-  templateUrl: './pricing.component.html',
-  styleUrls: ['./pricing.component.css']
+  templateUrl: './surging.component.html',
+  styleUrls: ['./surging.component.css']
 })
-export class PricingComponent implements OnInit, OnDestroy {
+export class SurgingComponent implements OnInit, OnDestroy {
 
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   info: string;
-  pricingView: any;
+  surgeView: any;
   objectKeys: Object;
-  pricingData: PricingModel[] = [];
+  surgingData: SurgingModel[] = [];
   constructor(private http: HttpClient, private driverService: DriverService, private spinnerService: Ng4LoadingSpinnerService,
     private chRef: ChangeDetectorRef, private router: Router, private baseApiService: BaseApiService, private httpService: HttpService,
     private alerts: AlertsService, config: NgbCarouselConfig,
@@ -40,44 +40,44 @@ export class PricingComponent implements OnInit, OnDestroy {
       pageLength: 8
     };
 
-    this.httpService.get(this.apiService.API_PRICE_LIST).subscribe(res => {
+    this.httpService.get(this.apiService.API_SURGE_LIST).subscribe(res => {
       if (res) {
-        this.pricingData = res;
+        this.surgingData = res;
         this.dtTrigger.next();
         this.spinnerService.hide();
       }
     });
   }
 
-  edit(event: Event, price: PricingModel) {
-    this.router.navigate([`price/edit/${price.pricingId}`]);
+  edit(event: Event, surging: SurgingModel) {
+    this.router.navigate([`surge/edit/${surging.surgeId}`]);
   }
-  view(event: Event, price: PricingModel, content) {
+  view(event: Event, surging: SurgingModel, content) {
     this.spinnerService.show();
-    this.httpService.getById(price.pricingId, this.apiService.API_PRICE_VIEW).subscribe(res => {
+    this.httpService.getById(surging.surgeId, this.apiService.API_SURGE_VIEW).subscribe(res => {
       if (res) {
-        this.pricingView = res;
+        this.surgeView = res;
         this.spinnerService.hide();
       }
     });
     this.modalService.open(content, { size: 'lg' });
   }
 
-  delete(content, event: Event, price: PricingModel) {
+  delete(content, event: Event, surging: SurgingModel) {
     this.modalService.open(content, { size: 'sm' }).result.then(
       (closeResult) => {
         // modal close
         console.log('modal closed');
       },
       (dismissReason) => {
-        this.deletePricing(price.pricingId);
+        this.deletePricing(surging.surgeId);
         this.alerts.setMessage('Deleted successfully!', 'success');
         location.reload();
       }
     );
   }
   deletePricing(id: any) {
-    this.httpService.deletById(id, this.apiService.API_PRICE_DELETE).subscribe(res => {
+    this.httpService.deletById(id, this.apiService.API_SURGE_DELETE).subscribe(res => {
     });
   }
   ngOnDestroy(): void {
