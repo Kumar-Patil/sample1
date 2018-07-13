@@ -19,7 +19,7 @@ import { AlertsService } from 'angular-alert-module';
 })
 export class AddEditCabComponent implements OnInit {
 
-  @ViewChild('personalDetails') personalDetails: NgForm;
+  @ViewChild('cabDetails') cabDetails: NgForm;
   @ViewChild('loginDetails') loginDetails: NgForm;
   @ViewChild('licencing') licencing: NgForm;
   // private licencing: FormGroup;
@@ -35,10 +35,10 @@ export class AddEditCabComponent implements OnInit {
   userId: string;
   isProofOfAddressSelected = false;
   // queue: Observable<FileQueueObject[]>;
-  driverId: string;
+  cabId: any;
   cabData: AddCabsDataModel;
   cabsData: any;
-  vendorList: any[] = [];
+  vendorsList: any[] = [];
   priceList: any[] = [];
   statusList: any[] = [];
   selectedFile: {
@@ -86,20 +86,27 @@ export class AddEditCabComponent implements OnInit {
     if (this.validateForm()) {
       this.setDefault();
       this.setDefaultFields();
-      // this.driverData.startDate = this.driverData.startDate.epoc * 1000;
-      // this.driverData.driverLicenceExpiry = this.driverData.driverLicenceExpiry.epoc * 1000;
+      this.cabData.hireExpiry = this.cabData.hireExpiry.epoc * 1000;
+      this.cabData.inuranceExpiryDate = this.cabData.inuranceExpiryDate.epoc * 1000;
+      this.cabData.motExpiry = this.cabData.motExpiry.epoc * 1000;
+      this.cabData.inuranceExpiryDate = this.cabData.inuranceExpiryDate.epoc * 1000;
+      this.cabData.roadTaxExpiry = this.cabData.roadTaxExpiry.epoc * 1000;
+      this.cabData.vehicleStart = this.cabData.vehicleStart.epoc * 1000;
+      this.cabData.vendorId = this.cabData.vendorId;
+      this.cabData.pricingId = this.cabData.pricingId;
       if (isAdd) {
         this.cabData.cabId = 0;
-        this.httpService.post(this.cabData, this.apiService.API_DRIVER_ADD).subscribe(res => {
+        this.httpService.post(this.cabData, this.apiService.API_CAB_ADD).subscribe(res => {
           this.alerts.setMessage('Added successfully!', 'success');
-          this.router.navigate([`/driver`]);
+          this.router.navigate([`/cabs`]);
         });
       } else {
-        this.httpService.put(this.cabData, this.apiService.API_DRIVER_UPDATE).subscribe(res => {
+         this.cabData.cabId = this.cabId;
+        this.httpService.put(this.cabData, this.apiService.API_CAB_UPDATE).subscribe(res => {
           if (res) {
             this.cabData = res;
             this.alerts.setMessage('Updated successfully!', 'success');
-            this.router.navigate([`/driver`]);
+            this.router.navigate([`/cabs`]);
           }
           console.log('update success');
         });
@@ -124,9 +131,7 @@ export class AddEditCabComponent implements OnInit {
     }
   }
   setDefaultFields() {
-    this.cabData.vendorId = 0;
     this.cabData.cabId = 0;
-    this.cabData.pricingId = 0;
     this.cabData.documentId = 0;
     this.cabData.attributeId = 0;
   }
@@ -166,7 +171,8 @@ export class AddEditCabComponent implements OnInit {
   }
 
   validateForm() {
-    if (this.loginDetails.valid && this.personalDetails.valid && this.licencing.valid) {
+    alert('Inside');
+    if (this.cabDetails.valid) {
       this.formInvalid = false;
       return true;
     } else {
@@ -187,8 +193,8 @@ export class AddEditCabComponent implements OnInit {
     });
   }
 
-  getDriverDetails(driverId: string) {
-    this.httpService.getById(driverId, this.apiService.API_DRIVER_DETAILS).subscribe(res => {
+  getCabDetails(driverId: string) {
+    this.httpService.getById(driverId, this.apiService.API_CAB_DETAILS).subscribe(res => {
       if (res) {
         this.cabData = res;
         // this.setDate(this.driverData.startDate, this.driverData.driverLicenceExpiry);
@@ -229,14 +235,12 @@ export class AddEditCabComponent implements OnInit {
     this.cabData.pcolicence = this.cabData.pcolicence || '';
     this.cabData.plateNumber = this.cabData.plateNumber || '';
     this.cabData.policeDisclouser = this.cabData.policeDisclouser || '';
-    this.cabData.pricingId = this.cabData.pricingId || 0;
     this.cabData.proofOfAddress = this.cabData.proofOfAddress || '';
     this.cabData.roadTaxExpiry = this.cabData.roadTaxExpiry || 0;
 
     this.cabData.sevenSeater = this.cabData.sevenSeater || '';
     this.cabData.sixSeater = this.cabData.sixSeater || '';
     this.cabData.vehicleStart = this.cabData.vehicleStart || 0;
-    this.cabData.vendorId = this.cabData.vendorId || 0;
     this.cabData.wheelChair = this.cabData.wheelChair || '';
     this.cabData.yearOfRegistration = this.cabData.yearOfRegistration || '';
   }
@@ -254,15 +258,15 @@ export class AddEditCabComponent implements OnInit {
     if (this.route.routeConfig.path === 'cab/edit/:cabId') {
       // tslint:disable-next-line:no-unused-expression
       this.route && this.route.params.subscribe((params) => {
-        this.driverId = params['driverId'];
-        if (this.driverId) {
-          this.getDriverDetails(this.driverId);
+        this.cabId = params['cabId'];
+        if (this.cabId) {
+          this.getCabDetails(this.cabId);
           this.spinnerService.hide();
         }
       });
     } else {
       this.formInvalid = false;
-      this.driverId = '';
+      this.cabId = '';
       this.spinnerService.hide();
     }
   }
@@ -270,7 +274,7 @@ export class AddEditCabComponent implements OnInit {
     const result = this.httpService.get(this.apiService.API_CAB_POP_UP_Data).subscribe(res => {
       if (res) {
         this.priceList = res['priceList'];
-        this.vendorList = res['vendorList'];
+        this.vendorsList = res['vendorList'];
         this.statusList = res['statusList'];
       }
 

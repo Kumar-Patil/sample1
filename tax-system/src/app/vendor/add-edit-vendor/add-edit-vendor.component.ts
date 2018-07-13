@@ -3,7 +3,7 @@ import { IMyDpOptions } from 'angular4-datepicker/src/my-date-picker';
 import { FileUploadService } from '../../common/service/file-upload.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AddUserDataModel } from '../model/userData.model';
+import { AddEditVendorDataModel } from '../model/add-edit-vendor.model';
 import { BaseApiService } from '../../common/baseApi.service';
 import { DriverService } from '../../common/driver.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -14,20 +14,20 @@ import { HttpService } from '../../common/http.service';
 import { AlertsService } from 'angular-alert-module';
 
 @Component({
-  selector: 'app-add-user',
-  templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css']
+  selector: 'app-vendor',
+  templateUrl: './add-edir-vendor.component.html',
+  styleUrls: ['./add-edit-vendor.component.css']
 })
-export class AddUserComponent implements OnInit {
+export class AddEditVendorComponent implements OnInit {
 
   @ViewChild('personalDetails') personalDetails: NgForm;
   @ViewChild('licencing') licencing: NgForm;
   @ViewChild('fileInput') fileInput;
   selectedFiles: FileList;
   currentFileUpload: File;
-  userId: string;
+  vendorId: string;
   // queue: Observable<FileQueueObject[]>;
-  userData: AddUserDataModel;
+  vendorData: AddEditVendorDataModel;
   statesList: any[] = [];
   countryList: any[] = [];
   cityList: any[] = [];
@@ -43,7 +43,7 @@ export class AddUserComponent implements OnInit {
     private apiService: ApiService,
     private httpService: HttpService,
     private alerts: AlertsService) {
-    this.userData = new AddUserDataModel();
+    this.vendorData = new AddEditVendorDataModel();
   }
 
   public hireDateOptions: IMyDpOptions = {
@@ -77,21 +77,19 @@ export class AddUserComponent implements OnInit {
     if (this.validateForm()) {
       this.setDefault();
       this.setDefaultFields();
-      this.userData.hireDate = this.userData.hireDate.epoc * 1000;
-      this.userData.hireEndDate = this.userData.hireEndDate.epoc * 1000;
       if (isAdd) {
-        this.httpService.post(this.userData, this.apiService.API_USER_ADD).subscribe(res => {
+        this.httpService.post(this.vendorData, this.apiService.API_VENDOR_ADD).subscribe(res => {
           this.alerts.setMessage('Added successfully!', 'success');
-          this.router.navigate([`/user`]);
+          this.router.navigate([`/vendor`]);
         });
       } else {
-        this.userData.id = this.userData.id;
-        alert(this.userData.id);
-        this.httpService.put(this.userData, this.apiService.API_USER_UPDATE).subscribe(res => {
+        this.vendorData.id = this.vendorData.id;
+        alert(this.vendorData.id);
+        this.httpService.put(this.vendorData, this.apiService.API_VENDOR_UPDATE).subscribe(res => {
           if (res) {
-            this.userData = res;
+            this.vendorData = res;
             this.alerts.setMessage('Updated successfully!', 'success');
-            this.router.navigate([`/user`]);
+            this.router.navigate([`/vendor`]);
           }
           console.log('update success');
         });
@@ -99,7 +97,7 @@ export class AddUserComponent implements OnInit {
     }
   }
   validateForm() {
-    if (this.personalDetails.valid && this.licencing.valid) {
+    if (this.personalDetails.valid) {
       this.formInvalid = false;
       return true;
     } else {
@@ -107,7 +105,7 @@ export class AddUserComponent implements OnInit {
     }
   }
   setDefaultFields() {
-    this.userData.address = 'Rajajinagar';
+    this.vendorData.address = 'Rajajinagar';
     // this.driverData.driverId = 0;
     // this.driverData.startDate = this.driverData.startDate.epoc || 0;
     // this.driverData.driverLicenceExpiry = this.driverData.driverLicenceExpiry.epoc || 0;
@@ -132,7 +130,7 @@ export class AddUserComponent implements OnInit {
   upload(name: string) {
     const apiToken = this.baseApiService.getApiToken();
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.userData[name] = this.currentFileUpload.name;
+    this.vendorData[name] = this.currentFileUpload.name;
     this.uploader.pushFileToStorage(this.currentFileUpload, apiToken).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         console.log('File is completely uploaded!');
@@ -155,55 +153,42 @@ export class AddUserComponent implements OnInit {
   }
 
   getUserDetails(id: string) {
-    this.httpService.getById(id, this.apiService.API_USER_DETAILS).subscribe(res => {
+    this.httpService.getById(id, this.apiService.API_VENDOR_DETAILS).subscribe(res => {
       if (res) {
-        this.userData = res;
+        this.vendorData = res;
         // this.setDate(this.userData.surgeExpiryStartDate, this.surgingData.surgeExpiryEndDate);
       }
     });
   }
   setDefault() {
-    this.userData.firstName = this.userData.firstName || '';
-    this.userData.lastName = this.userData.lastName || '';
-    this.userData.countryId = this.userData.countryId || 0;
-    this.userData.password = this.userData.password || '';
-    this.userData.stateId = this.userData.stateId || 0;
-    this.userData.cityId = this.userData.cityId || 0;
-    this.userData.sex = this.userData.sex || '';
-    this.userData.email = this.userData.email || '';
-    this.userData.zip = this.userData.zip || '';
-    this.userData.status = this.userData.status || 0;
-    this.userData.proofOfAddress = this.userData.proofOfAddress || '';
-    this.userData.street = this.userData.street || '';
-    this.userData.accountNo = this.userData.accountNo || '';
-    this.userData.aggrement1 = this.userData.aggrement1 || '';
-    this.userData.aggrement2 = this.userData.aggrement2 || '';
-    this.userData.aggrement3 = this.userData.aggrement4 || '';
-    this.userData.aggrement3 = this.userData.aggrement3 || '';
-    this.userData.address = this.userData.address || '';
-    this.userData.hireDate = this.userData.hireDate || 0;
-    this.userData.hireEndDate = this.userData.hireEndDate || 0;
-    this.userData.ifsc = this.userData.ifsc || '';
-    this.userData.name = this.userData.name || '';
-    this.userData.otherphone = this.userData.otherphone || '';
-    this.userData.userPic = this.userData.userPic || '';
-    this.userData.phone = this.userData.phone || '';
+    this.vendorData.firstName = this.vendorData.firstName || '';
+    this.vendorData.lastName = this.vendorData.lastName || '';
+    this.vendorData.countryId = this.vendorData.countryId || 0;
+    this.vendorData.stateId = this.vendorData.stateId || 0;
+    this.vendorData.cityId = this.vendorData.cityId || 0;
+    this.vendorData.email = this.vendorData.email || '';
+    this.vendorData.zip = this.vendorData.zip || '';
+    this.vendorData.status = this.vendorData.status || 0;
+    this.vendorData.street = this.vendorData.street || '';
+    this.vendorData.address = this.vendorData.address || '';
+    this.vendorData.mobileNo = this.vendorData.mobileNo || '';
+    this.vendorData.vendorRegistrationNo = this.vendorData.vendorRegistrationNo || '';
   }
 
   ngOnInit() {
     this.spinnerService.show();
     this.loadData();
-    if (this.route.routeConfig.path === 'user/edit/:id') {
+    if (this.route.routeConfig.path === 'vendor/edit/:id') {
       // tslint:disable-next-line:no-unused-expression
       this.route && this.route.params.subscribe((params) => {
-        this.userId = params['id'];
-        if (this.userId) {
-          this.getUserDetails(this.userId);
+        this.vendorId = params['id'];
+        if (this.vendorId) {
+          this.getUserDetails(this.vendorId);
           this.spinnerService.hide();
         }
       });
     } else {
-      this.userId = '';
+      this.vendorId = '';
       this.spinnerService.hide();
     }
 

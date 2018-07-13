@@ -1,0 +1,133 @@
+<div class="container-fluid">
+  <div class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="row">
+        <h2>
+          Personnel Details
+        </h2>
+      </div>
+      <form #personalDetails="ngForm" class="row detail border border-dark">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">First Name</label>
+            <input type="text" id="firstName" class="form-control" placeholder="" [(ngModel)]="vendorData.firstName" name="firstName" maxlength="60"
+              required>
+          </div>
+        </div>
+        <!-- Add here -->
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">Last Name</label>
+            <input type="text" id="lastName" class="form-control" placeholder="" [(ngModel)]="vendorData.lastName" name="lastName" maxlength="60"
+              required>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">Email*</label>
+            <input type="text" id="email" class="form-control" placeholder="" [(ngModel)]="vendorData.email" name="email" maxlength="60"
+              required>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="form-group is-required-short">
+              <label class="control-label">Vendor Reg No*</label>
+              <input type="text" id="email" class="form-control" placeholder="" [(ngModel)]="vendorData.vendorRegistrationNo" name="vendorRegistrationNo" maxlength="60"
+                required>
+            </div>
+          </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">Mobile Number</label>
+            <input type="text" id="phone" class="form-control" placeholder="" [(ngModel)]="vendorData.mobileNo" #phone="ngModel" name="phone">
+          </div>
+        </div>
+        <div class="form-group col-md-4 col-sm-6 col-xs-12">
+          <label for="country">Country</label>
+          <div class="">
+            <select class="form-control" id="country" [(ngModel)]="vendorData.countryId" name="country" #country="ngModel">
+              <option *ngFor="let country of countryList" [ngValue]="country.countriId">{{country.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-md-4 col-sm-6 col-xs-12">
+          <label for="state">State</label>
+          <div class="">
+            <select class="form-control" id="state" [(ngModel)]="vendorData.stateId" name="state">
+              <option *ngFor="let state of statesList" [ngValue]="state.stateId">{{state.stateName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-md-4 col-sm-6 col-xs-12">
+          <label for="city">City</label>
+          <div class="">
+            <select class="form-control" id="city" [(ngModel)]="vendorData.cityId" #city="ngModel" name="city">
+              <option *ngFor="let city of cityList" [ngValue]="city.cityId">{{city.citieName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">Pin Code</label>
+            <input type="text" id="pinCode" class="form-control" placeholder="" [(ngModel)]="vendorData.zip" #pinCode="ngModel" name="pin"
+              required>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">Plot No/Land Mark</label>
+            <input type="text" id="plotNumber" class="form-control" placeholder="" [(ngModel)]="vendorData.street" #landMark="ngModel"
+              name="streetAdd" required>
+          </div>
+        </div>
+        <div class="form-group col-md-4 col-sm-6 col-xs-12">
+          <label for="status">Status</label>
+          <div class="">
+            <select class="form-control" id="statusId" [(ngModel)]="vendorData.status" #statusId="ngModel" name="statusId">
+              <option value="1" selected>Active</option>
+              <option value="0">Inactive</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="accordion2" class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="">
+        <div class="row card-header collapsed" data-toggle="collapse" href="#collapseThree">
+          <h2 style="float:left;" class="section-title text-center">
+            Documents
+          </h2>
+        </div>
+        <form class="row detail border border-dark">
+          <div class="col-md-12 col-sm-12 col-xs-12 collapse" id="collapseThree" data-parent="#accordion2">
+            <div class="row">
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label for="driverPhoto">photo</label>
+                  <label class="btn btn-default">
+                    <input type="file" (change)="selectFile($event)" name="userPic" placeholder="No file chosen12444">
+                  </label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-1">
+    <div class="col-md-12 col-sm-12 col-xs-12 m-t-10">
+      <button type="button" class="btn btn-default" routerLink="/vendor"> Cancel</button>
+      <button type="button" style="float: right;" *ngIf="!vendorId" (click)="addOrUpdateDriverData(true)" class="btn btn-primary btn-xs pull-right m-r-10">
+        <span class="letter-space-small"></span> Save
+      </button>
+      <button type="button" style="float: right;" *ngIf="vendorId" (click)="addOrUpdateDriverData(false)" class="btn btn-primary btn-xs pull-right m-r-10">
+        <span class="letter-space-small"></span> Update
+      </button>
+    </div>
+  </div>
+</div>

@@ -48,7 +48,7 @@
             <a class="pointer" (click)="edit($event,price)">
               <span class="oi oi-pencil" title="edit" aria-hidden="true"></span>
             </a>/
-            <a class="pointer" (click)="delete(content,$event,price)">
+            <a class="pointer" (click)="delete(content,$event,price,index)">
               <span class="oi oi-trash" title="delete" aria-hidden="true"></span>
             </a>
           </span>
@@ -71,7 +71,7 @@
   </ng-template>
   <ng-template #viewcontent let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h4 class="modal-title">Pricing Details</h4>
+      <h4 class="modal-title">User Details</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -83,45 +83,45 @@
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
               <label class="control-label">Pricing GroupName</label>
               <div class="">
-                <label for="pricingGroupName"><strong>{{pricingView.pricingGroupName}}</strong></label>
+                <label for="pricingGroupName"><strong>{{userVewData.pricingGroupName}}</strong></label>
               </div>
             </div>
 
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
               <label class="control-label">Pricing PerMinute</label>
               <div class="">
-                <label for="pricingGroupName"><strong>{{pricingView.pricePerMinute}}</strong></label>
+                <label for="pricingGroupName"><strong>{{userVewData.pricePerMinute}}</strong></label>
               </div>
             </div>
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
               <label class="control-label">Pricing PerUnitDistance</label>
               <div class="">
-                <label for="pricingGroupName"><strong>{{pricingView.pricePerUnitDistance}}</strong></label>
+                <label for="pricingGroupName"><strong>{{userVewData.pricePerUnitDistance}}</strong></label>
               </div>
             </div>
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
               <label for="status">Status</label>
               <div class="">
-                <label for="status"><strong>{{pricingView.status}}</strong></label>
+                <label for="status"><strong>{{userVewData.status}}</strong></label>
               </div>
 
             </div>
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
               <label for="vendorRegistrationNo">Vendor Name</label>
               <div class="">
-                <label for="vendorRegistrationNo"><strong>{{pricingView.vendorName}}</strong></label>
+                <label for="vendorRegistrationNo"><strong>{{userVewData.vendorName}}</strong></label>
               </div>
             </div>
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
               <label for="createdAt">createdAt</label>
               <div class="">
-                <label for="createdAt"><strong>{{pricingView.createdAt}}</strong></label>
+                <label for="createdAt"><strong>{{userVewData.createdAt}}</strong></label>
               </div>
             </div>
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
               <label for="updatedAt">updatedAt</label>
               <div class="">
-                <label for="updatedAt"><strong>{{pricingView.updatedAt}}</strong></label>
+                <label for="updatedAt"><strong>{{userVewData.updatedAt}}</strong></label>
               </div>
             </div>
           </form>

@@ -47,8 +47,12 @@ export class AddDriverComponent implements OnInit {
     'agreement': ''
   };
 
-  constructor(private route: ActivatedRoute, private spinnerService: Ng4LoadingSpinnerService, private router: Router,
-    private baseApiService: BaseApiService, private driverService: DriverService, public uploader: FileUploadService,
+  constructor(private route: ActivatedRoute, 
+    private spinnerService: Ng4LoadingSpinnerService, 
+    private router: Router,
+    private baseApiService: BaseApiService, 
+    private driverService: DriverService, 
+    public uploader: FileUploadService,
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private httpService: HttpService,
@@ -90,12 +94,13 @@ export class AddDriverComponent implements OnInit {
       this.driverData.startDate = this.driverData.startDate.epoc * 1000;
       this.driverData.driverLicenceExpiry = this.driverData.driverLicenceExpiry.epoc * 1000;
       if (isAdd) {
-        this.driverData.driverId = 0;
         this.httpService.post(this.driverData, this.apiService.API_DRIVER_ADD).subscribe(res => {
           this.alerts.setMessage('Added successfully!', 'success');
           this.router.navigate([`/driver`]);
         });
       } else {
+        this.driverData.driverId = this.driverData.driverId;
+        alert(this.driverData.driverId);
         this.httpService.put(this.driverData, this.apiService.API_DRIVER_UPDATE).subscribe(res => {
           if (res) {
             this.driverData = res;
@@ -198,6 +203,7 @@ export class AddDriverComponent implements OnInit {
   }
 
   setDefault() {
+    alert(this.driverData.cabId);
     this.driverData.mobileNo = this.driverData.mobileNo || 0;
     this.driverData.firstName = this.driverData.firstName || '';
     this.driverData.lastName = this.driverData.lastName || '';

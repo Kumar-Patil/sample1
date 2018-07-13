@@ -63,7 +63,7 @@ export class SurgingComponent implements OnInit, OnDestroy {
     this.modalService.open(content, { size: 'lg' });
   }
 
-  delete(content, event: Event, surging: SurgingModel) {
+  delete(content, event: Event, surging: SurgingModel, index) {
     this.modalService.open(content, { size: 'sm' }).result.then(
       (closeResult) => {
         // modal close
@@ -72,7 +72,7 @@ export class SurgingComponent implements OnInit, OnDestroy {
       (dismissReason) => {
         this.deletePricing(surging.surgeId);
         this.alerts.setMessage('Deleted successfully!', 'success');
-        location.reload();
+        this.surgingData.splice(index, 1);
       }
     );
   }

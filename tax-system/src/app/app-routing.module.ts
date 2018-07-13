@@ -22,6 +22,7 @@ import { AddPricingComponent } from './pricing/add-edit-pricing/add-pricing.comp
 import { AddEditSurgingComponent } from './surging/add-edit-surging/add-surging.component';
 import { SurgingComponent } from './surging/surging.component';
 import { AddEditCabComponent } from './cabs/add-edit-cab/add-edit-cab.component';
+import { AddEditVendorComponent } from './vendor/add-edit-vendor/add-edit-vendor.component';
 
 const routes: Routes = [
     {
@@ -59,8 +60,9 @@ const routes: Routes = [
     {
         path: 'vendor',
         component: VendorComponent
-    }
-    ,
+    },
+    { path: 'vendor/add', component: AddEditVendorComponent },
+    { path: 'vendor/edit/:id', component: AddEditVendorComponent },
     {
         path: 'booking',
         component: BookingComponent

@@ -8,6 +8,10 @@ import { DriverService } from '../common/driver.service';
 import { BaseApiService } from '../common/baseApi.service';
 import { DataTableDirective } from 'angular-datatables';
 import { HttpService } from '../common/http.service';
+import { AlertsService } from 'angular-alert-module';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from '../common/api.service';
 @Component({
   selector: 'app-user',
   templateUrl: './vendor.component.html',
@@ -19,11 +23,15 @@ export class VendorComponent implements OnInit, OnDestroy {
   dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-
+  info: string;
+  vendorView: any;
   objectKeys: Object;
   vendorData: VendorModel[] = [];
   constructor(private http: HttpClient, private driverService: DriverService, private spinnerService: Ng4LoadingSpinnerService,
-    private chRef: ChangeDetectorRef, private router: Router, private baseApiService: BaseApiService, private httpService: HttpService) {}
+    private chRef: ChangeDetectorRef, private router: Router, private baseApiService: BaseApiService, private httpService: HttpService,
+    private alerts: AlertsService, config: NgbCarouselConfig,
+    private modalService: NgbModal,
+    private apiService: ApiService) { }
 
   ngOnInit() {
     this.spinnerService.show();
@@ -32,7 +40,7 @@ export class VendorComponent implements OnInit, OnDestroy {
       pageLength: 8
     };
 
-    this.httpService.get('vendor/list').subscribe(res => {
+    this.httpService.get(this.apiService.API_VENDOR_LIST).subscribe(res => {
       if (res) {
         this.vendorData = res;
         this.dtTrigger.next();
@@ -41,15 +49,36 @@ export class VendorComponent implements OnInit, OnDestroy {
     });
   }
 
-  edit(event: Event, user: VendorModel) {
-    // this.router.navigate([`/rider/rider/${user.id}`]);
-    alert('Yet to implementaion');
+  edit(event: Event, vendor: VendorModel) {
+    this.router.navigate([`vendor/edit/${vendor.id}`]);
   }
-  view(event: Event, user: VendorModel) {
-    alert('Yet to implementaion');
+  view(event: Event, vendor: VendorModel, content) {
+    this.spinnerService.show();
+    this.httpService.getById(vendor.id, this.apiService.API_VENDOR_VIEW).subscribe(res => {
+      if (res) {
+        this.vendorView = res;
+        this.spinnerService.hide();
+      }
+    });
+    this.modalService.open(content, { size: 'lg' });
   }
-  delete(event: Event, user: VendorModel) {
-    alert('Yet to implementaion');
+
+  delete(content, event: Event, vendor: VendorModel, index) {
+    this.modalService.open(content, { size: 'sm' }).result.then(
+      (closeResult) => {
+        // modal close
+        console.log('modal closed');
+      },
+      (dismissReason) => {
+        this.deleteVendor(vendor.id);
+        this.alerts.setMessage('Deleted successfully!', 'success');
+        this.vendorData.splice(index, 1);
+      }
+    );
+  }
+  deleteVendor(id: any) {
+    this.httpService.deletById(id, this.apiService.API_VENDOR_DELETE).subscribe(res => {
+    });
   }
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event

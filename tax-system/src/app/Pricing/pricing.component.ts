@@ -63,7 +63,7 @@ export class PricingComponent implements OnInit, OnDestroy {
     this.modalService.open(content, { size: 'lg' });
   }
 
-  delete(content, event: Event, price: PricingModel) {
+  delete(content, event: Event, price: PricingModel, index) {
     this.modalService.open(content, { size: 'sm' }).result.then(
       (closeResult) => {
         // modal close
@@ -72,7 +72,7 @@ export class PricingComponent implements OnInit, OnDestroy {
       (dismissReason) => {
         this.deletePricing(price.pricingId);
         this.alerts.setMessage('Deleted successfully!', 'success');
-        location.reload();
+        this.pricingData.splice(index, 1);
       }
     );
   }

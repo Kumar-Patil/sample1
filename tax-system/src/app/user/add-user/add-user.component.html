@@ -1,38 +1,38 @@
 <div class="container-fluid">
   <div class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
-      <div class="col-md-12 col-lg-12 col-sm-12">
-        <div class="row">
-          <h2>
-            Login Details
-          </h2>
-        </div>
-        <form class="row detail border border-dark">
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="form-group is-required-short">
-                  <label class="control-label">Email*</label>
-                  <input type="text" id="email" class="form-control" placeholder="" [(ngModel)]="driverData.email" name="email" maxlength="60"
-                    required>
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="form-group is-required-short">
-                    <label class="control-label">Password*</label>
-                    <input type="password" id="password" class="form-control" placeholder="" [(ngModel)]="driverData.password" name="password" maxlength="60"
-                      required>
-                  </div>
-                </div>
-                <div class="form-group col-md-4 col-sm-6 col-xs-12">
-                  <label for="status">Role*</label>
-                  <div class="">
-                    <select class="form-control" id="role" [(ngModel)]="driverData.role" #statusId="ngModel" name="role" required>
-                      <option value="Super User" selected>Suprem User</option>
-                      <option value="vendor">Vendor</option>
-                      <option value="view">View User</option>
-                    </select>
-                  </div>
-                </div>
-        </form>
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="row">
+        <h2>
+          Login Details
+        </h2>
       </div>
+      <form class="row detail border border-dark">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">Email*</label>
+            <input type="text" id="email" class="form-control" placeholder="" [(ngModel)]="userData.email" name="email" maxlength="60"
+              required>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="form-group is-required-short">
+            <label class="control-label">Password*</label>
+            <input type="password" id="password" class="form-control" placeholder="" [(ngModel)]="userData.password" name="password"
+              maxlength="60" required>
+          </div>
+        </div>
+        <div class="form-group col-md-4 col-sm-6 col-xs-12">
+          <label for="status">Role*</label>
+          <div class="">
+            <select class="form-control" id="role" [(ngModel)]="userData.role" #statusId="ngModel" name="role" required>
+              <option value="Super User" selected>Suprem User</option>
+              <option value="vendor">Vendor</option>
+              <option value="view">View User</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
   <div id="accordion" class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
     <div class="col-md-12 col-lg-12 col-sm-12">
@@ -48,7 +48,7 @@
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
                   <label class="control-label">First Name</label>
-                  <input type="text" id="firstName" class="form-control" placeholder="" [(ngModel)]="driverData.firstName" name="firstName" maxlength="60"
+                  <input type="text" id="firstName" class="form-control" placeholder="" [(ngModel)]="userData.firstName" name="firstName" maxlength="60"
                     required>
                 </div>
               </div>
@@ -56,31 +56,38 @@
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
                   <label class="control-label">Last Name</label>
-                  <input type="text" id="lastName" class="form-control" placeholder="" [(ngModel)]="driverData.lastName" name="lastName" maxlength="60" 
+                  <input type="text" id="lastName" class="form-control" placeholder="" [(ngModel)]="userData.lastName" name="lastName" maxlength="60"
                     required>
                 </div>
               </div>
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
                 <label for="gender">Gender</label>
                 <div class="">
-                  <select class="form-control" id="gender" [(ngModel)]="driverData.sex" name="sex">
+                  <select class="form-control" id="gender" [(ngModel)]="userData.sex" name="sex">
                     <option value='male'>Male</option>
                     <option value='female'>Female</option>
-                    <option value='other'>Female</option>
+                    <option value='other'>other</option>
                   </select>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
-                  <label class="control-label">Other Phone</label>
-                  <input type="text" id="otherPhone" class="form-control" placeholder="" [(ngModel)]="driverData.otherPhone" #otherPhone="ngModel" name="otherPhone">
+                  <label class="control-label">Mobile Number</label>
+                  <input type="text" id="phone" class="form-control" placeholder="" [(ngModel)]="userData.phone" #phone="ngModel" name="phone">
                 </div>
               </div>
-              
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Other Phone</label>
+                  <input type="text" id="otherPhone" class="form-control" placeholder="" [(ngModel)]="userData.otherPhone" #otherPhone="ngModel"
+                    name="otherPhone">
+                </div>
+              </div>
+
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
                 <label for="country">Country</label>
                 <div class="">
-                  <select class="form-control" id="country" [(ngModel)]="driverData.countryId" name="country" #country="ngModel">
+                  <select class="form-control" id="country" [(ngModel)]="userData.countryId" name="country" #country="ngModel">
                     <option *ngFor="let country of countryList" [ngValue]="country.countriId">{{country.name}}</option>
                   </select>
                 </div>
@@ -88,7 +95,7 @@
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
                 <label for="state">State</label>
                 <div class="">
-                  <select class="form-control" id="state" [(ngModel)]="driverData.stateId" name="state" >
+                  <select class="form-control" id="state" [(ngModel)]="userData.stateId" name="state">
                     <option *ngFor="let state of statesList" [ngValue]="state.stateId">{{state.stateName}}</option>
                   </select>
                 </div>
@@ -96,7 +103,7 @@
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
                 <label for="city">City</label>
                 <div class="">
-                  <select class="form-control" id="city" [(ngModel)]="driverData.cityId" #city="ngModel" name="city">
+                  <select class="form-control" id="city" [(ngModel)]="userData.cityId" #city="ngModel" name="city">
                     <option *ngFor="let city of cityList" [ngValue]="city.cityId">{{city.citieName}}</option>
                   </select>
                 </div>
@@ -104,19 +111,21 @@
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
                   <label class="control-label">Pin Code</label>
-                  <input type="text" id="pinCode" class="form-control" placeholder="" [(ngModel)]="driverData.zip" #pinCode="ngModel" name="pin" required>
+                  <input type="text" id="pinCode" class="form-control" placeholder="" [(ngModel)]="userData.zip" #pinCode="ngModel" name="pin"
+                    required>
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
                   <label class="control-label">Plot No/Land Mark</label>
-                  <input type="text" id="plotNumber" class="form-control" placeholder="" [(ngModel)]="driverData.street" #landMark="ngModel" name="streetAdd" required>
+                  <input type="text" id="plotNumber" class="form-control" placeholder="" [(ngModel)]="userData.street" #landMark="ngModel"
+                    name="streetAdd" required>
                 </div>
               </div>
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
                 <label for="status">Status</label>
                 <div class="">
-                  <select class="form-control" id="statusId" [(ngModel)]="driverData.status" #statusId="ngModel" name="statusId">
+                  <select class="form-control" id="statusId" [(ngModel)]="userData.status" #statusId="ngModel" name="statusId">
                     <option value="1" selected>Active</option>
                     <option value="0">Inactive</option>
                   </select>
@@ -142,14 +151,14 @@
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
                   <label class="control-label">Hire Date</label>
-                  <my-date-picker name="hireDate" [options]="hireDateOptions" [(ngModel)]="driverData.hireDate" required></my-date-picker>
+                  <my-date-picker name="hireDate" [options]="hireDateOptions" [(ngModel)]="userData.hireDate" required></my-date-picker>
                 </div>
               </div>
-              <!-- Add here -->              
+              <!-- Add here -->
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
                   <label class="control-label">End Date</label>
-                  <my-date-picker name="hireEndDate" [options]="expiryDateOptions" [(ngModel)]="driverData.hireEndDate" required></my-date-picker>
+                  <my-date-picker name="hireEndDate" [options]="expiryDateOptions" [(ngModel)]="userData.hireEndDate" required></my-date-picker>
                 </div>
               </div>
             </div>
@@ -175,7 +184,7 @@
                   <label class="btn btn-default">
                     <input type="file" (change)="selectFile($event)" name="userPic" placeholder="No file chosen12444">
                   </label>
-                    
+
                   <!-- <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button> -->
                   <!-- <input type="file" #fileInput multiple (change)="uploadFileToActivity()" name="driverPhotos" [(ngModel)]="driverData.photo"/> -->
                   <!-- <input type="file" id="file" (change)="handleFileInput($event.target.files)" name="driverPhoto" [(ngModel)]="driverData.photo"> -->
@@ -214,19 +223,19 @@
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label for="file">Bank Name</label>
-                  <input type="text" id="name" class="form-control" placeholder="" name="name" [(ngModel)]="driverData.name">
+                  <input type="text" id="name" class="form-control" placeholder="" name="name" [(ngModel)]="userData.name">
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label for="file">Account No</label>
-                  <input type="text" id="accountNo" class="form-control" placeholder="" name="accountNo" [(ngModel)]="driverData.accountNo">
+                  <input type="text" id="accountNo" class="form-control" placeholder="" name="accountNo" [(ngModel)]="userData.accountNo">
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label for="file">IFSC Code</label>
-                  <input type="text" id="ifsc" class="form-control" placeholder="" name="ifsc" [(ngModel)]="driverData.ifsc">
+                  <input type="text" id="ifsc" class="form-control" placeholder="" name="ifsc" [(ngModel)]="userData.ifsc">
                 </div>
               </div>
             </div>
@@ -237,14 +246,14 @@
   </div>
 
   <div class="row mt-1">
-      <div class="col-md-12 col-sm-12 col-xs-12 m-t-10">
-          <button type="button" class="btn btn-default" routerLink="/user"> Cancel</button>
-          <button type="button" style="float: right;" *ngIf="!driverId" (click)="addOrUpdateDriverData(true)" class="btn btn-primary btn-xs pull-right m-r-10">
-              <span class="letter-space-small"></span> Save
-          </button>
-          <button type="button" style="float: right;" *ngIf="driverId" (click)="addOrUpdateDriverData(false)" class="btn btn-primary btn-xs pull-right m-r-10">
-              <span class="letter-space-small"></span> Update
-          </button>
-      </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 m-t-10">
+      <button type="button" class="btn btn-default" routerLink="/user"> Cancel</button>
+      <button type="button" style="float: right;" *ngIf="!userId" (click)="addOrUpdateDriverData(true)" class="btn btn-primary btn-xs pull-right m-r-10">
+        <span class="letter-space-small"></span> Save
+      </button>
+      <button type="button" style="float: right;" *ngIf="userId" (click)="addOrUpdateDriverData(false)" class="btn btn-primary btn-xs pull-right m-r-10">
+        <span class="letter-space-small"></span> Update
+      </button>
+    </div>
   </div>
 </div>

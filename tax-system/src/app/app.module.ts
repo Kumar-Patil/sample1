@@ -43,6 +43,8 @@ import { AddEditSurgingComponent } from './surging/add-edit-surging/add-surging.
 import { SurgingComponent } from './surging/surging.component';
 import { ApiService } from './common/api.service';
 import { AddEditCabComponent } from './cabs/add-edit-cab/add-edit-cab.component';
+import { AddEditVendorComponent } from './vendor/add-edit-vendor/add-edit-vendor.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +72,8 @@ import { AddEditCabComponent } from './cabs/add-edit-cab/add-edit-cab.component'
     AddPricingComponent,
     AddEditSurgingComponent,
     SurgingComponent,
-    AddEditCabComponent
+    AddEditCabComponent,
+    AddEditVendorComponent
   ],
   imports: [
     BrowserModule,

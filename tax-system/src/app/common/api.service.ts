@@ -43,7 +43,28 @@ export class ApiService {
     public API_CAB_LIST = 'cab/list';
     public API_CAB_VIEW = 'cab/view';
     public API_CAB_DETAILS = 'cab/details';
-    public API_CAB_POP_UP_Data = 'cab/popData';
+    public API_CAB_POP_UP_Data = 'cab/popUPData';
+
+    public API_DS_UPDATE = 'ds/update';
+    public API_DS_ADD = 'ds/add';
+    public API_DS_DELETE = 'ds/delete';
+    public API_DS_LIST = 'ds/list';
+    public API_DS_VIEW = 'ds/view';
+    public API_DS_DETAILS = 'ds/details';
+
+    public API_USER_UPDATE = 'user/update';
+    public API_USER_ADD = 'user/add';
+    public API_USER_DELETE = 'user/delete';
+    public API_USER_LIST = 'user/list';
+    public API_USER_VIEW = 'user/view';
+    public API_USER_DETAILS = 'user/details';
+
+    public API_VENDOR_UPDATE = 'vendor/update';
+    public API_VENDOR_ADD = 'vendor/add';
+    public API_VENDOR_DELETE = 'vendor/delete';
+    public API_VENDOR_LIST = 'vendor/list';
+    public API_VENDOR_VIEW = 'vendor/view';
+    public API_VENDOR_DETAILS = 'vendor/details';
 
 
 }

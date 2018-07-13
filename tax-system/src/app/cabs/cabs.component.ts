@@ -45,9 +45,8 @@ export class CabsComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
-  edit(event: Event, user: CabsModel) {
-    // this.router.navigate([`/rider/rider/${user.id}`]);
-    alert('Yet to implementaion');
+  edit(event: Event, cab: CabsModel) {
+    this.router.navigate([`cab/edit/${cab.cabId}`]);
   }
 
   delete(content, event: Event, cabs: CabsModel, index) {

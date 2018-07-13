@@ -74,6 +74,7 @@ export class AddPricingComponent implements OnInit {
     });
   }
   validateForm() {
+     alert(this.pricingDetails.valid);
     if (this.pricingDetails.valid) {
       this.formInvalid = false;
       return true;

@@ -7,7 +7,7 @@
             Vechicle Details
           </h2>
         </div>
-        <form #personalDetails="ngForm" class="row detail border border-dark">
+        <form #cabDetails="ngForm" class="row detail border border-dark">
           <div class="col-md-12 col-sm-12 col-xs-12 collapse" id="collapseOne" data-parent="#accordion">
             <div class="row">
               <div class="col-md-4 col-sm-6 col-xs-12">
@@ -62,11 +62,11 @@
               <div class="form-group col-md-4 col-sm-6 col-xs-12">
                 <label for="vendorId">Vendors *</label>
                 <div class="">
-                  <select class="form-control" id="vendorId" [(ngModel)]="cabData.countryId" name="vendorId" #vendorId="ngModel" required="true">
-                    <option *ngFor="let vendor of vendorList" [ngValue]="vendor.vendorId">{{vendor.vendorRegistrationNo}}</option>
+                  <select class="form-control" id="pricingId1" [(ngModel)]="cabData.vendorId" name="pricingId1" #pricingId="ngModel" required="true">
+                    <option *ngFor="let price of vendorsList" [ngValue]="price.id">{{price.vendorRegistrationNo}}</option>
                   </select>
-                  <div *ngIf="vendorId.errors && (vendorId.dirty || vendorId.touched)">
-                    <span class="text-danger" [hidden]="!vendorId.errors.required">Vendor is required</span>
+                  <div *ngIf="pricingId.errors && (pricingId.dirty || pricingId.touched)">
+                    <span class="text-danger" [hidden]="!pricingId.errors.required">Pricing details is required</span>
                   </div>
                 </div>
               </div>
@@ -74,7 +74,7 @@
                 <label for="pricingId">Pricing Details *</label>
                 <div class="">
                   <select class="form-control" id="pricingId" [(ngModel)]="cabData.pricingId" name="pricingId" #pricingId="ngModel" required="true">
-                    <option *ngFor="let price of priceList" [ngValue]="price.pricingId">{{price.name}}</option>
+                    <option *ngFor="let price of priceList" [ngValue]="price.pricingId">{{price.pricingGroupName}}</option>
                   </select>
                   <div *ngIf="pricingId.errors && (pricingId.dirty || pricingId.touched)">
                     <span class="text-danger" [hidden]="!pricingId.errors.required">Pricing details is required</span>
@@ -197,7 +197,7 @@
                   <div id="fileName">
                     <label id="fileLabel">{{ cabData.proofOfAddress || 'No file chosen'}}</label>
                   </div>
-                  <div *ngIf="!driverData.proofOfAddress && isProofOfAddressSelected">
+                  <div *ngIf="!cabData.proofOfAddress && isProofOfAddressSelected">
                     <span class="text-danger">Proof of address is required</span>
                   </div>
                 </div>
@@ -356,11 +356,11 @@
   <div class="row mt-1" style="padding-bottom: 60px;">
     <div class="col-md-12 col-sm-12 col-xs-12 m-t-10">
       <button type="button" class="btn btn-default" routerLink="/cabs"> Cancel</button>
-      <button type="button" style="float: right;" [disabled]="formInvalid" *ngIf="!driverId" (click)="addOrUpdateDriverData(true)"
+      <button type="button" style="float: right;" [disabled]="formInvalid" *ngIf="!cabId" (click)="addOrUpdateDriverData(true)"
         class="btn btn-primary btn-xs pull-right m-r-10">
         <span class="letter-space-small"></span> Save
       </button>
-      <button type="button" style="float: right;" [disabled]="formInvalid" *ngIf="driverId" (click)="addOrUpdateDriverData(false)"
+      <button type="button" style="float: right;" [disabled]="formInvalid" *ngIf="cabId" (click)="addOrUpdateDriverData(false)"
         class="btn btn-primary btn-xs pull-right m-r-10">
         <span class="letter-space-small"></span> Update
       </button>

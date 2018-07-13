@@ -5,7 +5,6 @@ export class CabsModel {
         public cabColor: string,
         public cabNo: string,
         public cabId: number,
-        public vendorId: number,
-        public pricingId: number,
+        public plateNumber: string,
         public cabRegistrationNo: string) { }
 }

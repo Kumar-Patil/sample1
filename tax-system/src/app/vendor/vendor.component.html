@@ -1,53 +1,200 @@
 <div class="row">
-    <div class="col-lg-6">
-    </div>
-   <div class="col-sm-6 text-right">
-      <button type="button" class="btn btn-default" routerLink="#">Add Vendor</button>
-    </div>
+  <div class="col-lg-6">
   </div>
-  <div class="mt-5">
-      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-        <thead style="font: bold;">
-          <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Mobile Number</th>
-            <th>Vendor RegNo</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let vendor of vendorData;let index=index;">
-            <td>{{index+1}}</td>
-            <td>
-              <span class="text-wrap">{{vendor.firstName}}</span>
-            </td>
-            <td>
-              <span class="text-wrap">{{vendor.lastName}}</span>
-            </td>
-            <td>
-              <span class="text-wrap">{{vendor.email}}</span>
-            </td>
-            <td>
-              <span class="text-wrap">{{vendor.mobileNo}}</span>
-            </td>
-            <td>
-              <span class="text-wrap">{{vendor.vendorRegistrationNo}}</span>
-            </td>
-            <td>
-              <span class="text-wrap">{{vendor.status}}</span>
-            </td>
-            <td>
-                <span class="text-wrap">
-                    <a class="pointer" (click)="view($event,vendor)"><span class="oi oi-share-boxed" title="view" aria-hidden="true"></span> </a> / 
-                    <a class="pointer" (click)="edit($event,vendor)"><span class="oi oi-pencil" title="edit" aria-hidden="true"></span> </a>/ 
-                    <a class="pointer" (click)="delete($event,vendor)"><span class="oi oi-trash" title="delete" aria-hidden="true"></span> </a>
-                </span>
-            </td>
-          </tr>
-      </table>
+  <div class="col-sm-6 text-right">
+    <button type="button" class="btn btn-default" routerLink="/vendor/add">Add Vendor</button>
   </div>
-  <router-outlet></router-outlet>
+</div>
+<div class="mt-5">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead style="font: bold;">
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Mobile Number</th>
+        <th>Vendor RegNo</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vendor of vendorData;let index=index;">
+        <td>{{index+1}}</td>
+        <td>
+          <span class="text-wrap">{{vendor.firstName}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{vendor.lastName}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{vendor.email}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{vendor.mobileNo}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{vendor.vendorRegistrationNo}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">{{vendor.status}}</span>
+        </td>
+        <td>
+          <span class="text-wrap">
+            <a class="pointer" (click)="view($event,vendor,viewcontent)">
+              <span class="oi oi-share-boxed" title="view" aria-hidden="true"></span>
+            </a> /
+            <a class="pointer" (click)="edit($event,vendor)">
+              <span class="oi oi-pencil" title="edit" aria-hidden="true"></span>
+            </a>/
+            <a class="pointer" (click)="delete(content,$event,vendor,index)">
+              <span class="oi oi-trash" title="delete" aria-hidden="true"></span>
+            </a>
+          </span>
+        </td>
+      </tr>
+  </table>
+  <ng-template #content let-cl="close" let-di="dismiss">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Confirmation</h5>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to delete record ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="margin-right: 61%;" (click)="di('Dismissed from dismiss button')">Yes</button>
+        <button type="button" class="btn btn-primary" (click)="cl('Closed from Close button')">No</button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #viewcontent let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Vendor Details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+          <form class="row detail">
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">First Name</label>
+              <div class="">
+                <label for="firstName">
+                  <strong>{{vendorView.firstName}}</strong>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Last Name</label>
+              <div class="">
+                <label for="lastName">
+                  <strong>{{vendorView.lastName}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">email</label>
+              <div class="">
+                <label for="email">
+                  <strong>{{vendorView.email}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">mobileNo</label>
+              <div class="">
+                <label for="mobileNo">
+                  <strong>{{vendorView.mobileNo}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label class="control-label">Vendor RegNo</label>
+                <div class="">
+                  <label for="mobileNo">
+                    <strong>{{vendorView.vendorRegistrationNo}}</strong>
+                  </label>
+                </div>
+              </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Country Name</label>
+              <div class="">
+                <label for="countryName">
+                  <strong>{{vendorView.countryName}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">State Name</label>
+              <div class="">
+                <label for="stateName">
+                  <strong>{{vendorView.stateName}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">City Name</label>
+              <div class="">
+                <label for="cityName">
+                  <strong>{{vendorView.cityName}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">street</label>
+              <div class="">
+                <label for="street">
+                  <strong>{{vendorView.street}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label class="control-label">zip</label>
+                <div class="">
+                  <label for="zip">
+                    <strong>{{vendorView.zip}}</strong>
+                  </label>
+                </div>
+              </div>
+              
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="status">Status</label>
+              <div class="">
+                <label for="status">
+                  <strong>{{vendorView.status}}</strong>
+                </label>
+              </div>
+
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="createdAt">createdAt</label>
+              <div class="">
+                <label for="createdAt">
+                  <strong>{{vendorView.createdAt}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="updatedAt">updatedAt</label>
+              <div class="">
+                <label for="updatedAt">
+                  <strong>{{vendorView.updatedAt}}</strong>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+    </div>
+  </ng-template>
+</div>
+<router-outlet></router-outlet>
