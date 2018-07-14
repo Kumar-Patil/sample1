@@ -36,7 +36,7 @@ import { FinanceComponent } from './finance/finance.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { HttpService } from './common/http.service';
 import { AlertsModule } from 'angular-alert-module';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddUserComponent } from './user/add-user/add-user.component';
 import { AddPricingComponent } from './pricing/add-edit-pricing/add-pricing.component';
 import { AddEditSurgingComponent } from './surging/add-edit-surging/add-surging.component';
@@ -44,6 +44,8 @@ import { SurgingComponent } from './surging/surging.component';
 import { ApiService } from './common/api.service';
 import { AddEditCabComponent } from './cabs/add-edit-cab/add-edit-cab.component';
 import { AddEditVendorComponent } from './vendor/add-edit-vendor/add-edit-vendor.component';
+import { AgmCoreModule } from '@agm/core';
+import { DSTrackingComponent } from './delivery/tracking/tracking.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { AddEditVendorComponent } from './vendor/add-edit-vendor/add-edit-vendor
     AddEditSurgingComponent,
     SurgingComponent,
     AddEditCabComponent,
-    AddEditVendorComponent
+    AddEditVendorComponent,
+    DSTrackingComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,12 @@ import { AddEditVendorComponent } from './vendor/add-edit-vendor/add-edit-vendor
     ReactiveFormsModule,
     Ng4LoadingSpinnerModule.forRoot(),
     AlertsModule.forRoot(),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AgmCoreModule.forRoot({
+      // please get your own API key here:
+      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+      apiKey: 'AIzaSyDVttFh9cUbhvjKM0Vscrk-X7CmSXCzq24'
+    })
   ],
   providers: [AuthService, DriverService, FileUploadService, BaseApiService, HttpService, ApiService],
   bootstrap: [AppComponent]

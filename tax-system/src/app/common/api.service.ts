@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
     constructor() { }
-    public API_BASE_URL = 'http://localhost:8080/taxi/';
+    public API_BASE_URL = 'http://localhost:8084/taxi/';
     public API_LOGIN_URL = 'login/user';
     public API_DRIVER_LIST = 'driver/list';
     public API_DRIVER_DETAILS = 'driver/details';

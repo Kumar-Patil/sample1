@@ -23,6 +23,7 @@ import { AddEditSurgingComponent } from './surging/add-edit-surging/add-surging.
 import { SurgingComponent } from './surging/surging.component';
 import { AddEditCabComponent } from './cabs/add-edit-cab/add-edit-cab.component';
 import { AddEditVendorComponent } from './vendor/add-edit-vendor/add-edit-vendor.component';
+import { DSTrackingComponent } from './delivery/tracking/tracking.component';
 
 const routes: Routes = [
     {
@@ -96,6 +97,10 @@ const routes: Routes = [
     {
         path: 'delivery',
         component: DeliveryComponent
+    },
+    {
+        path: 'tracking',
+        component: DSTrackingComponent
     }
     ,
     { path: 'user/add', component: AddUserComponent },
