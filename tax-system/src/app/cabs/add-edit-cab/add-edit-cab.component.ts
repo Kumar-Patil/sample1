@@ -171,7 +171,6 @@ export class AddEditCabComponent implements OnInit {
   }
 
   validateForm() {
-    alert('Inside');
     if (this.cabDetails.valid) {
       this.formInvalid = false;
       return true;

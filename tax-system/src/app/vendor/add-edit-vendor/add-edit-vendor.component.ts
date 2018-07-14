@@ -84,7 +84,6 @@ export class AddEditVendorComponent implements OnInit {
         });
       } else {
         this.vendorData.id = this.vendorData.id;
-        alert(this.vendorData.id);
         this.httpService.put(this.vendorData, this.apiService.API_VENDOR_UPDATE).subscribe(res => {
           if (res) {
             this.vendorData = res;
