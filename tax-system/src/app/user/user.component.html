@@ -71,7 +71,7 @@
   </ng-template>
   <ng-template #viewcontent let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h4 class="modal-title">Pricing Details</h4>
+      <h4 class="modal-title">User Details</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -79,29 +79,117 @@
     <div class="modal-body">
       <div class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12">
         <div class="col-md-12 col-lg-12 col-sm-12">
+          <div class="">
+            <label for="personalDetails">
+              <strong>Personal Details</strong>
+            </label>
+          </div>
           <form class="row detail">
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
-              <label class="control-label">Pricing GroupName</label>
+              <label class="control-label">First Name</label>
               <div class="">
-                <label for="pricingGroupName">
-                  <strong>{{pricingView.pricingGroupName}}</strong>
+                <label for="firstName">
+                  <strong>{{userVewData.firstName}}</strong>
                 </label>
               </div>
             </div>
 
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
-              <label class="control-label">Pricing PerMinute</label>
+              <label class="control-label">Last Name</label>
               <div class="">
-                <label for="pricingGroupName">
-                  <strong>{{pricingView.pricePerMinute}}</strong>
+                <label for="lastName">
+                  <strong>{{userVewData.lastName}}</strong>
                 </label>
               </div>
             </div>
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
-              <label class="control-label">Pricing PerUnitDistance</label>
+              <label class="control-label">Gender</label>
               <div class="">
-                <label for="pricingGroupName">
-                  <strong>{{pricingView.pricePerUnitDistance}}</strong>
+                <label for="gender">
+                  <strong>{{userVewData.sex}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Email</label>
+              <div class="">
+                <label for="email ">
+                  <strong>{{userVewData.email}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Mobile Number</label>
+              <div class="">
+                <label for="mobileNumber ">
+                  <strong>{{userVewData.phone}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Other Phone</label>
+              <div class="">
+                <label for="otherPhone">
+                  <strong>{{userVewData.otherPhone}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Alias Name</label>
+              <div class="">
+                <label for="aliasName">
+                  <strong>{{userVewData.aliasName}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Country</label>
+              <div class="">
+                <label for="country ">
+                  <strong>{{userVewData.countryName}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="status">State</label>
+              <div class="">
+                <label for="state ">
+                  <strong>{{userVewData.stateName}}</strong>
+                </label>
+              </div>
+
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="city">City</label>
+              <div class="">
+                <label for="city">
+                  <strong>{{userVewData.cityName}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="pinCode">Pin Code</label>
+              <div class="">
+                <label for="pinCode">
+                  <strong>{{userVewData.pinCode}}</strong>
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="Land Mark">Plot No/Land Mark</label>
+              <div class="">
+                <label for="Plot No/Land Mark">
+                  <strong>{{userVewData.street}}</strong>
+                </label>
+              </div>
+            </div>
+           
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="updatedAt">updatedAt</label>
+              <div class="">
+                <label for="updatedAt">
+                  <strong>{{userVewData.updatedAt}}</strong>
                 </label>
               </div>
             </div>
@@ -109,32 +197,101 @@
               <label for="status">Status</label>
               <div class="">
                 <label for="status">
-                  <strong>{{pricingView.status}}</strong>
+                  <strong>{{userVewData.status}}</strong>
                 </label>
               </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12">
+          <div class="">
+            <label for="licencing">
+              <strong>Hire Details</strong>
+            </label>
+          </div>
+          <form class="row detail">
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Hire Date</label>
+              <div class="">
+                <label for="hireDate">
+                  <strong>{{userVewData.hireDate}}</strong>
+                </label>
+              </div>
+            </div>
 
-            </div>
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
-              <label for="vendorRegistrationNo">Vendor Name</label>
+              <label class="control-label">Hire End Date</label>
               <div class="">
-                <label for="vendorRegistrationNo">
-                  <strong>{{pricingView.vendorName}}</strong>
+                <label for="hireEndDate">
+                  <strong>{{userVewData.hireEndDate}}</strong>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12">
+          <div class="">
+            <label for="Documents">
+              <strong>Documents</strong>
+            </label>
+          </div>
+          <form class="row detail">
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">User photo</label>
+              <div class="">
+                <label for="driverphoto">
+                  <strong>{{userVewData.photo}}</strong>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Proof of address</label>
+              <div class="">
+                <label for="proofofaddress">
+                  <strong>{{userVewData.proofOfAddress}}</strong>
                 </label>
               </div>
             </div>
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
-              <label for="createdAt">createdAt</label>
+              <label class="control-label">Agreement </label>
               <div class="">
-                <label for="createdAt">
-                  <strong>{{pricingView.createdAt}}</strong>
+                <label for="policedisclosure ">
+                  <strong>{{userVewData.aggrement1}}</strong>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12">
+          <div class="">
+            <label for="attributes">
+              <strong>Bank Account Details</strong>
+            </label>
+          </div>
+          <form class="row detail">
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label class="control-label">Account Number</label>
+              <div class="">
+                <label for="accountNo">
+                  <strong>{{userVewData.accountNo}}</strong>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+              <label for="bankName">Bank Name</label>
+              <div class="">
+                <label for="bankName">
+                  <strong>{{userVewData.name}}</strong>
                 </label>
               </div>
             </div>
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
-              <label for="updatedAt">updatedAt</label>
+              <label for="iffc">IFSC Code</label>
               <div class="">
-                <label for="updatedAt">
-                  <strong>{{pricingView.updatedAt}}</strong>
+                <label for="iffc">
+                  <strong>{{userVewData.ifsc}}</strong>
                 </label>
               </div>
             </div>
