@@ -46,10 +46,10 @@
                         Report
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Vendors Report</a>
-                        <a class="dropdown-item" href="#">Drivers Report</a>
-                        <a class="dropdown-item" href="#">Cabs Report</a>
-                        <a class="dropdown-item" href="#">Trips Report</a>
+                        <a class="dropdown-item" routerLink="/vendorReport" [routerLinkActive]="['active']">Vendors Report</a>
+                        <a class="dropdown-item" routerLink="/driverReport" [routerLinkActive]="['active']">Drivers Report</a>
+                        <a class="dropdown-item" routerLink="/cabsReport" [routerLinkActive]="['active']">Cabs Report</a>
+                        <a class="dropdown-item" routerLink="/tripsReport" [routerLinkActive]="['active']">Trips Report</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -57,10 +57,10 @@
                         Finance
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Account Riders</a>
-                        <a class="dropdown-item" href="#">Account Vendors</a>
-                        <a class="dropdown-item" href="#">Account Drivers</a>
-                        <a class="dropdown-item" href="#">Account Settlements</a>
+                        <a class="dropdown-item" routerLink="/accountRider" [routerLinkActive]="['active']">Account Riders</a>
+                        <a class="dropdown-item" routerLink="/accountVendor" [routerLinkActive]="['active']">Account Vendors</a>
+                        <a class="dropdown-item" routerLink="/accountDriver" [routerLinkActive]="['active']">Account Drivers</a>
+                        <a class="dropdown-item" routerLink="/accountSettlement" [routerLinkActive]="['active']">Account Settlements</a>
                     </div>
                 </li>
                 <li class="nav-item">

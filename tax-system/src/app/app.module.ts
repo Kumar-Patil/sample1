@@ -31,8 +31,6 @@ import { BookingComponent } from './booking/booking.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { CabsComponent } from './cabs/cabs.component';
 import { RiderComponent } from './rider/rider.component';
-import { ReportComponent } from './report/report.component';
-import { FinanceComponent } from './finance/finance.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { HttpService } from './common/http.service';
 import { AlertsModule } from 'angular-alert-module';
@@ -46,6 +44,16 @@ import { AddEditCabComponent } from './cabs/add-edit-cab/add-edit-cab.component'
 import { AddEditVendorComponent } from './vendor/add-edit-vendor/add-edit-vendor.component';
 import { AgmCoreModule } from '@agm/core';
 import { DSTrackingComponent } from './delivery/tracking/tracking.component';
+// Reporting Modules
+import { CabsReportComponent } from './report/cabs/cabs-report.component';
+import { DriverReportComponent } from './report/driver/driver-report.component';
+import { VendorReportComponent } from './report/vendor/vendor-report.component';
+import { TripsReportComponent } from './report/trips/trips-report.component';
+// Finance Module
+import { VendorFinanceComponent } from './finance/vendor/vendor-finance.component';
+import { DriverFinanceComponent } from './finance/driver/driver-finance.component';
+import { RiderFinanceComponent } from './finance/rider/rider-finance.component';
+import { SettlementFinanceComponent } from './finance/settlement/settlement-finance.component';
 
 @NgModule({
   declarations: [
@@ -67,8 +75,8 @@ import { DSTrackingComponent } from './delivery/tracking/tracking.component';
     PricingComponent,
     CabsComponent,
     RiderComponent,
-    ReportComponent,
-    FinanceComponent,
+    CabsReportComponent,
+    VendorFinanceComponent,
     DeliveryComponent,
     AddUserComponent,
     AddPricingComponent,
@@ -76,7 +84,13 @@ import { DSTrackingComponent } from './delivery/tracking/tracking.component';
     SurgingComponent,
     AddEditCabComponent,
     AddEditVendorComponent,
-    DSTrackingComponent
+    DSTrackingComponent,
+    DriverReportComponent,
+    VendorReportComponent,
+    TripsReportComponent,
+    RiderFinanceComponent,
+    DriverFinanceComponent,
+    SettlementFinanceComponent,
   ],
   imports: [
     BrowserModule,

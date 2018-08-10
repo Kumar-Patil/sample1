@@ -14,8 +14,6 @@ import { BookingComponent } from './booking/booking.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { CabsComponent } from './cabs/cabs.component';
 import { RiderComponent } from './rider/rider.component';
-import { ReportComponent } from './report/report.component';
-import { FinanceComponent } from './finance/finance.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
 import { AddPricingComponent } from './pricing/add-edit-pricing/add-pricing.component';
@@ -24,6 +22,17 @@ import { SurgingComponent } from './surging/surging.component';
 import { AddEditCabComponent } from './cabs/add-edit-cab/add-edit-cab.component';
 import { AddEditVendorComponent } from './vendor/add-edit-vendor/add-edit-vendor.component';
 import { DSTrackingComponent } from './delivery/tracking/tracking.component';
+// Reporting modules
+import { CabsReportComponent } from './report/cabs/cabs-report.component';
+import { DriverReportComponent } from './report/driver/driver-report.component';
+import { VendorReportComponent } from './report/vendor/vendor-report.component';
+import { TripsReportComponent } from './report/trips/trips-report.component';
+
+// Finance Module
+import { VendorFinanceComponent } from './finance/vendor/vendor-finance.component';
+import { DriverFinanceComponent } from './finance/driver/driver-finance.component';
+import { RiderFinanceComponent } from './finance/rider/rider-finance.component';
+import { SettlementFinanceComponent } from './finance/settlement/settlement-finance.component';
 
 const routes: Routes = [
     {
@@ -85,13 +94,43 @@ const routes: Routes = [
     }
     ,
     {
-        path: 'report',
-        component: ReportComponent
+        path: 'cabsReport',
+        component: CabsReportComponent
     }
     ,
     {
-        path: 'finance',
-        component: FinanceComponent
+        path: 'vendorReport',
+        component: VendorReportComponent
+    }
+    ,
+    {
+        path: 'driverReport',
+        component: DriverReportComponent
+    }
+    ,
+    {
+        path: 'tripsReport',
+        component: TripsReportComponent
+    }
+    ,
+    {
+        path: 'accountVendor',
+        component: VendorFinanceComponent
+    }
+    ,
+    {
+        path: 'accountRider',
+        component: RiderFinanceComponent
+    }
+    ,
+    {
+        path: 'accountDriver',
+        component: DriverFinanceComponent
+    }
+    ,
+    {
+        path: 'accountSettlement',
+        component: SettlementFinanceComponent
     }
     ,
     {

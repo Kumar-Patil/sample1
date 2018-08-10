@@ -47,11 +47,11 @@ export class AddDriverComponent implements OnInit {
     'agreement': ''
   };
 
-  constructor(private route: ActivatedRoute, 
-    private spinnerService: Ng4LoadingSpinnerService, 
+  constructor(private route: ActivatedRoute,
+    private spinnerService: Ng4LoadingSpinnerService,
     private router: Router,
-    private baseApiService: BaseApiService, 
-    private driverService: DriverService, 
+    private baseApiService: BaseApiService,
+    private driverService: DriverService,
     public uploader: FileUploadService,
     private formBuilder: FormBuilder,
     private apiService: ApiService,
