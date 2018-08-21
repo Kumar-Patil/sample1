@@ -44,13 +44,14 @@
           <span class="text-wrap">
             <a class="pointer" (click)="view($event,price,viewcontent)">
               <span class="oi oi-share-boxed" title="view" aria-hidden="true"></span>
-            </a> /
+            </a> <span *ngIf="baseApiService.isActionAcessAble()">/
             <a class="pointer" (click)="edit($event,price)">
               <span class="oi oi-pencil" title="edit" aria-hidden="true"></span>
             </a>/
             <a class="pointer" (click)="delete(content,$event,price,index)">
               <span class="oi oi-trash" title="delete" aria-hidden="true"></span>
             </a>
+            </span>
           </span>
         </td>
       </tr>

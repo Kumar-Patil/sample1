@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../common/service/auth.service';
+import { BaseApiService } from '../common/baseApi.service';
 
 @Component({
     selector: 'app-login',
@@ -20,8 +21,10 @@ export class LoginComponent {
         opt: '',
         password: ''
     };
-
-    constructor (private router: Router, private authService: AuthService) {}
+    private isFullAccess = false;
+    private isPartiallyAccess = false;
+    constructor (private router: Router, private authService: AuthService,
+        private baseApiService: BaseApiService) {}
     onSubmit() {
         this.authService.checkLoginSuccess(this.loginData).subscribe(
             res => {

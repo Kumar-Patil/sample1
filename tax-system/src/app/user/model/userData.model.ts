@@ -26,7 +26,8 @@ export class UserDataModel {
         public status: number,
         public street: string,
         public userPic: string,
-        public zip: string) {
+        public zip: string,
+        public regNo: string) {
 
     }
 }
@@ -59,7 +60,7 @@ export class AddUserDataModel {
     public street: string;
     public userPic: string;
     public zip: string;
-
+    public regNo: string;
     constructor(
 
     ) {

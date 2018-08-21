@@ -51,13 +51,13 @@
           <span class="text-wrap">
             <a class="pointer" (click)="view($event,driver,viewcontent)">
               <span class="oi oi-share-boxed" title="view" aria-hidden="true"></span>
-            </a> /
+            </a> <span *ngIf="baseApiService.isActionAcessAble()">/
             <a class="pointer" (click)="edit($event,driver)">
               <span class="oi oi-pencil" title="edit" aria-hidden="true"></span>
             </a>/
             <a class="pointer" (click)="delete(content,$event,driver, index)">
               <span class="oi oi-trash" title="delete" aria-hidden="true"></span>
-            </a>
+            </a></span>
           </span>
         </td>
       </tr>

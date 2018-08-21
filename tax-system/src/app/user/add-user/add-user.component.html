@@ -24,10 +24,11 @@
         <div class="form-group col-md-4 col-sm-6 col-xs-12">
           <label for="status">Role*</label>
           <div class="">
-            <select class="form-control" id="role" [(ngModel)]="userData.role" #statusId="ngModel" name="role" required>
-              <option value="Super User" selected>Suprem User</option>
-              <option value="vendor">Vendor</option>
-              <option value="view">View User</option>
+            <select class="form-control" id="role" (change)="selectChangeHandler($event)" [(ngModel)]="userData.role" #statusId="ngModel" name="role" required>
+              <option *ngIf="baseApiService.isSupereme()" value="Supreme User" selected>Supreme User</option>
+              <option *ngIf="baseApiService.isSupereme()" value="Super User" selected>Super User</option>
+              <option value="Vendor">Vendor</option>
+              <option value="View User">View User</option>
             </select>
           </div>
         </div>
@@ -129,6 +130,13 @@
                     <option value="1" selected>Active</option>
                     <option value="0">Inactive</option>
                   </select>
+                </div>
+              </div>
+              <div *ngIf="isVendor" class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Vendor Reg No*</label>
+                  <input type="text" id="email" class="form-control" placeholder="" [(ngModel)]="userData.regNo" name="vendorRegistrationNo" maxlength="60"
+                    required>
                 </div>
               </div>
             </div>

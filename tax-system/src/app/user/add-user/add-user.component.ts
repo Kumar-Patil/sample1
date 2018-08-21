@@ -12,6 +12,7 @@ import { HttpEventType } from '@angular/common/http';
 import { ApiService } from '../../common/api.service';
 import { HttpService } from '../../common/http.service';
 import { AlertsService } from 'angular-alert-module';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-add-user',
@@ -34,6 +35,7 @@ export class AddUserComponent implements OnInit {
   cabList: any[] = [];
   statusList: any[] = [];
   private formInvalid: boolean;
+  private isVendor: boolean;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private spinnerService: Ng4LoadingSpinnerService,
@@ -188,6 +190,7 @@ export class AddUserComponent implements OnInit {
     this.userData.otherphone = this.userData.otherphone || '';
     this.userData.userPic = this.userData.userPic || '';
     this.userData.phone = this.userData.phone || '';
+    this.userData.regNo = this.userData.regNo || '';
   }
 
   ngOnInit() {
@@ -206,7 +209,7 @@ export class AddUserComponent implements OnInit {
       this.userId = '';
       this.spinnerService.hide();
     }
-
+    this.isVendor = false;
   }
   loadData() {
     const result = this.httpService.get(this.apiService.API_COMMON_ALL_POP_DATA).subscribe(res => {
@@ -220,6 +223,13 @@ export class AddUserComponent implements OnInit {
     });
     if (result) {
       this.spinnerService.hide();
+    }
+  }
+  selectChangeHandler(event: any) {
+    if (event.target.value === 'Vendor') {
+      this.isVendor = true;
+    } else {
+      this.isVendor = false;
     }
   }
 }

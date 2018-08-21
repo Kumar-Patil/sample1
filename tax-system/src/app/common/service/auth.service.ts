@@ -58,6 +58,7 @@ export class AuthService {
         // });
     }
     getMockResponse() {
+        console.log(this.isUserLoggedIn);
         return this.isUserLoggedIn;
     }
 

@@ -26,6 +26,8 @@ export class UserComponent implements OnInit, OnDestroy {
   objectKeys: Object;
   userData: UserModel[] = [];
   userVewData: any;
+  private isAccess: boolean;
+  private isModuleAccess: boolean;
   constructor(private http: HttpClient, private driverService: DriverService, private spinnerService: Ng4LoadingSpinnerService,
     private chRef: ChangeDetectorRef,
     private router: Router, private baseApiService:
@@ -49,6 +51,7 @@ export class UserComponent implements OnInit, OnDestroy {
         this.spinnerService.hide();
       }
     });
+    this.setAccess();
   }
 
 
@@ -84,5 +87,9 @@ export class UserComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
+  }
+  setAccess() {
+    this.isModuleAccess = this.baseApiService.isAccess();
+    this.isAccess = this.baseApiService.isActionAcessAble();
   }
 }
