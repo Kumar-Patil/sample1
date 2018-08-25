@@ -1,22 +1,32 @@
-.accordion.pb-15 {
-    padding-top: 15px;
-    padding-bottom: 15px;
+.nav-left {
+    padding-right: 0px;
+}
+.nav-right {
+    padding-left: 0px;
+}
+.nav {
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    border-right: none;
+    min-height: 400px
 }
 
-.card-header:after {
-    font-family: 'FontAwesome';  
-    content: "\f068";
-    float: right;
-    position: absolute;
-    right: 55px;
-    top: 22px;
+.tab-content {
+    border: 1px solid #ccc;
+    min-height: 400px;
+    padding-top: 15px;
 }
-.card-header.collapsed:after {
-    /* symbol for "collapsed" panels */
-    content: "\f067"; 
-    position: absolute;
-    right: 55px;
-    top: 22px;
+.nav .nav-link:hover {
+    background-color: #ddd;
+}
+
+.nav-pills .nav-link {
+    color: black;
+    border-radius: 0 !important;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: black;
+    background-color: #ccc;
 }
 input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
     border: 1px solid red;
@@ -43,4 +53,8 @@ input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
     left: 0;
     width: 40%;
     height: 40%;
+}
+
+.m-r-8 {
+    margin-right: 8px;
 }

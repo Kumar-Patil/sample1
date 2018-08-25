@@ -1,50 +1,68 @@
 <div class="container-fluid">
-  <div class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
-    <div class="col-md-12 col-lg-12 col-sm-12">
-      <div class="row">
-        <h2>
-          Login Details
-        </h2>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-inline float-right">
+        <label for="status" class="mr-sm-2">Role :</label>
+        <div class="">
+          <select class="form-control form-control-sm mb-2 mr-sm-2" id="role" (change)="selectChangeHandler($event)" [(ngModel)]="userData.role" #statusId="ngModel"
+            name="role" required>
+            <option *ngIf="baseApiService.isSupereme()" value="Supreme User" selected>Supreme User</option>
+            <option *ngIf="baseApiService.isSupereme()" value="Super User" selected>Super User</option>
+            <option value="Vendor">Vendor</option>
+            <option value="View User">View User</option>
+          </select>
+        </div>
       </div>
-      <form class="row detail border border-dark">
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <div class="form-group is-required-short">
-            <label class="control-label">Email*</label>
-            <input type="text" id="email" class="form-control" placeholder="" [(ngModel)]="userData.email" name="email" maxlength="60"
-              required>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <div class="form-group is-required-short">
-            <label class="control-label">Password*</label>
-            <input type="password" id="password" class="form-control" placeholder="" [(ngModel)]="userData.password" name="password"
-              maxlength="60" required>
-          </div>
-        </div>
-        <div class="form-group col-md-4 col-sm-6 col-xs-12">
-          <label for="status">Role*</label>
-          <div class="">
-            <select class="form-control" id="role" (change)="selectChangeHandler($event)" [(ngModel)]="userData.role" #statusId="ngModel" name="role" required>
-              <option *ngIf="baseApiService.isSupereme()" value="Supreme User" selected>Supreme User</option>
-              <option *ngIf="baseApiService.isSupereme()" value="Super User" selected>Super User</option>
-              <option value="Vendor">Vendor</option>
-              <option value="View User">View User</option>
-            </select>
-          </div>
-        </div>
-      </form>
     </div>
   </div>
-  <div id="accordion" class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
-    <div class="col-md-12 col-lg-12 col-sm-12">
-      <div class="firstRow">
-        <div class="row card-header collapsed" data-toggle="collapse" href="#collapseOne">
-          <h2 style="float:left;" class="section-title text-center">
-            Personal Details
-          </h2>
+  <div class="row">
+    <div class="col-3 col-md-3 col-lg-2 nav-left">
+      <ul class="nav nav-pills nav-stacked flex-column" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="login-tab" data-toggle="pill" href="#login" role="tab" aria-controls="login" aria-expanded="true">Login
+            Details
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="personal_details-tab" data-toggle="pill" href="#personal_details" role="tab" aria-controls="personal_details"
+            aria-expanded="true">Personal Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="hire_details-tab" data-toggle="pill" href="#hire_details" role="tab" aria-controls="hire_details"
+            aria-expanded="true">Hire Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="documents-tab" data-toggle="pill" href="#documents" role="tab" aria-controls="documents" aria-expanded="true">Documents</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" id="account_details-tab" href="#account_details" role="tab" aria-controls="account_details"
+            aria-expanded="true">Account Details</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-9 col-md-9 col-lg-10 nav-right">
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div id="login" class="container tab-pane active fade show" role="tabpanel" aria-labelledby="login-tab">
+          <form class="row" id="logins">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="form-group is-required-short">
+                <label class="control-label">Email*</label>
+                <input type="text" id="email" class="form-control" placeholder="" [(ngModel)]="userData.email" name="email" maxlength="60"
+                  required>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="form-group is-required-short">
+                <label class="control-label">Password*</label>
+                <input type="password" id="password" class="form-control" placeholder="" [(ngModel)]="userData.password" name="password"
+                  maxlength="60" required>
+              </div>
+            </div>
+          </form>
         </div>
-        <form #personalDetails="ngForm" class="row detail border border-dark">
-          <div class="col-md-12 col-sm-12 col-xs-12 collapse" id="collapseOne" data-parent="#accordion">
+        <div id="personal_details" class="container tab-pane fade" role="tabpanel" aria-labelledby="personal_details-tab">
+          <form #personalDetails="ngForm">
             <div class="row">
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
@@ -135,26 +153,15 @@
               <div *ngIf="isVendor" class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
                   <label class="control-label">Vendor Reg No*</label>
-                  <input type="text" id="email" class="form-control" placeholder="" [(ngModel)]="userData.regNo" name="vendorRegistrationNo" maxlength="60"
-                    required>
+                  <input type="text" id="email" class="form-control" placeholder="" [(ngModel)]="userData.regNo" name="vendorRegistrationNo"
+                    maxlength="60" required>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div id="accordion1" class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
-    <div class="col-md-12 col-lg-12 col-sm-12">
-      <div class="">
-        <div class="row card-header collapsed" data-toggle="collapse" href="#collapseTwo">
-          <h2 style="float:left;" class="section-title text-center">
-            Hire Details
-          </h2>
+          </form>
         </div>
-        <form class="row detail border border-dark" #licencing="ngForm">
-          <div class="col-md-12 col-sm-12 col-xs-12 collapse" id="collapseTwo" data-parent="#accordion1">
+        <div id="hire_details" class="container tab-pane fade" role="tabpanel" aria-labelledby="hire_details-tab">
+          <form #licencing="ngForm">
             <div class="row">
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group is-required-short">
@@ -170,21 +177,10 @@
                 </div>
               </div>
             </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div id="accordion2" class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
-    <div class="col-md-12 col-lg-12 col-sm-12">
-      <div class="">
-        <div class="row card-header collapsed" data-toggle="collapse" href="#collapseThree">
-          <h2 style="float:left;" class="section-title text-center">
-            Documents
-          </h2>
+          </form>
         </div>
-        <form class="row detail border border-dark">
-          <div class="col-md-12 col-sm-12 col-xs-12 collapse" id="collapseThree" data-parent="#accordion2">
+        <div id="documents" class="container tab-pane fade" role="tabpanel" aria-labelledby="documents-tab">
+          <form>
             <div class="row">
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
@@ -212,21 +208,10 @@
                 </div>
               </div>
             </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div id="accordion3" class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12 border border-dark pd-15">
-    <div class="col-md-12 col-lg-12 col-sm-12">
-      <div class="">
-        <div class="row card-header collapsed" data-toggle="collapse" href="#collapseFour">
-          <h2 style="float:left;" class="section-title text-center">
-            Account Details
-          </h2>
+          </form>
         </div>
-        <form class="row detail border border-dark">
-          <div class="col-md-12 col-sm-12 col-xs-12 collapse" id="collapseFour" data-parent="#accordion3">
+        <div id="account_details" class="container tab-pane fade" role="tabpanel" aria-labelledby="account_details-tab">
+          <form>
             <div class="row">
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
@@ -247,21 +232,23 @@
                 </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="row mt-1">
     <div class="col-md-12 col-sm-12 col-xs-12 m-t-10">
-      <button type="button" class="btn btn-default" routerLink="/user"> Cancel</button>
-      <button type="button" style="float: right;" *ngIf="!userId" (click)="addOrUpdateDriverData(true)" class="btn btn-primary btn-xs pull-right m-r-10">
-        <span class="letter-space-small"></span> Save
-      </button>
-      <button type="button" style="float: right;" *ngIf="userId" (click)="addOrUpdateDriverData(false)" class="btn btn-primary btn-xs pull-right m-r-10">
-        <span class="letter-space-small"></span> Update
-      </button>
+      <div class="float-right">
+        <button type="button" class="btn btn-sm" routerLink="/user"> Cancel</button>
+        <button type="button" *ngIf="!userId" (click)="addOrUpdateDriverData(true)" class="btn btn-primary btn-sm">
+          <span class="letter-space-small"></span> Save
+        </button>
+        <button type="button" *ngIf="userId" (click)="addOrUpdateDriverData(false)" class="btn btn-primary btn-sm">
+          <span class="letter-space-small"></span> Ußpdate
+        </button>
+      </div>
     </div>
   </div>
 </div>
