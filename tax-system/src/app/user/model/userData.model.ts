@@ -27,7 +27,19 @@ export class UserDataModel {
         public street: string,
         public userPic: string,
         public zip: string,
-        public regNo: string) {
+        public regNo: string,
+        public fatherName: string,
+        public dob: any,
+        public currentpossition: string,
+        public insurance: string,
+        public licenceNumber: string,
+        public licenceExpiry: any,
+        public insuranceNumber: string,
+        public insuranceExpiry: any,
+        public policeDisclose: string,
+        public licencePhoto: string,
+        public licencePaper: string,
+        public pcoLicence: string) {
 
     }
 }
@@ -61,6 +73,19 @@ export class AddUserDataModel {
     public userPic: string;
     public zip: string;
     public regNo: string;
+    public fatherName: string;
+    public dob: any;
+    public currentpossition: string;
+    public insurance: string;
+    public licenceNumber: string;
+    public licenceExpiry: any;
+    public insuranceNumber: string;
+    public insuranceExpiry: any;
+    public policeDisclose: string;
+    public licencePhoto: string;
+    public licencePaper: string;
+    public pcoLicence: string;
+
     constructor(
 
     ) {

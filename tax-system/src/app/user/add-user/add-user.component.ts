@@ -23,6 +23,7 @@ export class AddUserComponent implements OnInit {
 
   @ViewChild('personalDetails') personalDetails: NgForm;
   @ViewChild('licencing') licencing: NgForm;
+  @ViewChild('advanced') advanced: NgForm;
   @ViewChild('fileInput') fileInput;
   selectedFiles: FileList;
   currentFileUpload: File;
@@ -58,6 +59,24 @@ export class AddUserComponent implements OnInit {
     date: { year: 2018, month: 10, day: 9 }
   };
 
+  public licenceExpiryDateOptions: IMyDpOptions = {
+    // other options...
+    dateFormat: 'dd-mm-yyyy',
+  };
+
+  // Initialized to specific date (09.10.2018).
+  public licenceExpiry: any = {
+    date: { year: 2018, month: 10, day: 9 }
+  };
+  public insuranceExpiryDateOptions: IMyDpOptions = {
+    // other options...
+    dateFormat: 'dd-mm-yyyy',
+  };
+
+  // Initialized to specific date (09.10.2018).
+  public insuranceExpiry: any = {
+    date: { year: 2018, month: 10, day: 9 }
+  };
   public expiryDateOptions: IMyDpOptions = {
     // other options...
     dateFormat: 'dd-mm-yyyy',
@@ -79,8 +98,6 @@ export class AddUserComponent implements OnInit {
     if (this.validateForm()) {
       this.setDefault();
       this.setDefaultFields();
-      this.userData.hireDate = this.userData.hireDate.epoc * 1000;
-      this.userData.hireEndDate = this.userData.hireEndDate.epoc * 1000;
       if (isAdd) {
         this.httpService.post(this.userData, this.apiService.API_USER_ADD).subscribe(res => {
           this.alerts.setMessage('Added successfully!', 'success');
@@ -88,7 +105,6 @@ export class AddUserComponent implements OnInit {
         });
       } else {
         this.userData.id = this.userData.id;
-        alert(this.userData.id);
         this.httpService.put(this.userData, this.apiService.API_USER_UPDATE).subscribe(res => {
           if (res) {
             this.userData = res;
@@ -110,9 +126,32 @@ export class AddUserComponent implements OnInit {
   }
   setDefaultFields() {
     this.userData.address = 'Rajajinagar';
-    // this.driverData.driverId = 0;
-    // this.driverData.startDate = this.driverData.startDate.epoc || 0;
-    // this.driverData.driverLicenceExpiry = this.driverData.driverLicenceExpiry.epoc || 0;
+    if (this.userData.dob == null || this.userData.dob === '') {
+      this.userData.dob = 0;
+    } else {
+      this.userData.dob = this.userData.dob.epoc * 1000;
+    }
+    if (this.userData.hireDate == null || this.userData.hireDate === '') {
+      this.userData.hireDate = 0;
+    } else {
+      this.userData.hireDate = this.userData.hireDate.epoc * 1000;
+    }
+    if (this.userData.hireEndDate == null || this.userData.hireEndDate === '') {
+      this.userData.hireEndDate = 0;
+    } else {
+      this.userData.hireEndDate = this.userData.hireEndDate.epoc * 1000;
+    }
+    if (this.userData.licenceExpiry == null || this.userData.licenceExpiry === '') {
+      this.userData.licenceExpiry = 0;
+    } else {
+      this.userData.licenceExpiry = this.userData.licenceExpiry.epoc * 1000;
+    }
+    if (this.userData.insuranceExpiry == null || this.userData.insuranceExpiry === '') {
+      this.userData.insuranceExpiry = 0;
+    } else {
+      this.userData.insuranceExpiry = this.userData.insuranceExpiry.epoc * 1000;
+    }
+
   }
 
   handleFileInput(files: FileList) {
@@ -160,6 +199,7 @@ export class AddUserComponent implements OnInit {
     this.httpService.getById(id, this.apiService.API_USER_DETAILS).subscribe(res => {
       if (res) {
         this.userData = res;
+        console.log(this.userData);
         // this.setDate(this.userData.surgeExpiryStartDate, this.surgingData.surgeExpiryEndDate);
       }
     });
@@ -191,6 +231,13 @@ export class AddUserComponent implements OnInit {
     this.userData.userPic = this.userData.userPic || '';
     this.userData.phone = this.userData.phone || '';
     this.userData.regNo = this.userData.regNo || '';
+    this.userData.fatherName = this.userData.fatherName || '';
+    this.userData.insurance = this.userData.insurance || '';
+    this.userData.policeDisclose = this.userData.policeDisclose || '';
+    this.userData.licencePhoto = this.userData.licencePhoto || '';
+    this.userData.licencePaper = this.userData.licencePaper || '';
+    this.userData.pcoLicence = this.userData.pcoLicence || '';
+    this.userData.currentpossition = this.userData.currentpossition || '';
   }
 
   ngOnInit() {

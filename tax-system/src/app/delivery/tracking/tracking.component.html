@@ -1,6 +1,6 @@
 <h1>Delivery Tracking</h1>
 
-<agm-map 
+<!-- <agm-map 
   [latitude]="lat"
   [longitude]="lng"
   [zoom]="zoom"
@@ -23,11 +23,43 @@
     
   </agm-marker>
   
-  <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
+   <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
       [radius]="5000"
       [fillColor]="'red'"
       [circleDraggable]="true"
       [editable]="true">
-  </agm-circle>
+  </agm-circle> 
+  <agm-polyline
+  [visible]="true"
+  [strokeWeight]="3">
+   <agm-polyline-point
+     *ngFor="let coordinate of markers; let i=index"
+     [latitude]="coordinate.lat"
+     [longitude]="coordinate.lng">
+
+   </agm-polyline-point>
+ </agm-polyline>
+</agm-map> -->
+<agm-map
+[latitude]="lat"
+[longitude]="lng"
+>
+
+
+<agm-marker
+  *ngFor="let coordinate of markers; let i=index"
+  [latitude]="coordinate.lat"
+  [longitude]="coordinate.lng"
+></agm-marker>
+<agm-polyline
+ [visible]="true"
+ [strokeWeight]="3"
+ [strokeColor]="'#2196f3'">
+  <agm-polyline-point
+    *ngFor="let coordinate of markers; let i=index"
+    [latitude]="coordinate.lat"
+    [longitude]="coordinate.lng">
+  </agm-polyline-point>
+</agm-polyline>
 
 </agm-map>

@@ -12,8 +12,8 @@ export class DSTrackingComponent {
   zoom: number = 8;
 
   // initial center position for the map
-  lat: number = 51.673858;
-  lng: number = 7.815982;
+  // lat: number = 51.673858;
+  // lng: number = 7.815982;
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
@@ -33,7 +33,7 @@ export class DSTrackingComponent {
 
   // tslint:disable-next-line:member-ordering
   markers: marker[] = [
-    {
+    /*{
       lat: 51.673858,
       lng: 7.815982,
       label: 'A',
@@ -58,11 +58,17 @@ export class DSTrackingComponent {
       label: 'D',
       draggable: true
     }
-    ,
+    ,*/
     {
-      lat: 53.723858,
-      lng: 8.895982,
+      lat: 12.860198,
+      lng: 77.66,
       label: 'E',
+      draggable: true
+    },
+    {
+      lat: 12.860198,
+      lng: 77.66,
+      label: 'B',
       draggable: true
     }
   ]

@@ -16,7 +16,7 @@
             <th>Mobile Number</th>
             <th>Role</th>
             <th>Status</th>
-            <th>Actions</th>
+            <!--<th>Actions</th>-->
           </tr>
         </thead>
         <tbody>
@@ -37,16 +37,16 @@
             <td>
               <span class="text-wrap">{{user.role}}</span>
             </td>
-            <td>
-              <span class="text-wrap">{{user.status}}</span>
+            <td *ngIf="user.status == 1">
+              <span class="text-wrap">Active</span>
             </td>
-            <td>
+            <!--<td>
                 <span class="text-wrap">
                     <a class="pointer" (click)="view($event,user)"><span class="oi oi-share-boxed" title="view" aria-hidden="true"></span> </a> <span *ngIf="baseApiService.isActionAcessAble()">/ 
                     <a class="pointer" (click)="edit($event,user)"><span class="oi oi-pencil" title="edit" aria-hidden="true"></span> </a>/ 
                     <a class="pointer" (click)="delete($event,user)"><span class="oi oi-trash" title="delete" aria-hidden="true"></span> </a> </span>
                 </span>
-            </td>
+            </td> -->
           </tr>
       </table>
   </div>

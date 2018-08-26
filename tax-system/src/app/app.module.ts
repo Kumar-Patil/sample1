@@ -107,7 +107,8 @@ import { SettlementFinanceComponent } from './finance/settlement/settlement-fina
     AgmCoreModule.forRoot({
       // please get your own API key here:
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
-      apiKey: 'AIzaSyDVttFh9cUbhvjKM0Vscrk-X7CmSXCzq24'
+      apiKey: 'AIzaSyDVttFh9cUbhvjKM0Vscrk-X7CmSXCzq24',
+      libraries: ['places']
     })
   ],
   providers: [AuthService, DriverService, FileUploadService, BaseApiService, HttpService, ApiService],

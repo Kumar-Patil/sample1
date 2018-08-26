@@ -8,6 +8,7 @@ import { DriverService } from '../common/driver.service';
 import { BaseApiService } from '../common/baseApi.service';
 import { DataTableDirective } from 'angular-datatables';
 import { HttpService } from '../common/http.service';
+import { ApiService } from '../common/api.service';
 @Component({
   selector: 'app-rider',
   templateUrl: './rider.component.html',
@@ -23,7 +24,10 @@ export class RiderComponent implements OnInit, OnDestroy {
   objectKeys: Object;
   userData: RiderModel[] = [];
   constructor(private http: HttpClient, private driverService: DriverService, private spinnerService: Ng4LoadingSpinnerService,
-    private chRef: ChangeDetectorRef, private router: Router, private baseApiService: BaseApiService, private httpService: HttpService) { }
+    private chRef: ChangeDetectorRef, 
+    private router: Router, private baseApiService: 
+    BaseApiService, private httpService: HttpService,
+  private apiService: ApiService) { }
 
   ngOnInit() {
     this.spinnerService.show();
@@ -32,7 +36,7 @@ export class RiderComponent implements OnInit, OnDestroy {
       pageLength: 8
     };
 
-    this.httpService.get('user/list').subscribe(res => {
+    this.httpService.get(this.apiService.API_USER_RIDER_LIST).subscribe(res => {
       if (res) {
         this.userData = res;
         this.dtTrigger.next();

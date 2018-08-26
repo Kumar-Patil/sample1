@@ -40,7 +40,7 @@ export class VendorComponent implements OnInit, OnDestroy {
       pageLength: 8
     };
 
-    this.httpService.get(this.apiService.API_VENDOR_LIST).subscribe(res => {
+    this.httpService.get(this.apiService.API_USER_VENDOR_LIST).subscribe(res => {
       if (res) {
         this.vendorData = res;
         this.dtTrigger.next();
