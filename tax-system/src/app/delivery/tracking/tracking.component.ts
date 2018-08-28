@@ -9,14 +9,14 @@ import { MouseEvent } from '@agm/core';
 })
 export class DSTrackingComponent {
   // google maps zoom level
-  zoom: number = 8;
+  zoom = 8;
 
   // initial center position for the map
   // lat: number = 51.673858;
   // lng: number = 7.815982;
 
   clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`)
+    console.log(`clicked the marker: ${label || index}`);
   }
 
   mapClicked($event: MouseEvent) {
@@ -71,7 +71,7 @@ export class DSTrackingComponent {
       label: 'B',
       draggable: true
     }
-  ]
+  ];
 }
 
 // just an interface for type safety.
