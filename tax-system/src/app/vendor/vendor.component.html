@@ -37,8 +37,8 @@
         <td>
           <span class="text-wrap">{{vendor.vendorRegistrationNo}}</span>
         </td>
-        <td>
-          <span class="text-wrap">{{vendor.status}}</span>
+        <td *ngIf="vendor.status == 1">
+          <span class="text-wrap">Active</span>
         </td>
         <td>
           <span class="text-wrap">

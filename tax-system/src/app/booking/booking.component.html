@@ -1,9 +1,9 @@
 <div class="container">
   <h1>Google Maps Places Autocomplete Using Angular 2</h1>
   <div class="form-group">
- <input type="text" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control" #search>
+ <input type="text" [(ngModel)]="destinaton_address" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control" #search>
   </div>
   <div class="form-group">
-    <input type="text" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control" #source>
+    <input type="text" [(ngModel)]="source_address" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control" #source>
      </div>
   </div>

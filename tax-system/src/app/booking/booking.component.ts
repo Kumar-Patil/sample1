@@ -11,6 +11,8 @@ import { ViewChild, ElementRef, NgZone } from '@angular/core';
 export class BookingComponent implements OnInit {
   @ViewChild('search') public searchElement: ElementRef;
   @ViewChild('source') public searchElement1: ElementRef;
+  destinaton_address: any;
+  source_address: any;
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
 
   public search() {
@@ -23,10 +25,12 @@ export class BookingComponent implements OnInit {
     this.mapsAPILoader.load().then(
       () => {
         let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types: ["address"] });
-
+       
         autocomplete.addListener("place_changed", () => {
           this.ngZone.run(() => {
             let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+            alert(place.adr_address);
+            alert('source22' + this.destinaton_address);
             alert("lattitude" + place.geometry.location.lat());
             alert("lngi" + place.geometry.location.lat());
             if (place.geometry === undefined || place.geometry === null) {
@@ -44,6 +48,7 @@ export class BookingComponent implements OnInit {
         autocomplete.addListener("place_changed", () => {
           this.ngZone.run(() => {
             let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+            alert(place.adr_address)
             alert('lng'+ place.geometry.location.lng());
             alert("lngi" + place.geometry.location.lat());
             if (place.geometry === undefined || place.geometry === null) {
@@ -54,4 +59,5 @@ export class BookingComponent implements OnInit {
       }
     );
   }
+  
 }
