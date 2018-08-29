@@ -9,16 +9,16 @@ body {
     border-spacing:10px;
     margin:auto;
     background-color:#fff;
-    #box-shadow:6px 6px 6px #999;
+    box-shadow:6px 6px 6px #999;
  }
 #page-wrap div {
     display:table-cell;
     width:33.33%;
     padding:2%;
     border:1px solid #999;
-    #border-radius:10px;
-    #background-image:linear-gradient(to bottom,#fff,#ddd);
-    #box-shadow:inset 0 0 10px #999;
+    border-radius:10px;
+    background-image:linear-gradient(to bottom,#fff,#ddd);
+    box-shadow:inset 0 0 10px #999;
     font-size:1.5vw;
     word-wrap:break-word;
     color:#666; 
@@ -33,3 +33,57 @@ body {
     font-size:2.5vw;
   }
  }
+
+fieldset {
+    border: 1px solid #000;
+}
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+/*
+   server-side-angular-way.component.css
+*/
+.no-data-available {
+    text-align: center;
+  }
+  
+  /*
+     src/styles.css (i.e. your global style)
+  */
+.dataTables_empty {
+    display: none;
+}
+
+.margin-lr-0 {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+.padding-lr-0 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.padding-l-20 {
+    padding-left: 20px;
+}
+.padding-l-40 {
+    padding-left: 50px;
+}
+.vl {
+    border-left: 1px solid;
+    height: 500px;
+}
+hr {
+    border-top: 1px solid black;
+}
+agm-map {
+    height: 500px;
+  }
