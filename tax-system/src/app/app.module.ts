@@ -54,6 +54,7 @@ import { VendorFinanceComponent } from './finance/vendor/vendor-finance.componen
 import { DriverFinanceComponent } from './finance/driver/driver-finance.component';
 import { RiderFinanceComponent } from './finance/rider/rider-finance.component';
 import { SettlementFinanceComponent } from './finance/settlement/settlement-finance.component';
+import { UiSwitchModule } from 'ngx-toggle-switch';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { SettlementFinanceComponent } from './finance/settlement/settlement-fina
     SettlementFinanceComponent,
   ],
   imports: [
+    UiSwitchModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,

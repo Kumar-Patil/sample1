@@ -16,45 +16,37 @@ export class BookingComponent implements OnInit {
   userData: AddUserDataModel;
   destinaton_address: any;
   source_address: any;
+  surge: boolean;
+  boost: boolean;
   markers: marker[] = [
     {
-      lat: 51.673858,
-      lng: 7.815982,
-      label: 'A',
+      lat: 12.3136505,
+      lng: 76.65913969999997,
+      label: 'Source',
       draggable: true
+      ,
+      iconUrl: 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png'
+
     },
     {
-      lat: 51.373858,
-      lng: 7.215982,
-      label: 'B',
+      lat: 17.3146607,
+      lng: 76.82492090000005,
+      label: 'Destination',
       draggable: false
-    },
+    }/*,
     {
-      lat: 51.723858,
-      lng: 7.895982,
+      lat: -18.142,
+      lng: 178.431,
       label: 'C',
       draggable: true
     }
     ,
     {
-      lat: 52.723858,
-      lng: 6.895982,
+      lat: -27.467,
+      lng: 153.027,
       label: 'D',
       draggable: true
-    }
-    ,
-    {
-      lat: 12.860198,
-      lng: 77.66,
-      label: 'E',
-      draggable: true
-    },
-    {
-      lat: 12.860198,
-      lng: 77.66,
-      label: 'B',
-      draggable: true
-    }
+    }*/
   ];
 
   cabs = [
@@ -80,21 +72,21 @@ export class BookingComponent implements OnInit {
   public search1() {
 
   }
-  public addOrUpdateDriverData(val) {
-    alert('Got it b');
-    alert(this.userData.name);
+  public addOrUpdateDriverData() {
+    alert(this.userData.source);
   }
   ngOnInit() {
+    this.boost = true;
+    this.surge = true;
     this.mapsAPILoader.load().then(
       () => {
-        let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types: ["address"] });
-
-        autocomplete.addListener("place_changed", () => {
+        let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types: ['address'] });
+        autocomplete.addListener('place_changed', () => {
           this.ngZone.run(() => {
             let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-            alert(place.formatted_address);
-            alert("lattitude" + place.geometry.location.lat());
-            alert("lngi" + place.geometry.location.lat());
+            this.userData.source = place.formatted_address;
+            this.userData.sourceLattitude = place.geometry.location.lat();
+            this.userData.sourceLngitude = place.geometry.location.lng();
             if (place.geometry === undefined || place.geometry === null) {
               return;
             }
@@ -105,13 +97,13 @@ export class BookingComponent implements OnInit {
 
     this.mapsAPILoader.load().then(
       () => {
-        let autocomplete = new google.maps.places.Autocomplete(this.searchElement1.nativeElement, { types: ["address"] });
-        autocomplete.addListener("place_changed", () => {
+        let autocomplete = new google.maps.places.Autocomplete(this.searchElement1.nativeElement, { types: ['address'] });
+        autocomplete.addListener('place_changed', () => {
           this.ngZone.run(() => {
             let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-            alert(place.adr_address)
-            alert('lng' + place.geometry.location.lng());
-            alert("lngi" + place.geometry.location.lat());
+            this.userData.destination = place.formatted_address;
+            this.userData.destinationLattitud = place.geometry.location.lat();
+            this.userData.destinationLngitude = place.geometry.location.lng();
             if (place.geometry === undefined || place.geometry === null) {
               return;
             }
@@ -128,4 +120,5 @@ interface marker {
   lng: number;
   label?: string;
   draggable: boolean;
+  iconUrl?: string;
 }

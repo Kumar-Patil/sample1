@@ -11,6 +11,10 @@ export class AddUserDataModel {
     public address: string;
     public email: string;
     public date_time: any;
+    public sourceLattitude: number;
+    public destinationLattitud: number;
+    public sourceLngitude: number;
+    public destinationLngitude: number;
     constructor(
 
     ) {
