@@ -33,7 +33,7 @@ export class DSTrackingComponent {
 
   // tslint:disable-next-line:member-ordering
   markers: marker[] = [
-    /*{
+    {
       lat: 51.673858,
       lng: 7.815982,
       label: 'A',
@@ -58,7 +58,7 @@ export class DSTrackingComponent {
       label: 'D',
       draggable: true
     }
-    ,*/
+    ,
     {
       lat: 12.860198,
       lng: 77.66,

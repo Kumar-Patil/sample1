@@ -79,8 +79,11 @@ fieldset {
 }
 .vl {
     border-left: 1px solid;
-    height: 500px;
+    height: 600px;
 }
 hr {
     border-top: 1px solid black;
 }
+agm-map {
+    height: 500px;
+  }
