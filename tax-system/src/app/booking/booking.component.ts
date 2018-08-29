@@ -28,6 +28,134 @@ export class BookingComponent implements OnInit {
     }
   ];
 
+  cabs = [
+    {
+      'cust_id': 'geomie',
+      'driver': 'nekr',
+      'source': 'geredc',
+      'destination': 'wwedsa',
+      'time': '3423',
+      'eta': 'rewe',
+      'status': 'active'
+    },
+    {
+      'cust_id': 'geomie',
+      'driver': 'nekr',
+      'source': 'geredc',
+      'destination': 'wwedsa',
+      'time': '3423',
+      'eta': 'rewe',
+      'status': 'active'
+    },
+    {
+      'cust_id': 'geomie',
+      'driver': 'nekr',
+      'source': 'geredc',
+      'destination': 'wwedsa',
+      'time': '3423',
+      'eta': 'rewe',
+      'status': 'active'
+    },
+    {
+      'cust_id': '',
+      'driver': '',
+      'source': '',
+      'destination': '',
+      'time': '',
+      'eta': '',
+      'status': ''
+    },
+    {
+      'cust_id': '',
+      'driver': '',
+      'source': '',
+      'destination': '',
+      'time': '',
+      'eta': '',
+      'status': ''
+    },
+    {
+      'cust_id': '',
+      'driver': '',
+      'source': '',
+      'destination': '',
+      'time': '',
+      'eta': '',
+      'status': ''
+    },
+    {
+      'cust_id': '',
+      'driver': '',
+      'source': '',
+      'destination': '',
+      'time': '',
+      'eta': '',
+      'status': ''
+    },
+    {
+      'cust_id': '',
+      'driver': '',
+      'source': '',
+      'destination': '',
+      'time': '',
+      'eta': '',
+      'status': ''
+    },
+    {
+      'cust_id': '',
+      'driver': '',
+      'source': '',
+      'destination': '',
+      'time': '',
+      'eta': '',
+      'status': ''
+    },
+    {
+      'cust_id': '',
+      'driver': '',
+      'source': '',
+      'destination': '',
+      'time': '',
+      'eta': '',
+      'status': ''
+    },
+    {
+      'cust_id': '',
+      'driver': '',
+      'source': '',
+      'destination': '',
+      'time': '',
+      'eta': '',
+      'status': ''
+    },
+    {
+      'cust_id': '',
+      'driver': '',
+      'source': '',
+      'destination': '',
+      'time': '',
+      'eta': '',
+      'status': ''
+    },
+    {
+      'cust_id': '',
+      'driver': '',
+      'source': '',
+      'destination': '',
+      'time': '',
+      'eta': '',
+      'status': ''
+    },
+    {
+      'cust_id': 'geomie',
+      'driver': 'nekr',
+      'source': 'geredc',
+      'destination': 'wwedsa',
+      'time': '3423',
+      'eta': 'rewe',
+      'status': 'active'
+    }
+  ];
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) { }
 
   public search() {
