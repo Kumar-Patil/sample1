@@ -71,12 +71,19 @@
             <div class="form-group col-md-4 col-sm-6 col-xs-12">
               <label for="status">Status</label>
               <div class="">
-                <select class="form-control" id="statusId" [(ngModel)]="userData.status" #statusId="ngModel" name="statusId" required>
+                <select class="form-control" id="statusId" [(ngModel)]="userData.status" #statusId="ngModel" name="statusId" value="1" required>
                   <option value="1" selected>Active</option>
                   <option value="0">Inactive</option>
                 </select>
               </div>
             </div>
+            <div *ngIf="isVendor" class="col-md-4 col-sm-6 col-xs-12">
+                <div class="form-group is-required-short">
+                  <label class="control-label">Vendor Reg No*</label>
+                  <input type="text" id="email" class="form-control" placeholder="" [(ngModel)]="userData.regNo" name="vendorRegistrationNo"
+                    maxlength="60" required>
+                </div>
+              </div>
           </form>
         </div>
         <div id="personal_details" class="container tab-pane fade" role="tabpanel" aria-labelledby="personal_details-tab">
@@ -167,13 +174,6 @@
                 </div>
               </div>
               
-              <div *ngIf="isVendor" class="col-md-4 col-sm-6 col-xs-12">
-                <div class="form-group is-required-short">
-                  <label class="control-label">Vendor Reg No*</label>
-                  <input type="text" id="email" class="form-control" placeholder="" [(ngModel)]="userData.regNo" name="vendorRegistrationNo"
-                    maxlength="60" required>
-                </div>
-              </div>
             </div>
           </form>
         </div>

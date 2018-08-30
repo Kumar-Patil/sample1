@@ -17,7 +17,7 @@
                     <a class="nav-link" routerLink="/activityDashboard" [routerLinkActive]="['active']">Activity Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" *ngIf="baseApiService.isAccess()" routerLink="/user" [routerLinkActive]="['active']">User</a>
+                    <a class="nav-link" *ngIf="baseApiService.onlyAccess()" routerLink="/user" [routerLinkActive]="['active']">User</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" *ngIf="baseApiService.isAccess()" routerLink="/vendor" [routerLinkActive]="['active']">Vendor</a>
@@ -38,7 +38,7 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/cabs" [routerLinkActive]="['active']">Cabs</a>
                 </li>
-                <li class="nav-item">
+                <li *ngIf="baseApiService.onlyAccess()" class="nav-item">
                     <a class="nav-link" routerLink="/rider" [routerLinkActive]="['active']">Rider</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -52,13 +52,13 @@
                         <a class="dropdown-item" routerLink="/tripsReport" [routerLinkActive]="['active']">Trips Report</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
+                <li *ngIf="baseApiService.onlyAccess()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Finance
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" routerLink="/accountRider" [routerLinkActive]="['active']">Account Riders</a>
-                        <a *ngIf="baseApiService.isAccess()" class="dropdown-item" routerLink="/accountVendor" [routerLinkActive]="['active']">Account Vendors</a>
+                        <a class="dropdown-item" routerLink="/accountVendor" [routerLinkActive]="['active']">Account Vendors</a>
                         <a class="dropdown-item" routerLink="/accountDriver" [routerLinkActive]="['active']">Account Drivers</a>
                         <a class="dropdown-item" routerLink="/accountSettlement" [routerLinkActive]="['active']">Account Settlements</a>
                     </div>

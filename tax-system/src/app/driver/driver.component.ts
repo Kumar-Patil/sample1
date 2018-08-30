@@ -94,4 +94,7 @@ export class DriverComponent implements OnInit, OnDestroy {
     });
     this.modalService.open(content, { size: 'lg' });
   }
+  public addDriver() {
+    alert('Yet to ADD API');
+  }
 }

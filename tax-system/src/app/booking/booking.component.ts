@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
 import { AddUserDataModel } from './model/userData.model';
 import { ViewChild, ElementRef, NgZone } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ApiService } from '../common/api.service';
+import { AlertsService } from 'angular-alert-module';
+import { HttpService } from '../common/http.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css']
 })
-export class BookingComponent implements OnInit {
+export class BookingComponent implements OnInit, OnDestroy  {
   @ViewChild('source') public searchElement: ElementRef;
   @ViewChild('destination') public searchElement1: ElementRef;
   @ViewChild('book') book: NgForm;
@@ -18,6 +23,8 @@ export class BookingComponent implements OnInit {
   source_address: any;
   surge: boolean;
   boost: boolean;
+  public interValId: any;
+  public inProgressId: any;
   markers: marker[] = [
     {
       lat: 12.3136505,
@@ -32,7 +39,8 @@ export class BookingComponent implements OnInit {
       lat: 17.3146607,
       lng: 76.82492090000005,
       label: 'Destination',
-      draggable: false
+      draggable: false,
+      iconUrl: ''
     }/*,
     {
       lat: -18.142,
@@ -50,7 +58,7 @@ export class BookingComponent implements OnInit {
   ];
 
   cabs = [
-    {
+    /*{
       'cust_id': 'geomie',
       'driver': 'nekr',
       'source': 'geredc',
@@ -58,10 +66,13 @@ export class BookingComponent implements OnInit {
       'time': '3423',
       'eta': 'rewe',
       'status': 'active'
-    }
+    }*/
   ];
   constructor(private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone, private apiService: ApiService,
+    private alerts: AlertsService,
+    private httpService: HttpService,
+    private spinnerService: Ng4LoadingSpinnerService
   ) {
     this.userData = new AddUserDataModel();
   }
@@ -73,7 +84,33 @@ export class BookingComponent implements OnInit {
 
   }
   public addOrUpdateDriverData() {
-    alert(this.userData.source);
+    alert('Yet to add API');
+  }
+  private polyData() {
+    console.log('Calling Eevery Seconds');
+    this.httpService.get(this.apiService.API_TRIP_MAP_POLYDATA).subscribe(res => {
+      if (res) {
+        this.markers = res;
+        this.spinnerService.hide();
+      }
+    });
+  }
+  private inProgress() {
+    console.log('Calling Eevery inProgress');
+    this.httpService.get(this.apiService.API_TRIP_ON_GOING_LIST).subscribe(res => {
+      if (res) {
+        this.cabs = res;
+        this.spinnerService.hide();
+      }
+    });
+  }
+  ngOnDestroy(): void {
+    if (this.interValId) {
+      clearInterval(this.interValId);
+    }
+    if (this.inProgressId) {
+      clearInterval(this.inProgressId);
+    }
   }
   ngOnInit() {
     this.boost = true;
@@ -111,7 +148,19 @@ export class BookingComponent implements OnInit {
         });
       }
     );
+
+    // Poly data
+    this.polyData();
+    this.interValId = setInterval(() => {
+      this.polyData();
+    }, 5000);
+
+    this.inProgress();
+    this.inProgressId = setInterval(() => {
+      this.inProgress();
+    }, 5000);
   }
+
 }
 
 // tslint:disable-next-line:class-name

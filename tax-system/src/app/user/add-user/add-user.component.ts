@@ -114,15 +114,23 @@ export class AddUserComponent implements OnInit {
           console.log('update success');
         });
       }
+    } else {
+      this.alerts.setMessage('Please provide mandatory fileds!', 'warn');
     }
   }
   validateForm() {
-    if (this.personalDetails.valid && this.licencing.valid) {
-      this.formInvalid = false;
+    if (this.userData.status != null && this.userData.role != null
+      && this.userData.email != null && this.userData.phone != null && this.userData.password != null) {
       return true;
     } else {
       return false;
     }
+    /*if (this.personalDetails.valid && this.licencing.valid) {
+      this.formInvalid = false;
+      return true;
+    } else {
+      return false;
+    }*/
   }
   setDefaultFields() {
     this.userData.address = 'Rajajinagar';

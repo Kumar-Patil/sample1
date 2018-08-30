@@ -50,9 +50,10 @@ export class VendorComponent implements OnInit, OnDestroy {
   }
 
   edit(event: Event, vendor: VendorModel) {
-    this.router.navigate([`vendor/edit/${vendor.id}`]);
+    alert('Yet To add APIS');
+    // this.router.navigate([`vendor/edit/${vendor.id}`]);
   }
-  view(event: Event, vendor: VendorModel, content) {
+  view(event: Event, vendor: VendorModel, content) {/*
     this.spinnerService.show();
     this.httpService.getById(vendor.id, this.apiService.API_VENDOR_VIEW).subscribe(res => {
       if (res) {
@@ -60,11 +61,12 @@ export class VendorComponent implements OnInit, OnDestroy {
         this.spinnerService.hide();
       }
     });
-    this.modalService.open(content, { size: 'lg' });
+    this.modalService.open(content, { size: 'lg' });*/
+    alert('Yet To add APIS');
   }
 
   delete(content, event: Event, vendor: VendorModel, index) {
-    this.modalService.open(content, { size: 'sm' }).result.then(
+    /*this.modalService.open(content, { size: 'sm' }).result.then(
       (closeResult) => {
         // modal close
         console.log('modal closed');
@@ -74,7 +76,8 @@ export class VendorComponent implements OnInit, OnDestroy {
         this.alerts.setMessage('Deleted successfully!', 'success');
         this.vendorData.splice(index, 1);
       }
-    );
+    );*/
+    alert('Yet to add API');
   }
   deleteVendor(id: any) {
     this.httpService.deletById(id, this.apiService.API_VENDOR_DELETE).subscribe(res => {

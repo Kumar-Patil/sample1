@@ -11,6 +11,7 @@ const baseURL = 'http://18.219.43.223:8080/taxi/';
 export class BaseApiService {
     private isAccessActions: boolean;
     private isModuleAccess: boolean;
+    private onlySupereme: boolean;
     constructor() { }
     getDriverById(): string {
         return GET_DRIVER_BY_ID;
@@ -55,6 +56,16 @@ export class BaseApiService {
                 this.isModuleAccess = true;
             }
             return this.isModuleAccess;
+        }
+    }
+    public onlyAccess(): any {
+        const userInfoJSON = JSON.parse(sessionStorage.getItem('userData'));
+        this.onlySupereme = false;
+        if (userInfoJSON) {
+            if (userInfoJSON.role === 'Supreme User') {
+                this.onlySupereme = true;
+            }
+            return this.onlySupereme;
         }
     }
     public isSupereme(): any {
