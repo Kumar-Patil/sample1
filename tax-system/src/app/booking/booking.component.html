@@ -82,51 +82,8 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-4 col-sm-4	col-md-4 col-lg-4">
-      <div class="row">
-        <div class="col-xs-12 col-sm-12	col-md-12 col-lg-12">
-          <h5 style="color: red"> List of cabs with ongoing rides</h5>
-          <div>
-              <table class="table table-bordered table-striped" >
-                  <thead style="font: bold;">
-                    <tr>
-                      <th>cust id</th>
-                      <th>driver</th>
-                      <th>source</th>
-                      <th>destination</th>
-                      <th>time elap</th>
-                      <th>ETA</th>
-                      <th>status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let cab of cabs">
-                      <td>{{cab.cust_id}}</td>
-                      <td>
-                        <span class="text-wrap">{{cab.driver}}</span>
-                      </td>
-                      <td>
-                        <span class="text-wrap">{{cab.source}}</span>
-                      </td>
-                      <td>
-                        <span class="text-wrap">{{cab.destination}}</span>
-                      </td>
-                      <td>
-                        <span class="text-wrap">{{cab.time}}</span>
-                      </td>
-                      <td>
-                        <span class="text-wrap">{{cab.eta}}</span>
-                      </td>
-                      <td>
-                        <span class="text-wrap">{{cab.status}}</span>
-                      </td>
-                    </tr>
-                </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-4 col-sm-4	col-md-4 col-lg-4">
+    
+    
       <div class="row">
         <div class="col-xs-12 col-sm-12	col-md-12 col-lg-12">
             <agm-map [zoom] = "4" 
@@ -153,7 +110,6 @@
             </agm-map>
         </div>
       </div>
-    </div>
   </div>
   <hr/>
   <div class="row" style="padding-bottom: 40px;">
@@ -193,5 +149,64 @@
           </fieldset>
       </div>
     </div>
+    
   </div>
+  <div class="col-xs-4 col-sm-4	col-md-4 col-lg-4">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12	col-md-12 col-lg-12">
+          <h5 style="color: red"> List of cabs with ongoing rides</h5>
+          <div>
+              <table class="table table-bordered" >
+                  <thead style="font: bold;">
+                    <tr>
+                      <th>cust Id</th>
+                      <th>Cust Name</th>
+                      <th>Cust Email</th>
+                      <th>Cust Phone</th>
+                      <th>Remarks</th>
+                      <th>Address</th>
+                      <th>Driver Name</th>
+                      <th>Source</th>
+                      <th>Destination</th>
+                      <th>Time elap</th>
+                      <th>ETA</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let cab of cabs">
+                      <td>{{cab.cust_id}}</td>
+                      <td>{{cab.driver}}</td>
+                      <td>{{cab.driver}}</td>
+                      <td>santoshkumarsdfd</td>
+                      <td>santoshkumarsdfd</td>
+                      <td>
+                        <span class="text-wrap">{{cab.driver}}</span>
+                      </td>
+                      <td>
+                        <span class="text-wrap">{{cab.driver}}</span>
+                      </td>
+                      <td>
+                        <span >{{cab.source}}</span>
+                      </td>
+                      <td>
+                        <span >{{cab.destination}}</span>
+                      </td>
+                      <td>
+                        <span class="text-wrap">{{cab.time}}</span>
+                      </td>
+                      <td>
+                        <span class="text-wrap">{{cab.eta}}</span>
+                      </td>
+                      <td>
+                        <span >{{cab.status}}</span>
+                      </td>
+                    </tr>
+                </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 </div>
+

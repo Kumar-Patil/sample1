@@ -63,3 +63,176 @@
 </agm-polyline>
 
 </agm-map>
+<div class="row">
+    <div class="col-lg-6">
+    </div>
+  </div>
+  <div class="mt-5">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+      <thead style="font: bold;">
+        <tr>
+          <th>#</th>
+          <th>ContactPerson Name</th>
+          <th>Receiptent Name</th>
+          <th>Order Type</th>
+          <th>Type</th>
+          <th>Weight</th>
+          <th>Booking</th>
+          <th>Units</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let delivery of deliveryData;let index=index;">
+          <td>{{index+1}}</td>
+          <td>
+            <span class="text-wrap">{{delivery.contactPersonName}}</span>
+          </td>
+          <td>
+            <span class="text-wrap">{{delivery.reciptentName}}</span>
+          </td>
+          <td>
+            <span class="text-wrap">{{delivery.orderType}}</span>
+          </td>
+          <td>
+            <span class="text-wrap">{{delivery.type}}</span>
+          </td>
+          <td>
+            <span class="text-wrap">{{delivery.weight}}</span>
+          </td>
+          <td>
+            <span class="text-wrap">{{delivery.bookingAt}}</span>
+          </td>
+          <td>
+            <span class="text-wrap">{{delivery.noOfUnits}}</span>
+          </td>
+          <td>
+            <span class="text-wrap">{{delivery.deliveryCurrentStatus}}</span>
+          </td>
+          <td>
+            <span class="text-wrap">
+              <a class="pointer" (click)="view($event,delivery,viewcontent1,index)">
+                <span class="oi oi-share-boxed" title="view" aria-hidden="true"></span>
+              </a> /
+              <a class="pointer" (click)="edit($event,delivery,index)">
+                <span class="oi oi-pencil" title="Assign" aria-hidden="true"></span>
+              </a>/
+              <a class="pointer" (click)="delete(content,$event,delivery,index)">
+                <span class="oi oi-trash" title="delete" aria-hidden="true"></span>
+              </a>
+            </span>
+          </td>
+        </tr>
+    </table>
+    <ng-template #content let-cl="close" let-di="dismiss">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Confirmation</h5>
+        </div>
+        <div class="modal-body">
+          <p>Do you want to delete record ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" style="margin-right: 61%;" (click)="di('Dismissed from dismiss button')">Yes</button>
+          <button type="button" class="btn btn-primary" (click)="cl('Closed from Close button')">No</button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #viewcontent1 let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Delivery Details</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="accordion pb-15 col-xs-12 col-md-12 col-lg-12 col-sm-12">
+          <div class="col-md-12 col-lg-12 col-sm-12">
+            <form class="row detail">
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label class="control-label">Contact Person Name</label>
+                <div class="">
+                  <label for="contactPersonName">
+                    <strong>{{deliveryDataView.contactPersonName}}</strong>
+                  </label>
+                </div>
+              </div>
+  
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label class="control-label">Reciptent Name</label>
+                <div class="">
+                  <label for="reciptentName">
+                    <strong>{{deliveryDataView.reciptentName}}</strong>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label class="control-label">Type</label>
+                <div class="">
+                  <label for="type">
+                    <strong>{{deliveryDataView.type}}</strong>
+                  </label>
+                </div>
+              </div>
+  
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="vendorRegistrationNo">weight</label>
+                <div class="">
+                  <label for="weight">
+                    <strong>{{deliveryDataView.weight}}</strong>
+                  </label>
+                </div>
+              </div>
+              
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="vendorRegistrationNo">weight</label>
+                <div class="">
+                  <label for="weight">
+                    <strong>{{deliveryDataView.noOfUnits}}</strong>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="vendorRegistrationNo">Booking At</label>
+                <div class="">
+                  <label for="weight">
+                    <strong>{{deliveryDataView.bookingAt}}</strong>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="status">Status</label>
+                <div class="">
+                  <label for="status">
+                    <strong>{{deliveryDataView.deliveryCurrentStatus}}</strong>
+                  </label>
+                </div>
+  
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="createdAt">createdAt</label>
+                <div class="">
+                  <label for="createdAt">
+                    <strong>{{deliveryDataView.createdAt}}</strong>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <label for="updatedAt">updatedAt</label>
+                <div class="">
+                  <label for="updatedAt">
+                    <strong>{{deliveryDataView.updatedAt}}</strong>
+                  </label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+      </div>
+    </ng-template>
+  </div>
+  <router-outlet></router-outlet>

@@ -8,13 +8,20 @@ import { ApiService } from '../common/api.service';
 import { AlertsService } from 'angular-alert-module';
 import { HttpService } from '../common/http.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs/Subject';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit, OnDestroy  {
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+
+  objectKeys: Object;
   @ViewChild('source') public searchElement: ElementRef;
   @ViewChild('destination') public searchElement1: ElementRef;
   @ViewChild('book') book: NgForm;
@@ -113,6 +120,10 @@ export class BookingComponent implements OnInit, OnDestroy  {
     }
   }
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 8
+    };
     this.boost = true;
     this.surge = true;
     this.mapsAPILoader.load().then(
@@ -160,7 +171,7 @@ export class BookingComponent implements OnInit, OnDestroy  {
       this.inProgress();
     }, 5000);
   }
-
+ 
 }
 
 // tslint:disable-next-line:class-name
