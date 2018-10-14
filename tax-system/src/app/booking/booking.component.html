@@ -85,6 +85,23 @@
     
     
       <div class="row">
+          <div class="row">
+              <div class="col-12">
+                <div class="form-inline float-right">
+                  <label for="status" class="mr-sm-2"> Select :</label>
+                  <div class="">
+                    <select class="form-control form-control-sm mb-2 mr-sm-2" id="role" (change)="selectChangeHandler($event)" [(ngModel)]="userData.role"
+                      #statusId="ngModel" name="role" required>
+                      <option value="trips">Ongoing Trips</option>
+                      <option value="users">Users Online</option>
+                      <option value="cabs">Cabs online</option>
+                      <option value="delivery">Delivery Items Ongoing</option>
+                      <option value="all">All</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
         <div class="col-xs-12 col-sm-12	col-md-12 col-lg-12">
             <agm-map [zoom] = "4" 
             [latitude]="20.5937"
@@ -96,7 +113,7 @@
               [longitude]="coordinate.lng"
               [iconUrl]="coordinate.iconUrl"
             ></agm-marker>
-            <agm-polyline
+           <!-- <agm-polyline
              [visible]="true"
              [strokeWeight]="3"
              [strokeColor]="'#2196f3'">
@@ -106,7 +123,7 @@
                 [longitude]="coordinate.lng">
               </agm-polyline-point>
             </agm-polyline>
-            
+          -->
             </agm-map>
         </div>
       </div>
@@ -137,12 +154,12 @@
                 <div> 
                   SURGE
                   <span style="padding-left: 40px">
-                      <ui-switch [(ngModel)]="surge" (click)="addOrUpdateDriverData(userData)"></ui-switch>
+                      <ui-switch [(ngModel)]="surge" (change)="surgePricing($event)"></ui-switch>
                   </span>
                 </div>
                 <div> BOOST
                   <span style="padding-left: 40px">
-                      <ui-switch [(ngModel)]="boost" (click)="addOrUpdateDriverData(userData)"></ui-switch>
+                      <ui-switch [(ngModel)]="boost" (change)="boostFare($event)"></ui-switch>
                   </span>
                 </div>
               </div>

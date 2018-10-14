@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
     constructor() { }
-     // public API_BASE_URL = 'http://localhost:8084/taxi/';
-    public API_BASE_URL = 'http://18.191.143.194:8080/taxi/';
+    public API_BASE_URL = 'http://localhost:8080/taxi/';
+    // public API_BASE_URL = 'http://18.191.143.194:8080/taxi/';
     public API_LOGIN_URL = 'login/user';
     public API_DRIVER_LIST = 'driver/list';
     public API_DRIVER_DETAILS = 'driver/details';
@@ -72,6 +72,7 @@ export class ApiService {
     public API_TRIP_BOOK = 'trips/add';
     public API_TRIP_MAP_POLYDATA = 'trips//polymapdata';
     public API_TRIP_STATISTICS = 'statistics/staticstics';
-
-
+    public API_MAP_DETAILS = 'mapDetails/mapData';
+    public API_ENABLE_DISABLE_BOOSTING = 'boostfare/list';
+    public API_GET_ENABLE_DISABLE_BOOSTING = 'boostfare/update';
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy  } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
 import { AddUserDataModel } from './model/userData.model';
@@ -10,12 +10,13 @@ import { HttpService } from '../common/http.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs/Subject';
+import { BoostPricing } from './model/boost.model';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css']
 })
-export class BookingComponent implements OnInit, OnDestroy  {
+export class BookingComponent implements OnInit, OnDestroy {
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
@@ -26,12 +27,14 @@ export class BookingComponent implements OnInit, OnDestroy  {
   @ViewChild('destination') public searchElement1: ElementRef;
   @ViewChild('book') book: NgForm;
   userData: AddUserDataModel;
+  boostPricing: BoostPricing;
   destinaton_address: any;
   source_address: any;
   surge: boolean;
   boost: boolean;
   public interValId: any;
   public inProgressId: any;
+  public selectedValues: any;
   markers: marker[] = [
     {
       lat: 12.3136505,
@@ -90,12 +93,35 @@ export class BookingComponent implements OnInit, OnDestroy  {
   public search1() {
 
   }
-  public addOrUpdateDriverData() {
-    alert('Yet to add API');
+
+  public boostFare(event: any) {
+    this.boostPricing.boostEnable = event;
+    this.boost = event;
+    this.httpService.put(this.boostPricing, this.apiService.API_GET_ENABLE_DISABLE_BOOSTING).subscribe(res => {
+    });
+  }
+  public surgePricing(event: any) {
+    this.boostPricing.surgeEnable = event;
+    this.surge = event;
+    this.httpService.put(this.boostPricing, this.apiService.API_GET_ENABLE_DISABLE_BOOSTING).subscribe(res => {
+    });
+  }
+  public getEnableOrDisableValue() {
+    this.httpService.get(this.apiService.API_ENABLE_DISABLE_BOOSTING).subscribe(res => {
+      if (res) {
+        this.boostPricing = res;
+        this.boost = this.boostPricing.boostEnable;
+        this.surge = this.boostPricing.surgeEnable;
+        this.spinnerService.hide();
+      }
+    });
+  }
+  selectChangeHandler(event: any) {
+    this.selectedValues = event.target.value;
   }
   private polyData() {
-    console.log('Calling Eevery Seconds');
-    this.httpService.get(this.apiService.API_TRIP_MAP_POLYDATA).subscribe(res => {
+    console.log('Every time interval calling' + this.selectedValues);
+    this.httpService.getMapData(this.apiService.API_MAP_DETAILS, this.selectedValues).subscribe(res => {
       if (res) {
         this.markers = res;
         this.spinnerService.hide();
@@ -120,12 +146,12 @@ export class BookingComponent implements OnInit, OnDestroy  {
     }
   }
   ngOnInit() {
+    this.selectedValues = 'all';
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 8
     };
-    this.boost = true;
-    this.surge = true;
+
     this.mapsAPILoader.load().then(
       () => {
         let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types: ['address'] });
@@ -170,8 +196,9 @@ export class BookingComponent implements OnInit, OnDestroy  {
     this.inProgressId = setInterval(() => {
       this.inProgress();
     }, 5000);
+
+    this.getEnableOrDisableValue();
   }
- 
 }
 
 // tslint:disable-next-line:class-name

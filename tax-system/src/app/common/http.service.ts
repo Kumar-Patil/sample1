@@ -26,6 +26,20 @@ export class HttpService {
       .catch(this.handleError);
   }
 
+  getMapData(apiName, type): Observable<any> {
+    const requestURL = this.apiService.API_BASE_URL + apiName;
+    this.qparams.set('userId', this.baseApiService.getUserId());
+    this.qparams.set('type', type);
+    return this.http.get(requestURL, {
+      withCredentials: true,
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'api_key': this.baseApiService.getApiToken()
+      }),
+      search: this.qparams
+    }).map(this.extractData)
+      .catch(this.handleError);
+  }
   getById(id, apiName): Observable<any> {
     const requestURL = this.apiService.API_BASE_URL + apiName;
     this.qparams.set('userId', this.baseApiService.getUserId());
