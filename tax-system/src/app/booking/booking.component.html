@@ -6,136 +6,116 @@
   <div class="form-group">
     <input type="text" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control" #source>
      </div> -->
+
   <div class="row">
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
       <div class="row">
         <div class="col-xs-12 col-sm-12	col-md-12 col-lg-12">
           <fieldset>
-              <legend style="width:auto; margin-bottom: 0px; color: #1f497d;">New Booking</legend>
-              <form role="form" class="form-inline" #book="ngForm">
-                <div class="margin-lr-0 padding-l-20">
-                  <div class="form-group ">
-                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">phone</label>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                        <input type="text" name="phone" [(ngModel)]="userData.phone" [ngModelOptions]="{standalone: true}" class="form-control" width="70%"/>
-                    </div>
+            <legend style="width:auto; margin-bottom: 0px; color: #1f497d;">New Booking</legend>
+            <form role="form" class="form-inline" #book="ngForm">
+              <div class="margin-lr-0 padding-l-20">
+                <div class="form-group ">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">phone</label>
+                  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input type="text" name="phone" [(ngModel)]="userData.phone" [ngModelOptions]="{standalone: true}" class="form-control" width="70%"
+                    />
                   </div>
-                  <div class="form-group ">
-                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">name</label>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                      <input type="text" name="name" [(ngModel)]="userData.name"   class="form-control" width="70%"/>
-                    </div>
+                </div>
+                <div class="form-group ">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">name</label>
+                  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input type="text" name="name" [(ngModel)]="userData.name" class="form-control" width="70%" />
                   </div>
-                  <div class="form-group ">
-                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">cust_id</label>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                      <input type="text" name="cust_id" [(ngModel)]="userData.cust_id"  class="form-control" width="70%"/>
-                    </div>
+                </div>
+                <div class="form-group ">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">cust_id</label>
+                  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input type="text" name="cust_id" [(ngModel)]="userData.cust_id" class="form-control" width="70%" />
                   </div>
-                  <div class="form-group ">
-                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">address</label>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                      <input type="text" name="address" [(ngModel)]="userData.address" [ngModelOptions]="{standalone: true}" class="form-control" width="70%"/>
-                    </div>
+                </div>
+                <div class="form-group ">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">address</label>
+                  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input type="text" name="address" [(ngModel)]="userData.address" [ngModelOptions]="{standalone: true}" class="form-control"
+                      width="70%" />
                   </div>
-                  <div class="form-group ">
-                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">email</label>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                      <input type="text" name="email" [(ngModel)]="userData.email"  class="form-control" width="70%"/>
-                    </div>
+                </div>
+                <div class="form-group ">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">email</label>
+                  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input type="text" name="email" [(ngModel)]="userData.email" class="form-control" width="70%" />
                   </div>
-                  <!-- <div class="form-group ">
+                </div>
+                <!-- <div class="form-group ">
                     <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">date</label>
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
                       <input type="text" name="date_time" [(ngModel)]="userData.date_time" [ngModelOptions]="{standalone: true}" class="form-control" width="70%"/>
                     </div>
                   </div> -->
-                  <div class="form-group ">
-                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">remarks</label>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                      <input type="text" name="remarks" [(ngModel)]="userData.remarks" [ngModelOptions]="{standalone: true}" class="form-control" width="70%"/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">source</label>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                      <!--<input type="text" name="source" class="form-control" width="70%"/> -->
-                      <input type="text" placeholder="Search source Location" autocorrect="off" autocapitalize="off" spellcheck="off" [(ngModel)]="userData.source" [ngModelOptions]="{standalone: true}" class="form-control" #source>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 25px">destination</label>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                      <!--<input type="text" name="destionation" class="form-control" width="70%"/>-->
-                      <input type="text" placeholder="Search destination Location" autocorrect="off" autocapitalize="off" spellcheck="off" [(ngModel)]="userData.destinaton" [ngModelOptions]="{standalone: true}" class="form-control" #destination>
-                    </div>
+                <div class="form-group ">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">remarks</label>
+                  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <input type="text" name="remarks" [(ngModel)]="userData.remarks" [ngModelOptions]="{standalone: true}" class="form-control"
+                      width="70%" />
                   </div>
                 </div>
-              </form>
-              <div class="row" style="padding-top:20px; padding-bottom: 40px;">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <button type="button" class="btn btn-default btn-sm" style="margin: 0 20px">cancel</button>
-                  <button type="button" class="btn btn-danger btn-sm" style="margin-left: 40px;" (click)="addOrUpdateDriverData(userData)">commit</button>
+                <div class="form-group">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 15px">source</label>
+                  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <!--<input type="text" name="source" class="form-control" width="70%"/> -->
+                    <input type="text" placeholder="Search source Location" autocorrect="off" autocapitalize="off" spellcheck="off" [(ngModel)]="userData.source"
+                      [ngModelOptions]="{standalone: true}" class="form-control" #source>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-form-label padding-lr-0" style="padding-bottom: 25px">destination</label>
+                  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <!--<input type="text" name="destionation" class="form-control" width="70%"/>-->
+                    <input type="text" placeholder="Search destination Location" autocorrect="off" autocapitalize="off" spellcheck="off" [(ngModel)]="userData.destinaton"
+                      [ngModelOptions]="{standalone: true}" class="form-control" #destination>
+                  </div>
                 </div>
               </div>
+            </form>
+            <div class="row" style="padding-top:20px; padding-bottom: 40px;">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <button type="button" class="btn btn-default btn-sm" style="margin: 0 20px">cancel</button>
+                <button type="button" class="btn btn-danger btn-sm" style="margin-left: 40px;" (click)="addOrUpdateDriverData(userData)">commit</button>
+              </div>
+            </div>
           </fieldset>
         </div>
       </div>
     </div>
-    
-    
-      <div class="row">
-          <div class="row">
-              <div class="col-12">
-                <div class="form-inline float-right">
-                  <label for="status" class="mr-sm-2"> Select :</label>
-                  <div class="">
-                    <select class="form-control form-control-sm mb-2 mr-sm-2" id="role" (change)="selectChangeHandler($event)" [(ngModel)]="userData.role"
-                      #statusId="ngModel" name="role" required>
-                      <option value="trips">Ongoing Trips</option>
-                      <option value="users">Users Online</option>
-                      <option value="cabs">Cabs online</option>
-                      <option value="delivery">Delivery Items Ongoing</option>
-                      <option value="all">All</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-        <div class="col-xs-12 col-sm-12	col-md-12 col-lg-12">
-            <agm-map [zoom] = "4" 
-            [latitude]="20.5937"
-            [longitude]="78.9629"
-            >
-            <agm-marker
-              *ngFor="let coordinate of markers; let i=index"
-              [latitude]="coordinate.lat"
-              [longitude]="coordinate.lng"
-              [iconUrl]="coordinate.iconUrl"
-            ></agm-marker>
-           <!-- <agm-polyline
-             [visible]="true"
-             [strokeWeight]="3"
-             [strokeColor]="'#2196f3'">
-              <agm-polyline-point
-                *ngFor="let coordinate of markers; let i=index"
-                [latitude]="coordinate.lat"
-                [longitude]="coordinate.lng">
-              </agm-polyline-point>
-            </agm-polyline>
-          -->
-            </agm-map>
+    <div class="col-xs-12 col-sm-7	col-md-7 col-lg-7">
+      <ongoing-cabs></ongoing-cabs>
+    </div>
+    <div class="col-12">
+      <div class="form-inline float-right">
+        <label for="status" class="mr-sm-2"> Select :</label>
+        <div class="">
+          <select class="form-control form-control-sm mb-2 mr-sm-2" id="role" (change)="selectChangeHandler($event)" [(ngModel)]="userData.role"
+            #statusId="ngModel" name="role" required>
+            <option value="trips">Ongoing Trips</option>
+            <option value="users">Users Online</option>
+            <option value="cabs">Cabs online</option>
+            <option value="delivery">Delivery Items Ongoing</option>
+            <option value="all">All</option>
+          </select>
         </div>
       </div>
+    </div>
   </div>
   <hr/>
   <div class="row" style="padding-bottom: 40px;">
     <div class="col-xs-7 col-sm-7	col-md-7 col-lg-7">
       <fieldset>
-        <legend  visible="true" style="width:auto; margin-bottom: 0px; color: #1f497d;">System events</legend>
+        <legend visible="true" style="width:auto; margin-bottom: 0px; color: #1f497d;">System events</legend>
         <div style="padding-bottom: 30px;">
           <div>This are keep printing the every major even of the system, such as when a user selects/searches a ride.</div>
-          <div>drivers accepts it, he reaches to pick up location, trip starts, trip ends,a driver of a customer cancels the trip and same for deliveries.</div>
+          <div>drivers accepts it, he reaches to pick up location, trip starts, trip ends,a driver of a customer cancels the trip
+            and same for deliveries.</div>
         </div>
       </fieldset>
     </div>
@@ -148,82 +128,80 @@
         <i class="fa fa-user fa-2x" style="padding-left: 30px;" aria-hidden="true"></i>
       </div>
       <div>
-          <fieldset>
-              <legend visible="true" style="width:auto; margin-bottom: 0px; color: #1f497d;">pricing</legend>
-              <div style="padding-left:20px;">
-                <div> 
-                  SURGE
-                  <span style="padding-left: 40px">
-                      <ui-switch [(ngModel)]="surge" (change)="surgePricing($event)"></ui-switch>
-                  </span>
-                </div>
-                <div> BOOST
-                  <span style="padding-left: 40px">
-                      <ui-switch [(ngModel)]="boost" (change)="boostFare($event)"></ui-switch>
-                  </span>
-                </div>
-              </div>
-          </fieldset>
+        <fieldset>
+          <legend visible="true" style="width:auto; margin-bottom: 0px; color: #1f497d;">pricing</legend>
+          <div style="padding-left:20px;">
+            <div>
+              SURGE
+              <span style="padding-left: 40px">
+                <ui-switch [(ngModel)]="surge" (change)="surgePricing($event)"></ui-switch>
+              </span>
+            </div>
+            <div> BOOST
+              <span style="padding-left: 40px">
+                <ui-switch [(ngModel)]="boost" (change)="boostFare($event)"></ui-switch>
+              </span>
+            </div>
+          </div>
+        </fieldset>
       </div>
     </div>
-    
+
   </div>
   <div class="col-xs-4 col-sm-4	col-md-4 col-lg-4">
-      <div class="row">
-        <div class="col-xs-12 col-sm-12	col-md-12 col-lg-12">
-          <h5 style="color: red"> List of cabs with ongoing rides</h5>
-          <div>
-              <table class="table table-bordered" >
-                  <thead style="font: bold;">
-                    <tr>
-                      <th>cust Id</th>
-                      <th>Cust Name</th>
-                      <th>Cust Email</th>
-                      <th>Cust Phone</th>
-                      <th>Remarks</th>
-                      <th>Address</th>
-                      <th>Driver Name</th>
-                      <th>Source</th>
-                      <th>Destination</th>
-                      <th>Time elap</th>
-                      <th>ETA</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let cab of cabs">
-                      <td>{{cab.cust_id}}</td>
-                      <td>{{cab.driver}}</td>
-                      <td>{{cab.driver}}</td>
-                      <td>santoshkumarsdfd</td>
-                      <td>santoshkumarsdfd</td>
-                      <td>
-                        <span class="text-wrap">{{cab.driver}}</span>
-                      </td>
-                      <td>
-                        <span class="text-wrap">{{cab.driver}}</span>
-                      </td>
-                      <td>
-                        <span >{{cab.source}}</span>
-                      </td>
-                      <td>
-                        <span >{{cab.destination}}</span>
-                      </td>
-                      <td>
-                        <span class="text-wrap">{{cab.time}}</span>
-                      </td>
-                      <td>
-                        <span class="text-wrap">{{cab.eta}}</span>
-                      </td>
-                      <td>
-                        <span >{{cab.status}}</span>
-                      </td>
-                    </tr>
-                </table>
-          </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12	col-md-12 col-lg-12">
+        <h5 style="color: red"> List of cabs with ongoing rides</h5>
+        <div>
+          <table class="table table-bordered">
+            <thead style="font: bold;">
+              <tr>
+                <th>cust Id</th>
+                <th>Cust Name</th>
+                <th>Cust Email</th>
+                <th>Cust Phone</th>
+                <th>Remarks</th>
+                <th>Address</th>
+                <th>Driver Name</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Time elap</th>
+                <th>ETA</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cab of cabs">
+                <td>{{cab.cust_id}}</td>
+                <td>{{cab.driver}}</td>
+                <td>{{cab.driver}}</td>
+                <td>santoshkumarsdfd</td>
+                <td>santoshkumarsdfd</td>
+                <td>
+                  <span class="text-wrap">{{cab.driver}}</span>
+                </td>
+                <td>
+                  <span class="text-wrap">{{cab.driver}}</span>
+                </td>
+                <td>
+                  <span>{{cab.source}}</span>
+                </td>
+                <td>
+                  <span>{{cab.destination}}</span>
+                </td>
+                <td>
+                  <span class="text-wrap">{{cab.time}}</span>
+                </td>
+                <td>
+                  <span class="text-wrap">{{cab.eta}}</span>
+                </td>
+                <td>
+                  <span>{{cab.status}}</span>
+                </td>
+              </tr>
+          </table>
         </div>
       </div>
     </div>
-    
+  </div>
 </div>
-

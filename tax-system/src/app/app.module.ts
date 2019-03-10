@@ -55,6 +55,8 @@ import { DriverFinanceComponent } from './finance/driver/driver-finance.componen
 import { RiderFinanceComponent } from './finance/rider/rider-finance.component';
 import { SettlementFinanceComponent } from './finance/settlement/settlement-finance.component';
 import { UiSwitchModule } from 'ngx-toggle-switch';
+import { MapUtilService } from './shared/services/map.util.service';
+import { OngoingMapComponent } from './booking/map/ongoing.map.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +94,7 @@ import { UiSwitchModule } from 'ngx-toggle-switch';
     RiderFinanceComponent,
     DriverFinanceComponent,
     SettlementFinanceComponent,
+    OngoingMapComponent
   ],
   imports: [
     UiSwitchModule,
@@ -113,7 +116,7 @@ import { UiSwitchModule } from 'ngx-toggle-switch';
       libraries: ['places']
     })
   ],
-  providers: [AuthService, DriverService, FileUploadService, BaseApiService, HttpService, ApiService],
+  providers: [AuthService, DriverService, FileUploadService, BaseApiService, HttpService, ApiService, MapUtilService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
