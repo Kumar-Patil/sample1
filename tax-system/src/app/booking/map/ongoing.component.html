@@ -1,0 +1,16 @@
+<div>
+    <div class="col-12 col-xs-12 live-map">        
+        <agm-map [latitude]="min('lat')" [longitude]="max('lng')" [zoom]="zoom" >
+            <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat" [longitude]="m.lng"
+                [label]="m.label" [iconUrl]="m.icon" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+                <agm-info-window>
+                    <div>
+                        <strong>Driver Name</strong>
+                        <div>ID: {{m.label}}</div>
+                    </div>
+                </agm-info-window>
+                <span>test</span>
+            </agm-marker>
+        </agm-map>
+    </div>
+</div>
